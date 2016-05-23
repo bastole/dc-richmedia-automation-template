@@ -3,8 +3,11 @@ module.exports = function(grunt) {
 var 
 LIVERELOAD_HOST = "localhost",
 LIVERELOAD_PORT = 4000,
-UGLIFY_SRC = ["build/js/base.js", "build/js/pre-loader.js", "build/js/animate.js", "build/js/video.js"],
-UGLIFY_DEST = "public/main.js",
+BANNER_LIST = ["300x250/", "300x600/", "728x90/", "160x600/"],
+SRC = "build/",
+DEST = "public/",
+JS_SRC = "template/js-partial/",
+
 GRUNT_TASKS = [
   "grunt-contrib-clean",
   "grunt-contrib-jshint",
@@ -15,24 +18,23 @@ GRUNT_TASKS = [
   "grunt-size-report",
   "grunt-contrib-watch"];
 
-
   grunt.initConfig({
     clean: {
       dist: {
-        src: "public/*.{html,js,css}"
+        src: DEST+"**.{html,js,css}"
       } 
     },
 
     jshint: {
       dist: {
-        src: "build/js/*.js"
+        src: "build/**.js"
       }
     },
 
     uglify: {
       dist: {
-        src: UGLIFY_SRC,
-        dest: UGLIFY_DEST
+        src: [JS_SRC+"base.js", JS_SRC+"pre-loader.js", SRC+BANNER_LIST[0]+"animate.js"],
+        dest: DEST+BANNER_LIST[0]+"main.js"
       }
     },
 
@@ -41,17 +43,18 @@ GRUNT_TASKS = [
         sourcemap: "none"
       },
       dist: {
-        src: "build/sass/main.scss",
-        dest: "public/style.css"
+        src: SRC+BANNER_LIST[0]+"main.scss",
+        dest: DEST+BANNER_LIST[0]+"style.css"
       }
+      
     },
 
     imagemin: {
       dist: {
         expand: true,
-        cwd: "build/images/",
+        cwd: SRC+BANNER_LIST[0]+"images/",
         src: "*.{jpg,png,gif,svg}",
-        dest: "public/"
+        dest: DEST+BANNER_LIST[0]
 
       }
     },
@@ -59,33 +62,33 @@ GRUNT_TASKS = [
     copy: {
       html: {
         expand: true,
-        cwd: "build/",
+        cwd: SRC+BANNER_LIST[0],
         src: ["*.html"],
-        dest: "public/"
+        dest: DEST+BANNER_LIST[0]
       },
       js: {
         expand: true,
-        cwd: "build/js",
+        cwd: SRC+BANNER_LIST[0]+"js",
         src: ["init.js"],
-        dest: "public/"
+        dest: DEST+BANNER_LIST[0]
       },
       video: {
         expand: true,
-        cwd: "build/video",
+        cwd: SRC+BANNER_LIST[0]+"video",
         src: "*.{mp4, ogg, ogv, webm}",
-        dest: "public/"
+        dest: DEST+BANNER_LIST[0]
       },
       backup: {
         expand: true,
-        cwd: "build/backup",
+        cwd: SRC+BANNER_LIST[0]+"backup",
         src: "*.{jpg,gif,png}",
-        dest: "public/"
+        dest: DEST+BANNER_LIST[0]
       }
     },
     size_report: {
         your_target: {
             files: {
-                list: ["public/*.*"]
+                list: [DEST+"*"]
             },
         },
     },

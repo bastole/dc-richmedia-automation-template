@@ -5,10 +5,10 @@
 $bannerWidth: 300px;
 $bannerHeight: 250px;
 
-@import 'partials/_base';
-@import 'partials/_reset';
-@import 'partials/_font';
-@import 'partials/_extra';
+@import '../../template/sass-partial/_base';
+@import '../../template/sass-partial/_reset';
+@import '../../template/sass-partial/_font';
+@import '../../template/sass-partial/_extra';
 #fade {
     background: white;
 }
