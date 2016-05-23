@@ -1,6 +1,10 @@
 node_modules/
 public/**
 
+.sass-cache/
+.scssc
+.map
+
 *.psd
 *.ai
 *.fla
