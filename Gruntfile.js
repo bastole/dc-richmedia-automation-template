@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 var 
 LIVERELOAD_HOST = "localhost",
 LIVERELOAD_PORT = 4000,
-UGLIFY_SRC = ["build/js/common.js", "build/js/pre-loader.js", "build/js/animate.js", "build/js/video.js"],
+UGLIFY_SRC = ["build/js/base.js", "build/js/pre-loader.js", "build/js/animate.js", "build/js/video.js"],
 UGLIFY_DEST = "public/main.js",
 GRUNT_TASKS = [
   "grunt-contrib-clean",
