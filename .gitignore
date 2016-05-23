@@ -1,0 +1,13 @@
+node_modules/
+public/**
+
+*.psd
+*.ai
+*.fla
+*.mp4
+*.ogv
+*.ogg
+*.flv
+*.mov
+*.webm
+*.zip

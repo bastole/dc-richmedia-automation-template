@@ -1,4 +1,21 @@
 module.exports = function(grunt) {
+
+var 
+LIVERELOAD_HOST = "localhost",
+LIVERELOAD_PORT = 4000,
+UGLIFY_SRC = ["build/js/common.js", "build/js/pre-loader.js", "build/js/animate.js", "build/js/video.js"],
+UGLIFY_DEST = "public/main.js",
+GRUNT_TASKS = [
+  "grunt-contrib-clean",
+  "grunt-contrib-jshint",
+  "grunt-contrib-uglify",
+  "grunt-contrib-sass",
+  "grunt-contrib-imagemin",
+  "grunt-contrib-copy",
+  "grunt-size-report",
+  "grunt-contrib-watch"];
+
+
   grunt.initConfig({
     clean: {
       dist: {
@@ -14,8 +31,8 @@ module.exports = function(grunt) {
 
     uglify: {
       dist: {
-        src: ["build/js/common.js", "build/js/pre-loader.js", "build/js/animate.js", "build/js/video.js"],
-        dest: "public/main.js"
+        src: UGLIFY_SRC,
+        dest: UGLIFY_DEST
       }
     },
 
@@ -65,7 +82,6 @@ module.exports = function(grunt) {
         dest: "public/"
       }
     },
-
     size_report: {
         your_target: {
             files: {
@@ -73,12 +89,11 @@ module.exports = function(grunt) {
             },
         },
     },
-
     watch: {
       options: {
         livereload: {
-          host: "localhost",
-          port: 4000
+          host: LIVERELOAD_HOST,
+          port: LIVERELOAD_PORT
         }
       },
       code: {
@@ -93,16 +108,9 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.loadNpmTasks("grunt-contrib-clean");
-  grunt.loadNpmTasks("grunt-contrib-jshint");
-  grunt.loadNpmTasks("grunt-contrib-uglify");
-  grunt.loadNpmTasks("grunt-contrib-sass");
-  grunt.loadNpmTasks("grunt-contrib-imagemin");
-  grunt.loadNpmTasks("grunt-contrib-copy");
-  grunt.loadNpmTasks('grunt-size-report');
-  grunt.loadNpmTasks("grunt-contrib-watch");
-
-
+for(var i = 0; i < GRUNT_TASKS.length; i++){
+  grunt.loadNpmTasks(GRUNT_TASKS[i]);  
+} 
   grunt.registerTask("default", ["jshint", "clean", "uglify", "sass", "imagemin", "copy", "size_report", "watch"]);
 
 };

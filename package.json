@@ -1,7 +1,7 @@
 {
   "name": "dc-richmedia",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple InPage DoubleClick Richmedia Boilerplate",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
