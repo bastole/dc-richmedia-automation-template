@@ -264,9 +264,6 @@ module.exports = function(grunt) {
       bootStrapHTML = grunt.template.process(bootStrapHTML, { data: { title: FOLDER_LIST[i].replace("/","") } });
       grunt.file.write(SRC.concat(FOLDER_LIST[i], "index.html"), bootStrapHTML);
 
-
-
-
     }
 
   });
