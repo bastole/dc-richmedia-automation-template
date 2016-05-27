@@ -4,11 +4,9 @@
   "description": "Simple InPage Richmedia",
   "list": [{
     "creative": "Product-A",
-    "cdn": true,
     "dimension": ["300x250", "728x90"]
   }, {
     "creative": "Product-B",
-    "cdn": true,
     "dimension": ["160x600", "300x600"]
   }]
 }

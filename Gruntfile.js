@@ -26,10 +26,10 @@ for (var i = 0; i < config.list.length; i++) {
 }
 
 config.widthList = SIZE_LIST.map(function(a) {
-  return a.match(/(\d+)/g)[0]
+  return a.match(/(\d+)/g)[0];
 });
 config.heightList = SIZE_LIST.map(function(a) {
-  return a.match(/(\d+)/g)[1]
+  return a.match(/(\d+)/g)[1];
 });
 
 var uglifyFiles = [],
@@ -82,11 +82,52 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    prompt: {
+      configSetUp: {
+        options: {
+          questions: [{
+              config: 'config.jobnumber', // arbitrary name or config for any other grunt task 
+              type: 'input', // list, checkbox, confirm, input, password 
+              message: 'What is the job number? (e.g. JOB0000)', // Question to ask the user, function needs to return a string, 
+              default: 'JOB0000', // default value if nothing is entered 
+              filter: function(value) {
+                return value.replace(" ", ""); }, // modify the answer 
+            },
+
+            {
+              config: 'config.description', // arbitrary name or config for any other grunt task 
+              type: 'input', // list, checkbox, confirm, input, password 
+              message: 'Description :', // Question to ask the user, function needs to return a string, 
+              default: 'Digital banners.', // default value if nothing is entered 
+            },
+
+            {
+              config: 'config.creative', // arbitrary name or config for any other grunt task 
+              type: 'input', // list, checkbox, confirm, input, password 
+              message: 'Creative name (e.g. SalePromo))', // Question to ask the user, function needs to return a string, 
+              default: 'example', // default value if nothing is entered 
+              filter: function(value) {
+                return value.replace(" ", ""); }, // modify the answer 
+            },
+
+            {
+              config: 'config.sizes', // arbitrary name or config for any other grunt task 
+              type: 'checkbox', // list, checkbox, confirm, input, password 
+              message: 'Pick all sizes :', // Question to ask the user, function needs to return a string, 
+              default: '300x250', // default value if nothing is entered 
+              choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "970x250", "980x250", "980x150"],
+            }
+          ]
+        }
+      }
+    },
+
+
     mkdir: {
       setUp: {
         options: {
           create: FOLDER_LIST.map(function(a) {
-            return SRC.concat(a)
+            return SRC.concat(a);
           })
         }
       }
@@ -137,7 +178,7 @@ module.exports = function(grunt) {
     size_report: {
       your_target: {
         files: {
-          list: [DEST + "*", SRC+"*"]
+          list: [DEST + "*", SRC + "*"]
         },
       },
     },
@@ -163,15 +204,17 @@ module.exports = function(grunt) {
   grunt.registerTask("default", ["jshint", "clean", "uglify", "sass", "imagemin", "copy:build", "size_report", "watch"]);
 
   grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
-    console.log(config);
+    console.log(JSON.stringify(config));
 
     for (var i = 0; i < FOLDER_LIST.length; i++) {
       var bootstrapper = grunt.file.read(TEMPLATE_DEFAULT.concat("_main.scss.tpl"));
       bootstrapper = grunt.template.process(bootstrapper, { data: { width: config.widthList[i], height: config.heightList[i] } });
       grunt.file.write(SRC.concat(FOLDER_LIST[i], "main.scss"), bootstrapper);
+      grunt.file.write("test.json", JSON.stringify(config));
     }
 
   });
+  grunt.registerTask("inquire", "prompt:configSetUp");
 
   grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp"]);
 
