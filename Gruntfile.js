@@ -9,40 +9,69 @@ _.mixin(_.str.exports());
 var
   LIVERELOAD_HOST = "localhost",
   LIVERELOAD_PORT = 4000,
-  BANNER_LIST = ["300x250/", "300x600/", "728x90/", "160x600/"],
   SRC = "build/",
   DEST = "public/",
-  JS_PARTIAL = "template/js-partial/",
-
-  FOLDER_LIST = [];
+  JS_PARTIAL = SRC.concat("shared/js/partial/"),
+  TEMPLATE_DEFAULT = "_templates/default/",
+  //  OLDBANNER_LIST = ["300x250/", "300x600/", "728x90/", "160x600/"],
+  FOLDER_LIST = [],
+  SIZE_LIST = [];
 
 for (var i = 0; i < config.list.length; i++) {
   for (var j = 0; j < config.list[i].dimension.length; j++) {
     FOLDER_LIST.push(config.jobnumber.concat("_", config.list[i].creative, "_", config.list[i].dimension[j], "/"));
+    SIZE_LIST.push(config.list[i].dimension[j]);
+
   }
 }
 
-console.log(FOLDER_LIST);
+config.widthList = SIZE_LIST.map(function(a) {
+  return a.match(/(\d+)/g)[0]
+});
+config.heightList = SIZE_LIST.map(function(a) {
+  return a.match(/(\d+)/g)[1]
+});
+
 var uglifyFiles = [],
-sassFiles = [],
-copyFiles = [];
+  sassFiles = [],
+  copySetUpFiles = [],
+  copyBuildFiles = [],
+  imageMinFiles = [];
 
 for (var i = 0; i < FOLDER_LIST.length; i++) {
   uglifyFiles[i] = {
-    src : [JS_PARTIAL.concat("base.js"), JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "animate.js")],
-    dest : DEST.concat(FOLDER_LIST[i], "main.js")
+    src: [JS_PARTIAL.concat("base.js"), JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "_animate.js")],
+    dest: DEST.concat(FOLDER_LIST[i], "main.js")
   };
   sassFiles[i] = {
-    src : SRC.concat(FOLDER_LIST[i], "main.scss"),
-    dest : DEST.concat(FOLDER_LIST[i], "style.scss")
+    src: SRC.concat(FOLDER_LIST[i], "main.scss"),
+    dest: DEST.concat(FOLDER_LIST[i], "style.css")
   };
-  copyFiles[i] = {
-    src : [JS_PARTIAL.concat("base.js"), JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "animate.js")],
-    dest : DEST.concat(FOLDER_LIST[i], "main.js")
+  imageMinFiles[i] = {
+    expand: true,
+    cwd: SRC.concat(FOLDER_LIST[i], "images/"),
+    src: "*.{jpg,png,gif,svg}",
+    dest: DEST.concat(FOLDER_LIST[i])
+  };
+
+  copySetUpFiles[i] = {
+    expand: true,
+    cwd: TEMPLATE_DEFAULT,
+    src: ["**", "!*.tpl"],
+    dest: SRC.concat(FOLDER_LIST[i])
+  };
+
+  copyBuildFiles[i] = {
+    expand: true,
+    cwd: SRC.concat(FOLDER_LIST[i]),
+    src: ["*.*", "!*.scss", "!*.psd", "!*.{jpg,png,gif,svg}", "!_animate.js"],
+    dest: DEST.concat(FOLDER_LIST[i])
   };
 
 }
+console.log(FOLDER_LIST);
 
+console.log(copyBuildFiles);
 
 
 module.exports = function(grunt) {
@@ -56,7 +85,9 @@ module.exports = function(grunt) {
     mkdir: {
       setUp: {
         options: {
-          create: FOLDER_LIST.map(function(a){return SRC.concat(a)})
+          create: FOLDER_LIST.map(function(a) {
+            return SRC.concat(a)
+          })
         }
       }
     },
@@ -75,10 +106,8 @@ module.exports = function(grunt) {
 
     uglify: {
       all: {
-          files: uglifyFiles
-/*        src: [JS_PARTIAL + "base.js", JS_PARTIAL + "pre-loader.js", SRC + BANNER_LIST[0] + "animate.js"],
-        dest: DEST + BANNER_LIST[0] + "main.js"
-*/      }
+        files: uglifyFiles
+      }
     },
 
     sass: {
@@ -86,58 +115,29 @@ module.exports = function(grunt) {
         sourcemap: "none"
       },
       all: {
-          files: sassFiles
-/*        src: SRC + BANNER_LIST[0] + "main.scss",
-        dest: DEST + BANNER_LIST[0] + "style.css"
-*/
+        files: sassFiles
       }
 
     },
 
     imagemin: {
       all: {
-        expand: true,
-        cwd: SRC + BANNER_LIST[0] + "images/",
-        src: "*.{jpg,png,gif,svg}",
-        dest: DEST + BANNER_LIST[0]
-
+        files: imageMinFiles
       }
     },
 
     copy: {
       setUp: {
-
+        files: copySetUpFiles
       },
-
-      html: {
-        expand: true,
-        cwd: SRC + BANNER_LIST[0],
-        src: ["*.html"],
-        dest: DEST + BANNER_LIST[0]
-      },
-      js: {
-        expand: true,
-        cwd: SRC + BANNER_LIST[0] + "js",
-        src: ["init.js"],
-        dest: DEST + BANNER_LIST[0]
-      },
-      video: {
-        expand: true,
-        cwd: SRC + BANNER_LIST[0] + "video",
-        src: "*.{mp4, ogg, ogv, webm}",
-        dest: DEST + BANNER_LIST[0]
-      },
-      backup: {
-        expand: true,
-        cwd: SRC + BANNER_LIST[0] + "backup",
-        src: "*.{jpg,gif,png}",
-        dest: DEST + BANNER_LIST[0]
+      build: {
+        files: copyBuildFiles
       }
     },
     size_report: {
       your_target: {
         files: {
-          list: [DEST + "*"]
+          list: [DEST + "*", SRC+"*"]
         },
       },
     },
@@ -148,18 +148,33 @@ module.exports = function(grunt) {
           port: LIVERELOAD_PORT
         }
       },
-      code: {
-        files: ["build/**/*.html", "build/**/*.js", "build/**/*.css", "build/**/*.scss"],
-        tasks: ["jshint", "clean", "uglify", "sass", "copy", "size_report"]
+      codeUpdated: {
+        files: ["build/**/*.{html,js,css,scss}"],
+        tasks: ["jshint", "clean", "uglify", "sass", "copy:build", "size_report"]
       },
-      image: {
-        files: ["build/images/**/*.jpg", "build/images/**/*.png", "build/images/**/*.gif", "build/images/**/*.svg"],
+      imageUpdated: {
+        files: ["build/**/*.{jpg,png,gif,svg}"],
         tasks: ["imagemin", "size_report"]
       }
     }
 
   });
 
-  grunt.registerTask("default", ["jshint", "clean", "uglify", "sass", "imagemin", "copy", "size_report", "watch"]);
+  grunt.registerTask("default", ["jshint", "clean", "uglify", "sass", "imagemin", "copy:build", "size_report", "watch"]);
+
+  grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
+    console.log(config);
+
+    for (var i = 0; i < FOLDER_LIST.length; i++) {
+      var bootstrapper = grunt.file.read(TEMPLATE_DEFAULT.concat("_main.scss.tpl"));
+      bootstrapper = grunt.template.process(bootstrapper, { data: { width: config.widthList[i], height: config.heightList[i] } });
+      grunt.file.write(SRC.concat(FOLDER_LIST[i], "main.scss"), bootstrapper);
+    }
+
+  });
+
+  grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp"]);
+
+
 
 };

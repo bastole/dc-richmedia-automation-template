@@ -2,13 +2,13 @@
 =            Main            =
 ============================*/
 
-$bannerWidth: 300px;
-$bannerHeight: 250px;
+$bannerWidth: <%= width %>px;
+$bannerHeight: <%= height %>px;
 
-@import '../../template/sass-partial/_base';
-@import '../../template/sass-partial/_reset';
-@import '../../template/sass-partial/_font';
-@import '../../template/sass-partial/_extra';
+@import '../shared/sass/partial/_base';
+@import '../shared/sass/partial/_reset';
+@import '../shared/sass/partial/_font';
+@import '../shared/sass/partial/_extra';
 #fade {
     background: white;
 }
