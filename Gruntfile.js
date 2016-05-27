@@ -1,5 +1,6 @@
 'use strict';
 var config = require('./config.json');
+var promptResult;
 var _ = require('underscore');
 _.str = require('underscore.string');
 
@@ -11,9 +12,9 @@ var
   LIVERELOAD_PORT = 4000,
   SRC = "build/",
   DEST = "public/",
-  JS_PARTIAL = SRC.concat("shared/js/partial/"),
+  JS_PARTIAL = SRC.concat("shared/js/"),
   TEMPLATE_DEFAULT = "_templates/default/",
-  //  OLDBANNER_LIST = ["300x250/", "300x600/", "728x90/", "160x600/"],
+
   FOLDER_LIST = [],
   SIZE_LIST = [];
 
@@ -32,14 +33,14 @@ config.heightList = SIZE_LIST.map(function(a) {
   return a.match(/(\d+)/g)[1];
 });
 
-var uglifyFiles = [],
+var combineJSFiles = [],
   sassFiles = [],
   copySetUpFiles = [],
   copyBuildFiles = [],
   imageMinFiles = [];
 
 for (var i = 0; i < FOLDER_LIST.length; i++) {
-  uglifyFiles[i] = {
+  combineJSFiles[i] = {
     src: [JS_PARTIAL.concat("base.js"), JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "_animate.js")],
     dest: DEST.concat(FOLDER_LIST[i], "main.js")
   };
@@ -69,10 +70,6 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
   };
 
 }
-console.log(FOLDER_LIST);
-
-console.log(copyBuildFiles);
-
 
 module.exports = function(grunt) {
 
@@ -83,41 +80,87 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     prompt: {
-      configSetUp: {
+      init: {
         options: {
-          questions: [{
-              config: 'config.jobnumber', // arbitrary name or config for any other grunt task 
-              type: 'input', // list, checkbox, confirm, input, password 
-              message: 'What is the job number? (e.g. JOB0000)', // Question to ask the user, function needs to return a string, 
-              default: 'JOB0000', // default value if nothing is entered 
-              filter: function(value) {
-                return value.replace(" ", ""); }, // modify the answer 
-            },
+          questions: [
+          {
+            config: 'jobnumber', // arbitrary name or config for any other grunt task 
+            type: 'input', // list, checkbox, confirm, input, password 
+            message: 'What is the job number? (e.g. JOB0000)', // Question to ask the user, function needs to return a string, 
+            default: 'JOB0000', // default value if nothing is entered 
+            filter: function(value) {
+                return value.replace(/\s/g, '');
+            } // modify the answer 
+          },
 
-            {
-              config: 'config.description', // arbitrary name or config for any other grunt task 
-              type: 'input', // list, checkbox, confirm, input, password 
-              message: 'Description :', // Question to ask the user, function needs to return a string, 
-              default: 'Digital banners.', // default value if nothing is entered 
-            },
+          {
+            config: 'description', // arbitrary name or config for any other grunt task 
+            type: 'input', // list, checkbox, confirm, input, password 
+            message: 'Description :', // Question to ask the user, function needs to return a string, 
+            default: 'Digital banners.' // default value if nothing is entered 
+          }],
+          then: function(results) {
+            promptResult = results;
+          }
+        }
+      },
+      addCreative: {
+        options: {
+          questions: [
+          {
+            config: 'creative', // arbitrary name or config for any other grunt task 
+            type: 'input', // list, checkbox, confirm, input, password 
+            message: 'Creative name (e.g. Concept-A))', // Question to ask the user, function needs to return a string, 
+            default: 'Concept-A', // default value if nothing is entered 
+            filter: function(value) {
+                return value.replace(/\s/g, '');
+            } // modify the answer 
+          },
 
-            {
-              config: 'config.creative', // arbitrary name or config for any other grunt task 
-              type: 'input', // list, checkbox, confirm, input, password 
-              message: 'Creative name (e.g. SalePromo))', // Question to ask the user, function needs to return a string, 
-              default: 'example', // default value if nothing is entered 
-              filter: function(value) {
-                return value.replace(" ", ""); }, // modify the answer 
-            },
+          {
+            config: 'dimension', // arbitrary name or config for any other grunt task 
+            type: 'checkbox', // list, checkbox, confirm, input, password 
+            message: 'Pick all sizes :', // Question to ask the user, function needs to return a string, 
+            default: ["300x250"], // default value if nothing is entered 
+            choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "970x250", "980x250", "980x150"]
+          },
 
-            {
-              config: 'config.sizes', // arbitrary name or config for any other grunt task 
-              type: 'checkbox', // list, checkbox, confirm, input, password 
-              message: 'Pick all sizes :', // Question to ask the user, function needs to return a string, 
-              default: '300x250', // default value if nothing is entered 
-              choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "970x250", "980x250", "980x150"],
+          {
+            config: 'addMore', // arbitrary name or config for any other grunt task 
+            type: 'confirm', // list, checkbox, confirm, input, password 
+            message: 'Add more creatives? :', // Question to ask the user, function needs to return a string, 
+            default: false // default value if nothing is entered 
+          }],
+          then: function(results) {
+
+            if(promptResult.list == undefined) promptResult.list = [];
+
+            var creative = results.creative,
+            dimension = results.dimension,
+            addMore = results.addMore;
+
+            delete results.creative;
+            delete results.dimension;
+            delete results.addMore;
+
+            promptResult.list.push({
+              creative: creative,
+              dimension: dimension
+            });
+
+
+            if (!addMore) {
+              console.log(JSON.stringify(promptResult));
+              grunt.file.write("config.json", JSON.stringify(promptResult));
+
+
             }
-          ]
+            else  {
+              grunt.task.run("prompt:addCreative");
+            }
+
+          }
+
         }
       }
     },
@@ -147,7 +190,13 @@ module.exports = function(grunt) {
 
     uglify: {
       all: {
-        files: uglifyFiles
+        files: combineJSFiles
+      }
+    },
+
+    concat: {
+      all: {
+        files: combineJSFiles
       }
     },
 
@@ -191,7 +240,7 @@ module.exports = function(grunt) {
       },
       codeUpdated: {
         files: ["build/**/*.{html,js,css,scss}"],
-        tasks: ["jshint", "clean", "uglify", "sass", "copy:build", "size_report"]
+        tasks: ["jshint", "clean", "concat", "sass", "copy:build", "size_report"]
       },
       imageUpdated: {
         files: ["build/**/*.{jpg,png,gif,svg}"],
@@ -201,20 +250,26 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask("default", ["jshint", "clean", "uglify", "sass", "imagemin", "copy:build", "size_report", "watch"]);
+  grunt.registerTask("default", ["jshint", "clean", "concat", "sass", "imagemin", "copy:build", "size_report", "watch"]);
 
   grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
-    console.log(JSON.stringify(config));
+    //    console.log(JSON.stringify(config));
 
     for (var i = 0; i < FOLDER_LIST.length; i++) {
-      var bootstrapper = grunt.file.read(TEMPLATE_DEFAULT.concat("_main.scss.tpl"));
-      bootstrapper = grunt.template.process(bootstrapper, { data: { width: config.widthList[i], height: config.heightList[i] } });
-      grunt.file.write(SRC.concat(FOLDER_LIST[i], "main.scss"), bootstrapper);
-      grunt.file.write("test.json", JSON.stringify(config));
+      var bootStrapSASS = grunt.file.read(TEMPLATE_DEFAULT.concat("_main.scss.tpl"));
+      bootStrapSASS = grunt.template.process(bootStrapSASS, { data: { width: config.widthList[i], height: config.heightList[i] } });
+      grunt.file.write(SRC.concat(FOLDER_LIST[i], "main.scss"), bootStrapSASS);
+
+      var bootStrapHTML = grunt.file.read(TEMPLATE_DEFAULT.concat("_index.html.tpl"));
+      bootStrapHTML = grunt.template.process(bootStrapHTML, { data: { title: FOLDER_LIST[i].replace("/","") } });
+      grunt.file.write(SRC.concat(FOLDER_LIST[i], "index.html"), bootStrapHTML);
+
+
+
+
     }
 
   });
-  grunt.registerTask("inquire", "prompt:configSetUp");
 
   grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp"]);
 

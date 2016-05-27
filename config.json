@@ -1,14 +1,1 @@
-{
-  "jobnumber": "3DM0000",
-  "name": "example",
-  "description": "Simple InPage Richmedia",
-  "list": [{
-    "creative": "Product-A",
-    "dimension": ["300x250", "728x90"]
-  }, {
-    "creative": "Product-B",
-    "dimension": ["160x600", "300x600"]
-  }]
-}
-
-
+{"jobnumber":"JOB0000","description":"Digital banners.","list":[{"creative":"Concept-A","dimension":["300x250"]}]}

@@ -2,7 +2,9 @@
 <html>
 
 <head>
-    <title>DC Richmedia Boilerplate</title>
+    <title>
+    <%= title %>        
+    </title>
     <!-- Studio Enabler Required -->
     <script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
     <script src="init.js"></script>

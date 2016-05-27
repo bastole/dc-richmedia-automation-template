@@ -5,6 +5,7 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-imagemin": "^1.0.0",
     "grunt-contrib-jshint": "^1.0.0",
@@ -24,8 +25,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "grunt setUp",
-    "postinstall": "grunt prompt"
+    "install": "grunt prompt",
+    "postinstall": "grunt setUp"
   },
   "author": "bastole",
   "license": "UNLICENSED"
