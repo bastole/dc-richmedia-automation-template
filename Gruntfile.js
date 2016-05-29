@@ -36,6 +36,7 @@ var combineJSFiles = [],
   sassFiles = [],
   copySetUpFiles = [],
   copyBuildFiles = [],
+  sizeReportFiles = [],
   imageMinFiles = [];
 
 for (var i = 0; i < FOLDER_LIST.length; i++) {
@@ -67,6 +68,11 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
     src: ["*.*", "!*.scss", "!*.psd", "!*.{jpg,png,gif,svg}", "!_animate.js"],
     dest: DEST.concat(FOLDER_LIST[i])
   };
+
+  sizeReportFiles[i] = {
+    list: DEST.concat(FOLDER_LIST[i],"*.*")
+  };
+
 
 }
 
@@ -228,11 +234,16 @@ module.exports = function(grunt) {
       }
     },
     size_report: {
-      your_target: {
+      all: {
+
+        files: sizeReportFiles
+
+        /*
         files: {
           list: [DEST + "*", SRC + "*"]
-        },
-      },
+        }
+        */
+      }
     },
     watch: {
       options: {
