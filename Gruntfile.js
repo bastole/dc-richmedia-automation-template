@@ -8,8 +8,7 @@ _.str = require('underscore.string');
 _.mixin(_.str.exports());
 
 var
-  LIVERELOAD_HOST = "localhost",
-  LIVERELOAD_PORT = 4000,
+
   SRC = "build/",
   DEST = "public/",
   JS_PARTIAL = SRC.concat("shared/js/"),
@@ -177,9 +176,13 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      all: {
-        src: "public/**.{html,js,css}"
+      code: {
+        src: ["public/**.{html,js,css}","!public/preview.html"]
+      },
+      image: {
+        src: ["public/**.{jpg,png,gif,svg}"]
       }
+ 
     },
 
     jshint: {
@@ -234,23 +237,38 @@ module.exports = function(grunt) {
     watch: {
       options: {
         livereload: {
-          host: LIVERELOAD_HOST,
-          port: LIVERELOAD_PORT
+          host: "localhost",
+          port: 4004
         }
       },
       codeUpdated: {
         files: ["build/**/*.{html,js,css,scss}"],
-        tasks: ["jshint", "clean", "concat", "sass", "copy:build", "size_report"]
+        tasks: ["jshint", "clean:code", "concat", "sass", "copy:build", "size_report"]
       },
       imageUpdated: {
         files: ["build/**/*.{jpg,png,gif,svg}"],
-        tasks: ["imagemin", "size_report"]
+        tasks: ["clean:image", "imagemin", "size_report"]
+      }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 9000,
+          base: 'public/'
+        }
+      }
+    },
+    open: {
+      server: {
+        path: 'http://localhost:9000/preview.html',
       }
     }
 
   });
 
-  grunt.registerTask("default", ["jshint", "clean", "concat", "sass", "imagemin", "copy:build", "size_report", "watch"]);
+  grunt.registerTask("default", ["jshint", "clean", "concat", "sass", "imagemin", "copy:build", "size_report", 'connect:server', 'open', "watch"]);
+
+
 
   grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
     //    console.log(JSON.stringify(config));
@@ -260,11 +278,16 @@ module.exports = function(grunt) {
       bootStrapSASS = grunt.template.process(bootStrapSASS, { data: { width: config.widthList[i], height: config.heightList[i] } });
       grunt.file.write(SRC.concat(FOLDER_LIST[i], "main.scss"), bootStrapSASS);
 
-      var bootStrapHTML = grunt.file.read(TEMPLATE_DEFAULT.concat("_index.html.tpl"));
-      bootStrapHTML = grunt.template.process(bootStrapHTML, { data: { title: FOLDER_LIST[i].replace("/","") } });
-      grunt.file.write(SRC.concat(FOLDER_LIST[i], "index.html"), bootStrapHTML);
+      var bootStrapIndexHTML = grunt.file.read(TEMPLATE_DEFAULT.concat("_index.html.tpl"));
+      bootStrapIndexHTML = grunt.template.process(bootStrapIndexHTML, { data: { title: FOLDER_LIST[i].replace("/","") } });
+      grunt.file.write(SRC.concat(FOLDER_LIST[i], "index.html"), bootStrapIndexHTML);
 
     }
+    var bootStrapPreviewHTML = grunt.file.read("_templates/_preview.html.tpl");
+    bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, { data: { jobnumber: config.jobnumber, foldername: FOLDER_LIST, width: config.widthList, height: config.heightList  } });
+    grunt.file.write("public/preview.html", bootStrapPreviewHTML);
+
+
 
   });
 

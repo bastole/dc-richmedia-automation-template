@@ -1,6 +1,6 @@
 
 var
-  isLooping = true,
+  isLooping = false,
   fadeTime = 0.6,
 
   //
