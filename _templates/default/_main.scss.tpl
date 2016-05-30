@@ -27,16 +27,16 @@ $bannerHeight: <%= height %>px;
 }
 
 #product {
-    left: 20px;
-    top: 20px;
+    left: 14px;
+    top: 14px;
 }
 
 #cta {
-    left: 58px;
+    left: 20px;
     top: 60px;
 }
 
 #logo {
     left: 10px;
-    top: 18px;
+    top: 12px;
 }

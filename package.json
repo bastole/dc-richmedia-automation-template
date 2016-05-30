@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Simple InPage DoubleClick Richmedia Boilerplate",
   "devDependencies": {
-    "get-folder-size": "^1.0.0",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",

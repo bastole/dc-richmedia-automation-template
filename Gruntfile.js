@@ -188,7 +188,7 @@ module.exports = function(grunt) {
         src: ["public/**.{jpg,png,gif,svg}"]
       },
       reset: {
-        src: ["public/", "build/**", "!build/share/**/*.*"]
+        src: ["public/", "build/"]
 
       }
 
@@ -230,7 +230,12 @@ module.exports = function(grunt) {
 
     copy: {
       setUp: {
-        files: copySetUpFiles
+        files: copySetUpFiles.concat({
+    expand: true,
+    cwd: "_templates/",
+    src: "shared/**/*.*",
+    dest: "build/"
+        })
       },
       build: {
         files: copyBuildFiles
