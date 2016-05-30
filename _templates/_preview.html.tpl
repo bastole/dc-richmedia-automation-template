@@ -39,11 +39,20 @@
 			prepareFrame(foldername[i],width[i],height[i]);	  
 	  }
 
-	  function prepareFrame(foldername,width,height) {
 
+	  function prepareFrame(foldername,width,height) {
 			var subheading = document.createElement("h2");
 			subheading.innerHTML = foldername;
 	    document.body.appendChild(subheading);
+
+			var sizeParagraph = document.createElement("p");
+			getSize(foldername, function(err, size) {
+		  if (err) { throw err; }
+			sizeParagraph.innerHTML = ((size / 1024).toFixed(2) + ' kb');
+	    document.body.appendChild(sizeParagraph);
+
+		};
+
 
 	    var ifrm = document.createElement("iframe");
 	    ifrm.setAttribute("src", foldername+"index.html");

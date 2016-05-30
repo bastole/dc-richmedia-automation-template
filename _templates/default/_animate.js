@@ -5,12 +5,12 @@ var
 
   //
   imageArray = [
-    Enabler.getUrl('mr_g1.png'),
+    Enabler.getUrl('mr_product.png'),
     Enabler.getUrl('mr_logo.png'),
     Enabler.getUrl('mr_cta.png')
   ],
   imagrContainerArray = [
-    'g1',
+    'product',
     'logo',
     'cta'
   ];
@@ -27,8 +27,8 @@ function playMainTimeline() {
 mainTimeline
 .set(fade, { autoAlpha: 1 })
   .to(fade, fadeTime, { delay: 0.5, autoAlpha: 0 })
-  .set(g1, { autoAlpha: 1, scale: 3 })
-  .to(g1, 0.3, { scale: 1, ease: Back.easeOut.config(1.7) })
+  .set(product, { autoAlpha: 1, scale: 3 })
+  .to(product, 0.3, { scale: 1, ease: Back.easeOut.config(1.7) })
   .to(bg2, 0.2, { delay: 2.8, autoAlpha: 1 })
   .to(logo, fadeTime, { autoAlpha: 1 })
   .set(cta, { x: -300 })

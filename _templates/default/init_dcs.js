@@ -46,3 +46,7 @@ function loadJs(jsUrl) {
 
 }
 
+function bgExitHandler(e) {
+  mainTimeline.pause(30);
+  Enabler.exit('Background Exit');
+}

@@ -26,27 +26,17 @@ $bannerHeight: <%= height %>px;
     background: grey;
 }
 
-#g1 {
-    left: 45px;
-    top: 22px;
-}
-
-#g2 {
-    left: 110px;
-    bottom: 18px;
+#product {
+    left: 20px;
+    top: 20px;
 }
 
 #cta {
     left: 58px;
-    top: 167px;
-}
-
-#t_last {
-    left: 44px;
-    top: 116px;
+    top: 60px;
 }
 
 #logo {
-    left: 100px;
-    top: 43px;
+    left: 10px;
+    top: 18px;
 }
