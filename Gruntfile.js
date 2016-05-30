@@ -231,10 +231,10 @@ module.exports = function(grunt) {
     copy: {
       setUp: {
         files: copySetUpFiles.concat({
-    expand: true,
-    cwd: "_templates/",
-    src: "shared/**/*.*",
-    dest: "build/"
+          expand: true,
+          cwd: "_templates/",
+          src: "shared/**/*.*",
+          dest: SRC
         })
       },
       build: {
@@ -246,11 +246,6 @@ module.exports = function(grunt) {
 
         files: sizeReportFiles
 
-        /*
-        files: {
-          list: [DEST + "*", SRC + "*"]
-        }
-        */
       }
     },
     watch: {
