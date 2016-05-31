@@ -5,9 +5,9 @@ var
 
   //
   imageArray = [
-    Enabler.getUrl('mr_product.png'),
-    Enabler.getUrl('mr_logo.png'),
-    Enabler.getUrl('mr_cta.png')
+    Enabler.getUrl('temp_product.png'),
+    Enabler.getUrl('temp_logo.png'),
+    Enabler.getUrl('temp_cta.png')
   ],
   imagrContainerArray = [
     'product',

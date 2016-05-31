@@ -43,6 +43,11 @@
 			subheading.innerHTML = foldername;
 	    document.body.appendChild(subheading);
 
+			var anch = document.createElement("a");
+			anch.innerHTML = "Seperate View";
+			anch.setAttribute('href',foldername);
+	    document.body.appendChild(anch);
+
 	    var ifrm = document.createElement("iframe");
 	    ifrm.setAttribute("src", foldername+"index.html");
 	    ifrm.style.width = width+"px";

@@ -5,10 +5,10 @@
 $bannerWidth: <%= width %>px;
 $bannerHeight: <%= height %>px;
 
-@import '../shared/sass/partial/_base';
-@import '../shared/sass/partial/_reset';
-@import '../shared/sass/partial/_font';
-@import '../shared/sass/partial/_extra';
+@import '../shared/sass/_base';
+@import '../shared/sass/_reset';
+@import '../shared/sass/_font';
+
 #fade {
     background: white;
 }

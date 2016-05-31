@@ -11,7 +11,7 @@ var
 
   SRC = "build/",
   DEST = "public/",
-  JS_PARTIAL = SRC.concat("shared/js/"),
+  JS_PARTIAL = SRC.concat("build/shared/js/"),
   TEMPLATE_DEFAULT = "_templates/default/",
 
   FOLDER_LIST = [],

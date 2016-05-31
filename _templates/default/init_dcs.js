@@ -38,12 +38,7 @@ function checkLoaded() {
 }
 
 function loadJs(jsUrl) {
-
-  var extJavascript = document.createElement('script');
-  extJavascript.onload = function() { checkLoaded(); };
-  extJavascript.src = jsUrl;
-  document.getElementsByTagName('head')[0].appendChild(extJavascript);
-
+  Enabler.loadScript(jsUrl, checkLoaded);
 }
 
 function bgExitHandler(e) {
