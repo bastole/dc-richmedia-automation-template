@@ -14,20 +14,16 @@ function startMain() {
         elem.src = imageArray[i];
         document.getElementById(imagrContainerArray[i]).appendChild(elem);
       }
-      initAnimation();
+      //start timeline animation
+      bgexit.addEventListener('click', bgExitHandler, false);
+      TweenLite.to(loading, 0.3, { autoAlpha: 0, y: -30 });
+      mainTimeline.restart();
     }
   });
 }
 
-function initAnimation() {
-  bgexit.addEventListener('click', bgExitHandler, false);
-  TweenLite.to(loading, 0.3, { autoAlpha: 0, y: -30 });
-  playMainTimeline();
-}
-
 function bgExitHandler(e) {
   if (ytp != undefined) ytp.pauseVideo();
-
   mainTimeline.pause(30);
   Enabler.exit('Background Exit');
 }
