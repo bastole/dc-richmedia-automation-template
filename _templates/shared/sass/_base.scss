@@ -2,3 +2,16 @@
 =            Base            =
 ============================*/
 
+#videoplayer {
+  top: 1px;
+  left: 1px;
+  width: 441px;
+  height: 248px;
+  position: absolute;
+  background-color: #000;
+  z-index: 3;
+}
+
+#ytClose {
+  z-index: 3;
+}

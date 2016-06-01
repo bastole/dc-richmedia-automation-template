@@ -11,7 +11,7 @@ var
 
   SRC = "build/",
   DEST = "public/",
-  JS_PARTIAL = SRC.concat("build/shared/js/"),
+  JS_PARTIAL = SRC.concat("shared/js/"),
   TEMPLATE_DEFAULT = "_templates/default/",
 
   FOLDER_LIST = [],
@@ -73,7 +73,6 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
     list: DEST.concat(FOLDER_LIST[i], "*.*")
   };
 
-
 }
 
 module.exports = function(grunt) {
@@ -81,27 +80,26 @@ module.exports = function(grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-
   grunt.initConfig({
 
     prompt: {
       init: {
         options: {
           questions: [{
-              config: 'jobnumber', // arbitrary name or config for any other grunt task 
+              config: 'jobnumber',
               type: 'input', // list, checkbox, confirm, input, password 
-              message: 'What is the job number? (e.g. JOB0000)', // Question to ask the user, function needs to return a string, 
-              default: 'JOB0000', // default value if nothing is entered 
+              message: 'What is the job number? (e.g. JOB0000)',
+              default: 'JOB0000',
               filter: function(value) {
                   return value.replace(/\s/g, '');
-                } // modify the answer 
+                }
             },
 
             {
-              config: 'description', // arbitrary name or config for any other grunt task 
+              config: 'description',
               type: 'input', // list, checkbox, confirm, input, password 
-              message: 'Description :', // Question to ask the user, function needs to return a string, 
-              default: 'Digital banners.' // default value if nothing is entered 
+              message: 'Description :',
+              default: 'Digital banners.'
             }
           ],
           then: function(results) {
@@ -112,28 +110,28 @@ module.exports = function(grunt) {
       addCreative: {
         options: {
           questions: [{
-              config: 'creative', // arbitrary name or config for any other grunt task 
+              config: 'creative',
               type: 'input', // list, checkbox, confirm, input, password 
-              message: 'Creative name (e.g. Concept-A))', // Question to ask the user, function needs to return a string, 
-              default: 'Concept-A', // default value if nothing is entered 
+              message: 'Creative name (e.g. Concept-A))',
+              default: 'Concept-A',
               filter: function(value) {
                   return value.replace(/\s/g, '');
-                } // modify the answer 
+                }
             },
 
             {
-              config: 'dimension', // arbitrary name or config for any other grunt task 
+              config: 'dimension',
               type: 'checkbox', // list, checkbox, confirm, input, password 
-              message: 'Pick all sizes :', // Question to ask the user, function needs to return a string, 
-              default: ["300x250"], // default value if nothing is entered 
+              message: 'Pick all sizes :',
+              default: ["300x250"],
               choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "970x250", "980x250", "980x150"]
             },
 
             {
-              config: 'addMore', // arbitrary name or config for any other grunt task 
+              config: 'addMore',
               type: 'confirm', // list, checkbox, confirm, input, password 
-              message: 'Add more creatives? :', // Question to ask the user, function needs to return a string, 
-              default: false // default value if nothing is entered 
+              message: 'Add more creatives? :',
+              default: false
             }
           ],
           then: function(results) {

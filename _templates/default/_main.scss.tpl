@@ -4,39 +4,35 @@
 
 $bannerWidth: <%= width %>px;
 $bannerHeight: <%= height %>px;
-
 @import '../shared/sass/_base';
 @import '../shared/sass/_reset';
 @import '../shared/sass/_font';
-
-#fade {
-    background: white;
-}
-
 #bg1,
 #bg2,
 #bg3 {
-    width: $bannerWidth;
-    height: $bannerHeight;
+  width: $bannerWidth;
+  height: $bannerHeight;
 }
+
 #bg1 {
-    background: olive;
+  background: olive;
 }
+
 #bg2 {
-    background: grey;
+  background: grey;
 }
 
 #product {
-    left: 14px;
-    top: 14px;
+  right: 40px;
+  bottom: 16px;
 }
 
 #cta {
-    left: 20px;
-    top: 60px;
+  right: 50px;
+  bottom: 10px;
 }
 
 #logo {
-    left: 10px;
-    top: 12px;
+  right: 50px;
+  bottom: 46px;
 }

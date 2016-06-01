@@ -1,67 +1,39 @@
-
-"use strict"
-
-var ytp;
-var firstPlay = true;  
-var videoReady = false;
-
-var player = 
-    {
-      'containerId': 'video-player', 
-      'videoId': 'NpEaa2P7qZI',
-      'videoWidth': 441,
-      'videoHeight': 248,
-      'suggestedQuality': 'medium',
-      'playerVars': 
-      {
-        'autoplay': 0, /*With autoplay enabled, the video won't get video views. */
-        'rel': 0,
-        'showinfo': 0,
-      }
-    };
-
 //----Setting up----    
 
+var ytp,
+  firstPlay = true,
+  videoReady = false,
 
+  player = {
+    'containerId': videoPlayer,
+    'videoId': 'NpEaa2P7qZI',
+    'videoWidth': 441,
+    'videoHeight': 248,
+    'suggestedQuality': 'medium',
+    'playerVars': {
+      'autoplay': 0,
+      /*With autoplay enabled, the video won't get video views. */
+      'rel': 0,
+      'showinfo': 0,
+    }
+  };
 
-function politeInit(){    
- InitMH();
-}
-
-function addMHListeners(){
-  // YTClose Button
-//  document.getElementById("ytClose").addEventListener('click', btnYTCloseHandler, false);
-}
-
-//This function should be called only after the Enabler.isInitialized
-function InitMH(){
-  Enabler.loadScript(Enabler.getUrl('https://www.gstatic.com/doubleclick/studio/innovation/h5/ytplayer/ytp_v2.js'), YTFunction);
-  //Adding listeners
-  addListeners();
-
-}
-
-//----Exits----
-function bgExitHandler(e) {
- // Enabler.exitOverride('Background Exit');
-  //mastheadAnimation.pause(30);
-  ytp.pauseVideo();
-  Enabler.exit('Background Exit');
-
-}
 
 //----YTClose Button----
 function btnYTCloseHandler(e) {
-//  Enabler.stopTimer('YTVideo Timer');
+  Enabler.stopTimer('YTVideo Timer');
 }
 
 //----YouTube Player----
 function YTFunction(){
   // YouTube player properties configuration.
 
+  // YTClose Button
+  document.getElementById("ytClose").addEventListener('click', btnYTCloseHandler, false);
+
+
   // Construct the YouTube player variable.
  ytp = new studioinnovation.YTPlayer(player);
-
   // Bind event listeners.
   bindListeners();
 }
