@@ -1,3 +1,15 @@
+  // create video elements
+  var videoPlayer = document.createElement('div');
+  videoPlayer.setAttribute("id", "videoplayer");
+  container.appendChild(videoPlayer);
+
+  var ytCloseButton = document.createElement('ci-ytclosebutton');
+  ytCloseButton.setAttribute("lang", "en");
+  ytCloseButton.setAttribute("theme", "white");
+  ytCloseButton.setAttribute("shadow", "false");
+  ytCloseButton.setAttribute("id", "ytClose");
+  container.appendChild(ytCloseButton);
+
 //----Setting up----    
 
 var ytp,

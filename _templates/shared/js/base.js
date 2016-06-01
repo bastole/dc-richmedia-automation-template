@@ -3,18 +3,6 @@ var hasVideo_YT = true;
 
 if (hasVideo_YT) {
 
-  // create video elements
-  var videoPlayer = document.createElement('div');
-  videoPlayer.setAttribute("id", "videoplayer");
-  container.appendChild(videoPlayer);
-
-  var ytCloseButton = document.createElement('ci-ytclosebutton');
-  ytCloseButton.setAttribute("lang", "en");
-  ytCloseButton.setAttribute("theme", "white");
-  ytCloseButton.setAttribute("shadow", "false");
-  ytCloseButton.setAttribute("id", "ytClose");
-  container.appendChild(ytCloseButton);
-
   var animationJsList = [
     "https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js",
     "https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js",
@@ -51,7 +39,7 @@ function startMain() {
 
 function initAnimation() {
   bgexit.addEventListener('click', bgExitHandler, false);
-  TweenLite.to(loading, 0.3, { autoAlpha: 0, y: -40 });
+  TweenLite.to(loading, 0.3, { autoAlpha: 0, y: -30 });
   playMainTimeline();
 }
 

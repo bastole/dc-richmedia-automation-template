@@ -6,7 +6,6 @@ if (Enabler.isInitialized()) {
 }
 //Run when Enabler is ready
 function init() {
-
   if (Enabler.isPageLoaded()) {
     politeInit();
   } else {
@@ -14,9 +13,7 @@ function init() {
   }
 }
 
-
 function politeInit() {
-
   var animationJsList = [
     "https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.18.0_56fa823cfbbef1c2f4d4346f0f0e6c3c_min.js",
     "https://s0.2mdn.net/ads/studio/cached_libs/timelinelite_1.18.0_dbe88c20554c170a56f44600f31a97d9_min.js",
@@ -25,27 +22,22 @@ function politeInit() {
     "https://s0.2mdn.net/ads/studio/cached_libs/textplugin_1.18.0_08ea1916d9caf67b128788a9c0f4f6eb_min.js",
     "main.js"
   ];
-
   var gsapLoader = new HansJSLoader(animationJsList, function() { startMain(); });
-
   gsapLoader.startLoad();
 }
 
+/* JS Loader Class */
 function HansJSLoader(scriptArray, onComplete) {
   this.loadedJsNum = 0;
   this.scriptArray = scriptArray;
   this.onComplete = onComplete;
 }
-
 HansJSLoader.prototype.loadJs = function(callbackScope) {
-//  console.log("loading... " + callbackScope.scriptArray[callbackScope.loadedJsNum]);
   Enabler.loadScript(Enabler.getUrl(callbackScope.scriptArray[callbackScope.loadedJsNum]), 
     function() { callbackScope.checkLoaded(callbackScope); });
   //Enabler.loadScript callback scope is global.
 };
-
 HansJSLoader.prototype.checkLoaded = function(callbackScope) {
-
   if (callbackScope.loadedJsNum == (callbackScope.scriptArray.length - 1)) {
     callbackScope.onComplete();
   } else {
@@ -53,7 +45,6 @@ HansJSLoader.prototype.checkLoaded = function(callbackScope) {
     callbackScope.loadJs(callbackScope);
   }
 };
-
 HansJSLoader.prototype.startLoad = function() {
   this.loadJs(this);
 };

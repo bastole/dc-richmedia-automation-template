@@ -58,7 +58,7 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
   copySetUpFiles[i] = {
     expand: true,
     cwd: TEMPLATE_DEFAULT,
-    src: ["**", "!*.tpl"],
+    src: ["**", "!*.tpl", "video.js"],
     dest: SRC.concat(FOLDER_LIST[i])
   };
 
@@ -124,7 +124,16 @@ module.exports = function(grunt) {
               type: 'checkbox', // list, checkbox, confirm, input, password 
               message: 'Pick all sizes :',
               default: ["300x250"],
-              choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "970x250", "980x250", "980x150"]
+              choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "980x150", "970x250", "980x250", "970x250(+YouTube Video)", "980x250(+YouTube Video)", "970x250(YouTube Masthead with close button)"],
+              filter: function(value) {
+                value = value.map(function(arr){
+                  arr = arr.replace("(+YouTube Video)","_yt");
+                  arr = arr.replace("(YouTube Masthead with close button)","_mh");
+                  return arr;
+                });
+                console.log(value);
+                return value;
+              }
             },
 
             {
@@ -280,8 +289,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask("default", ["jshint", "clean:code", "clean:image", "concat", "sass", "imagemin", "copy:build", "size_report", 'connect:server', 'open', "watch"]);
 
-
-
   grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
     //    console.log(JSON.stringify(config));
 
@@ -298,8 +305,6 @@ module.exports = function(grunt) {
     var bootStrapPreviewHTML = grunt.file.read("_templates/_preview.html.tpl");
     bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, { data: { jobnumber: config.jobnumber, foldername: FOLDER_LIST, width: config.widthList, height: config.heightList } });
     grunt.file.write("public/preview.html", bootStrapPreviewHTML);
-
-
 
   });
 
