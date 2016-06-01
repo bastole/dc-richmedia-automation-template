@@ -41,7 +41,13 @@ var combineJSFiles = [],
 
 for (var i = 0; i < FOLDER_LIST.length; i++) {
   combineJSFiles[i] = {
-    src: [JS_PARTIAL.concat("base.js"), JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "_animate.js")],
+    //console.log(string.indexOf(substring) > -1);
+
+    src: (function(){
+      var jsList = [JS_PARTIAL.concat("base.js"), JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "_animate.js")];
+      if(FOLDER_LIST[i].indexOf("_yt") > -1) jsList.push(SRC.concat(FOLDER_LIST[i], "_video_yt.js"));
+      return jsList;
+    })(),
     dest: DEST.concat(FOLDER_LIST[i], "main.js")
   };
   sassFiles[i] = {
@@ -58,14 +64,19 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
   copySetUpFiles[i] = {
     expand: true,
     cwd: TEMPLATE_DEFAULT,
-    src: ["**", "!*.tpl", "video.js"],
+    src: (function(){
+      var jsList = ["**", "!*.tpl"];
+      if(FOLDER_LIST[i].indexOf("_yt") > -1) jsList.push("_video_yt.js");
+      return jsList;
+    })(),
+
     dest: SRC.concat(FOLDER_LIST[i])
   };
 
   copyBuildFiles[i] = {
     expand: true,
     cwd: SRC.concat(FOLDER_LIST[i]),
-    src: ["*.*", "!*.scss", "!*.psd", "!*.{jpg,png,gif,svg}", "!_animate.js"],
+    src: ["*.*", "!*.scss", "!*.psd", "!*.{jpg,png,gif,svg}", "!_animate.js", "!_video_yt.js"],
     dest: DEST.concat(FOLDER_LIST[i])
   };
 
@@ -123,12 +134,11 @@ module.exports = function(grunt) {
               config: 'dimension',
               type: 'checkbox', // list, checkbox, confirm, input, password 
               message: 'Pick all sizes :',
-              default: ["300x250"],
-              choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "980x150", "970x250", "980x250", "970x250(+YouTube Video)", "980x250(+YouTube Video)", "970x250(YouTube Masthead with close button)"],
+              default: ["970x250(+YouTube Video)"],
+              choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "980x150", "970x250", "980x250", "970x250(+YouTube Video)", "980x250(+YouTube Video)"],
               filter: function(value) {
                 value = value.map(function(arr){
                   arr = arr.replace("(+YouTube Video)","_yt");
-                  arr = arr.replace("(YouTube Masthead with close button)","_mh");
                   return arr;
                 });
                 console.log(value);
