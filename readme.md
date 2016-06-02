@@ -2,27 +2,27 @@ DoubleClick Richmedia Automation Template (DRAT)
 =======================
 
 
-* DRAT is a grunt based build template for building multiple DoubleClick rich banners fast and robust.
+* DRAT is a grunt based build template for building multiple [DoubleClick rich banners](https://www.google.com/doubleclick/studio/) fast and robust.
 * DRAT is for people who don't want to use HTML5 authoring tools such as Google Web Designer and Adobe Edge Animate.
-* DRAT currently supports inpage formats and YouTube video - advanced dynamic, expandable and MP4 videos will be added shortly.
+* DRAT currently supports in-page formats and YouTube video - advanced dynamic, expandable and MP4 videos will be added shortly.
 
 Features
 ------------
 
-* Uses Google hosted GSAP library - this doesn't count towards the banner's filesize.
-* Polite-loads every asset.
-* auto-optimizes images on build.
-* Supports YouTube video.
-* Supports 'Close X' button for YouTube Masthead.
-* Build multiple banners fast, and preview them simultaneously for easy comparison.
+* Build multiple banners fast.
+* Generates live reloading preview link to see all banners simultaneously.
+* Uses Google hosted [GSAP](http://greensock.com/gsap) library. This doesn't count towards the banner's filesize.
+* Strictly polite-loads every asset.
+* Auto-optimizes images on build and generates size report.
+* Supports embedding YouTube video.
+* Supports in-page 'Close X' button for YouTube Masthead.
 * Stops animation after 30 seconds to comply with Publisher's minimum specs.
 * Stops animation and video on click to comply with Publisher's minimum specs.
-
 
 Requirements
 ------------
 
-Grunt, Ruby, NodeJS
+NodeJS, Grunt, Ruby, Sass
 
 Setting up your development environment
 ---------------------------------------
@@ -79,23 +79,23 @@ Run the following command to have the grunt watcher build your sass, js and imag
 $ grunt
 ```
 
-### build folder
+### /build folder
 
 You can see in the build folder that all banner sub-folders are created.
 
-* build/share - Shared js and sass across all banners. Use this for universal properties such as border thickness/color, font and animation easing etc.
+* /build/share - Shared js and sass across all banners. Use this for universal properties such as border thickness/color, font and animation easing etc.
 
-* build/bannerName/images - images used for the banner. images here be compressed and sent to public folder. make sure to place your back-up static image here(GIF, PNG and JPG).
+* /build/bannerName/images - images used for the banner. images here be compressed and sent to public folder. make sure to place your back-up static image here(GIF, PNG and JPG).
 
-* build/bannerName/_animate.js - GSAP timeline animation and list of images to load.
+* /build/bannerName/_animate.js - GSAP timeline animation and list of images to load.
 
-* build/bannerName/video_yt.js - YouTube video script.
+* /build/bannerName/video_yt.js - YouTube video script.
 
-* build/bannerName/init_dcs.js - DoubleClick Enabler listener and polite-loads GSAP from Google CDN(This doesn't count towards filesize). There's no need to modify this file.
+* /build/bannerName/init_dcs.js - DoubleClick Enabler listener and polite-loads GSAP from Google CDN(This doesn't count towards filesize). There's no need to modify this file.
 
-### public folder
+### /public folder
 
-dispatch-ready banners are here. All you have to do is drag each banner folder into DoubleClick Studio UI.
+dispatch-ready banners are here. All you have to do is drag each banner folder into [DoubleClick Studio UI](https://www.google.com/doubleclick/studio/).
 
 License
 ---------------------------------------
