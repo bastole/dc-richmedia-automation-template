@@ -134,7 +134,7 @@ module.exports = function(grunt) {
               config: 'dimension',
               type: 'checkbox', // list, checkbox, confirm, input, password 
               message: 'Pick all sizes :',
-              default: ["970x250(+YouTube Video)"],
+              default: ["300x250"],
               choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "980x150", "970x250", "980x250", "970x250(+YouTube Video)", "980x250(+YouTube Video)"],
               filter: function(value) {
                 value = value.map(function(arr){
