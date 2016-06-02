@@ -1,4 +1,4 @@
-DRAT: [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Automation Template
+DRAT - [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Automation Template
 =======================
 
 
@@ -6,8 +6,7 @@ DRAT: [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Automa
 * DRAT is for people who don't want to use HTML5 authoring tools such as Google Web Designer and Adobe Edge Animate.
 * DRAT currently supports in-page formats and YouTube video - advanced dynamic, expandable and MP4 videos will be added shortly.
 
-Features
-------------
+#### Features
 
 * Build multiple banners fast.
 * Generates live reloading preview link to see all banners simultaneously.
@@ -19,8 +18,7 @@ Features
 * Stops animation after 30 seconds to comply with Publisher's minimum specs.
 * Stops animation and video on click to comply with Publisher's minimum specs.
 
-Requirements
-------------
+#### Requirements
 
 [NodeJS](https://nodejs.org/), [Grunt](http://gruntjs.com/), [Sass](http://sass-lang.com/install)
 
@@ -29,7 +27,7 @@ Setting up your development environment
 
 Once you have the above requirements installed, you can set up your development server.
 
-### Generate your build environment
+#### Generate your build environment
 
 If you're on a unix-like environment, you can run:
 
@@ -70,8 +68,7 @@ If you screwed up the questions and want to start again, run:
 $ grunt reset
 ```
 
-Building banners
----------------------------------------
+#### Building banners
 
 Run the following command to have the grunt watcher build your sass, js and images as you work:
 
@@ -79,7 +76,7 @@ Run the following command to have the grunt watcher build your sass, js and imag
 $ grunt
 ```
 
-### /build folder
+#### /build folder
 
 You can see in the build folder that all banner sub-folders are created.
 
@@ -93,7 +90,7 @@ You can see in the build folder that all banner sub-folders are created.
 
 * /build/bannerName/init_dcs.js - DoubleClick Enabler listener and polite-loads GSAP from Google CDN(This doesn't count towards filesize). There's no need to modify this file.
 
-### /public folder
+#### /public folder
 
 dispatch-ready banners are here. All you have to do is drag each banner folder into [DoubleClick Studio UI](https://www.google.com/doubleclick/studio/).
 
