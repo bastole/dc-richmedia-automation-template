@@ -36,8 +36,13 @@
     "banner",
     "scaffold",
     "template",
-    "development"
+    "GSAP"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bastole/dc-richmedia-automation-template.git"
+  },
+
   "author": "bastole",
   "license": "MIT"
 }
