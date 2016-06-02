@@ -43,9 +43,9 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
   combineJSFiles[i] = {
     //console.log(string.indexOf(substring) > -1);
 
-    src: (function(){
+    src: (function() {
       var jsList = [JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "_animate.js")];
-      if(FOLDER_LIST[i].indexOf("_yt") > -1) jsList.push(SRC.concat(FOLDER_LIST[i], "_video_yt.js"));
+      if (FOLDER_LIST[i].indexOf("_yt") > -1) jsList.push(SRC.concat(FOLDER_LIST[i], "_video_yt.js"));
       return jsList;
     })(),
     dest: DEST.concat(FOLDER_LIST[i], "main.js")
@@ -64,9 +64,9 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
   copySetUpFiles[i] = {
     expand: true,
     cwd: TEMPLATE_DEFAULT,
-    src: (function(){
+    src: (function() {
       var jsList = ["**", "!*.tpl"];
-      if(FOLDER_LIST[i].indexOf("_yt") > -1) jsList.push("_video_yt.js");
+      if (FOLDER_LIST[i].indexOf("_yt") > -1) jsList.push("_video_yt.js");
       return jsList;
     })(),
 
@@ -99,18 +99,18 @@ module.exports = function(grunt) {
           questions: [{
               config: 'jobnumber',
               type: 'input', // list, checkbox, confirm, input, password 
-              message: 'What is the job number? (e.g. JOB0000)',
+              message: 'What is the job number?',
               default: 'JOB0000',
               filter: function(value) {
-                  return value.replace(/\s/g, '');
-                }
+                return value.replace(/\s/g, '');
+              }
             },
 
             {
               config: 'description',
               type: 'input', // list, checkbox, confirm, input, password 
-              message: 'Description :',
-              default: 'Digital banners.'
+              message: 'Project description?',
+              default: 'Simple inpage digital banners.'
             }
           ],
           then: function(results) {
@@ -123,25 +123,25 @@ module.exports = function(grunt) {
           questions: [{
               config: 'creative',
               type: 'input', // list, checkbox, confirm, input, password 
-              message: 'Creative name (e.g. Concept-A))',
+              message: 'Name of the creative?',
               default: 'Concept-A',
               filter: function(value) {
-                  return value.replace(/\s/g, '');
-                }
+                return value.replace(/\s/g, '');
+              }
             },
 
             {
               config: 'dimension',
               type: 'checkbox', // list, checkbox, confirm, input, password 
-              message: 'Pick all sizes :',
+              message: 'Banner sizes under this creative - Pick as many as you want.',
               default: ["300x250"],
               choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "980x150", "970x250", "980x250", "970x250(+YouTube Video)", "980x250(+YouTube Video)"],
               filter: function(value) {
-                value = value.map(function(arr){
-                  arr = arr.replace("(+YouTube Video)","_yt");
+                value = value.map(function(arr) {
+                  arr = arr.replace("(+YouTube Video)", "_yt");
                   return arr;
                 });
-                console.log(value);
+                grunt.log.oklns(value);
                 return value;
               }
             },
@@ -149,7 +149,7 @@ module.exports = function(grunt) {
             {
               config: 'addMore',
               type: 'confirm', // list, checkbox, confirm, input, password 
-              message: 'Add more creatives? :',
+              message: 'Add another creative? :',
               default: false
             }
           ],
@@ -300,8 +300,6 @@ module.exports = function(grunt) {
   grunt.registerTask("default", ["jshint", "clean:code", "clean:image", "concat", "sass", "imagemin", "copy:build", "size_report", 'connect:server', 'open', "watch"]);
 
   grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
-    //    console.log(JSON.stringify(config));
-
     for (var i = 0; i < FOLDER_LIST.length; i++) {
       var bootStrapSASS = grunt.file.read(TEMPLATE_DEFAULT.concat("_main.scss.tpl"));
       bootStrapSASS = grunt.template.process(bootStrapSASS, { data: { width: config.widthList[i], height: config.heightList[i] } });
@@ -315,11 +313,21 @@ module.exports = function(grunt) {
     var bootStrapPreviewHTML = grunt.file.read("_templates/_preview.html.tpl");
     bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, { data: { jobnumber: config.jobnumber, foldername: FOLDER_LIST, width: config.widthList, height: config.heightList } });
     grunt.file.write("public/preview.html", bootStrapPreviewHTML);
-
   });
 
-  grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp"]);
-  grunt.registerTask("reset", ["clean:reset", "setUp"]);
+  grunt.registerTask("okMessage", "Output OK message at the end of project set up", function() {
+            grunt.log.oklns("");
+            grunt.log.oklns("=================================");
+            grunt.log.oklns("Your build system is now complete!");
+            grunt.log.oklns("Run grunt to start the build.");
+            grunt.log.oklns("Don't forget to turn off the ad blocker...");
+            grunt.log.oklns("=================================");
+            grunt.log.oklns("");
+  });
+
+  grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp","okMessage"]);
+  grunt.registerTask("reset", ["prompt", "clean:reset", "setUp"]);
   grunt.registerTask("restart", ["clean:reset", "setUp", "default"]);
+
 
 };

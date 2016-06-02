@@ -1,7 +1,7 @@
 {
-  "name": "dc-richmedia",
+  "name": "dc-richmedia-automation-template",
   "version": "1.0.0",
-  "description": "Simple InPage DoubleClick Richmedia Boilerplate",
+  "description": "DRAT is a grunt based build template for building multiple DoubleClick rich banners fast and robust.",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
@@ -30,6 +30,14 @@
     "install": "grunt prompt",
     "postinstall": "grunt setUp"
   },
+  "keywords": [
+    "DoubleClick",
+    "Richmedia",
+    "banner",
+    "scaffold",
+    "template",
+    "development"
+  ],
   "author": "bastole",
-  "license": "UNLICENSED"
+  "license": "MIT"
 }

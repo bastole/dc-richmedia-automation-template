@@ -10,12 +10,12 @@ var Animation =
     isLooping = false,
     fadeTime = 0.6,
 
-    imageArray = [
+    imageArray = [ //image files to load.
       Enabler.getUrl('temp_product.png'),
       Enabler.getUrl('temp_logo.png'),
       Enabler.getUrl('temp_cta.png')
     ],
-    imagrContainerArray = [
+    imageContainerArray = [ //elemnts to contain images.
       'product',
       'logo',
       'cta'
@@ -43,7 +43,7 @@ var Animation =
   return {
     mainTimeline: mainTimeline,
     imageArray: imageArray,
-    imagrContainerArray: imagrContainerArray
+    imageContainerArray: imageContainerArray
   }
 
 })();

@@ -64,7 +64,7 @@ function startCreative() {
       for (i = 0; i < Animation.imageArray.length; i++) {
         var elem = document.createElement("img");
         elem.src = Animation.imageArray[i];
-        document.getElementById(Animation.imagrContainerArray[i]).appendChild(elem);
+        document.getElementById(Animation.imageContainerArray[i]).appendChild(elem);
       }
       //start timeline animation
       bgexit.addEventListener('click', bgExitHandler, false);
