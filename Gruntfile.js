@@ -66,7 +66,7 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
     cwd: TEMPLATE_DEFAULT,
     src: (function() {
       var jsList = ["**", "!*.tpl"];
-      if (FOLDER_LIST[i].indexOf("_yt") > -1) jsList.push("_video_yt.js");
+      if (FOLDER_LIST[i].indexOf("_yt") == -1) jsList.push("!_video_yt.js");
       return jsList;
     })(),
 
