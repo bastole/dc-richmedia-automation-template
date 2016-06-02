@@ -44,7 +44,7 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
     //console.log(string.indexOf(substring) > -1);
 
     src: (function(){
-      var jsList = [JS_PARTIAL.concat("base.js"), JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "_animate.js")];
+      var jsList = [JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "_animate.js")];
       if(FOLDER_LIST[i].indexOf("_yt") > -1) jsList.push(SRC.concat(FOLDER_LIST[i], "_video_yt.js"));
       return jsList;
     })(),
@@ -319,7 +319,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp"]);
-
-
+  grunt.registerTask("reset", ["clean:reset", "setUp"]);
+  grunt.registerTask("restart", ["clean:reset", "setUp", "default"]);
 
 };

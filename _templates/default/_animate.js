@@ -1,7 +1,12 @@
-var mainTimeLine;
+var Animation = 
 
 (function() {
-  var
+
+  var mainTimeline = new TimelineLite({
+    onComplete: function() {
+      if (isLooping) mainTimeline.restart();
+    }
+  }),
     isLooping = false,
     fadeTime = 0.6,
 
@@ -34,4 +39,11 @@ var mainTimeLine;
     .to(cta, 1, { delay: 5 });
 
   mainTimeline.pause(0);
+
+  return {
+    mainTimeline: mainTimeline,
+    imageArray: imageArray,
+    imagrContainerArray: imagrContainerArray
+  }
+
 })();
