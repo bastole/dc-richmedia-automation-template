@@ -1,4 +1,4 @@
-DoubleClick Richmedia Automation Template (DRAT)
+DRAT: [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Automation Template
 =======================
 
 
@@ -22,7 +22,7 @@ Features
 Requirements
 ------------
 
-NodeJS, Grunt, Ruby, Sass
+[NodeJS](https://nodejs.org/), [Grunt](http://gruntjs.com/), [Sass](http://sass-lang.com/install)
 
 Setting up your development environment
 ---------------------------------------
