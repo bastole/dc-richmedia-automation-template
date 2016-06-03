@@ -213,7 +213,7 @@ module.exports = function(grunt) {
 
     jshint: {
       all: {
-        src: "build/**.js"
+        src: "build/**/*.js"
       }
     },
 

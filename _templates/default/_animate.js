@@ -44,6 +44,6 @@ var Animation =
     mainTimeline: mainTimeline,
     imageArray: imageArray,
     imageContainerArray: imageContainerArray
-  }
+  };
 
 })();
