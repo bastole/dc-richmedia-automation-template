@@ -11,24 +11,32 @@
   	* {
   		margin: 0;
   		padding: 0;
+  		text-align: center;
   	}
 		h1 {
-		    padding: 30px 0;
+		  padding: 30px 0;
 		}
 		h2 {
-		    padding: 20px 0;
+		  padding: 20px 0;
 		}
   	iframe {
-  		border: none;
-  		display: block;
-			padding-bottom: 20px;
+			border: none;
+	    display: block;
+	    padding-bottom: 26px;
+	    margin-left: auto;
+	    margin-right: auto;
+  	}
+  p {
+ 		font-weight: bold;
+  	font-size: 22px;
+  	color: red;
   	}
   </style>
 
 </head>
 <body>
 		<h1><%= jobnumber %> Preview</h1>
-
+<p>!! IMPORTANT - Turn off your Ad Blocker !!</p>
   <script>
 	  var foldername = "<%=foldername%>".split(","), 
 		width = "<%=width%>".split(","), 
@@ -57,7 +65,7 @@
 
 	</script>
 
-		<script src="http://localhost:4004/livereload.js"></script>
+		<script src="http://localhost:4014/livereload.js"></script>
 </body>
 
 </html>

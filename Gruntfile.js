@@ -269,7 +269,7 @@ module.exports = function(grunt) {
       options: {
         livereload: {
           host: "localhost",
-          port: 4004
+          port: 4014
         }
       },
       codeUpdated: {
@@ -284,14 +284,14 @@ module.exports = function(grunt) {
     connect: {
       server: {
         options: {
-          port: 9000,
+          port: 9054,
           base: 'public/'
         }
       }
     },
     open: {
       server: {
-        path: 'http://localhost:9000/preview.html',
+        path: 'http://localhost:9054/preview.html',
       }
     }
 

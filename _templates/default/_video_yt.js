@@ -1,5 +1,5 @@
 var 
-  hasCloseBtn = true,
+  hasCloseBtn = true, //Toggle close X button
 
   firstPlay = true,
   videoReady = false,
@@ -20,7 +20,7 @@ var
   animationJsList = [
     "https://www.gstatic.com/external_hosted/polymer/custom.elements.min.js",
     "https://www.gstatic.com/ads/ci/ytclosebutton/1/ytclosebutton_min.js",
-    "https://www.gstatic.com/doubleclick/studio/innovation/h5/ytplayer/ytp_v2.js",
+    "https://www.gstatic.com/doubleclick/studio/innovation/h5/ytplayer/ytp_v2.js"
   ];
 
 var ytLoader = new HansJSLoader(animationJsList, function() { YTInit(); });
