@@ -76,7 +76,7 @@ function startCreative() {
 }
 
 function bgExitHandler(e) {
-  if (ytVideo.ytp != undefined) ytVideo.ytp.pauseVideo();
+  if (ytp != undefined) ytp.pauseVideo();
   if (Animation != undefined) Animation.mainTimeline.pause(30);
   Enabler.exit('Background Exit');
 }
