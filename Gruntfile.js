@@ -316,21 +316,53 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask("okMessage", "Output OK message at the end of project set up", function() {
-            grunt.log.oklns("");
-            grunt.log.oklns("=================================");
-            grunt.log.oklns("Your build system is now complete.");
-            grunt.log.oklns("Run 'grunt' to fire up the workflow.");
-            grunt.log.oklns("=================================");
-            grunt.log.oklns("");
-            grunt.log.oklns("...__   ___    _  _____");
-            grunt.log.oklns("../  \ / o | .' \/_  _/");
-            grunt.log.oklns("./ o |/  ,' / o / / /  ");
-            grunt.log.oklns("/__,'/_/`_\/_n_/ /_/   ");
-            grunt.log.oklns("=================================");
-            grunt.log.oklns("");
-            grunt.log.oklns(" IMPORTANT! Don't forget to turn off the ad blocker!!");
-            grunt.log.oklns("");
+            
+            console.log("");
+            console.log("");
+            console.log("");
+            console.log("");
+            console.log("");
+            console.log("█████████████████████████████████████");
+            console.log("▌───────────────────────────────────▐");
+            console.log("▌───────────────────────────▐█──────▐");
+            console.log("▌──────▄──────────────────▄█▓█▌─────▐");
+            console.log("▌─────▐██▄───────────────▄▓░░▓▓─────▐");
+            console.log("▌─────▐█░██▓────────────▓▓░░░▓▌─────▐");
+            console.log("▌─────▐█▌░▓██──────────█▓░░░░▓──────▐");
+            console.log("▌──────▓█▌░░▓█▄███████▄███▓░▓█──────▐");
+            console.log("▌──────▓██▌░▓██░░░░░░░░░░▓█░▓▌──────▐");
+            console.log("▌───────▓█████░░░░░░░░░░░░▓██───────▐");
+            console.log("▌───────▓██▓░░░░░░░░░░░░░░░▓█───────▐");
+            console.log("▌───────▐█▓░░░░░░█▓░░▓█░░░░▓█▌──────▐");
+            console.log("▌───────▓█▌░▓█▓▓██▓░█▓▓▓▓▓░▓█▌──────▐");
+            console.log("▌───────▓▓░▓██████▓░▓███▓▓▌░█▓──────▐");
+            console.log("▌──────▐▓▓░█▄▐▓▌█▓░░▓█▐▓▌▄▓░██──────▐");
+            console.log("▌──────▓█▓░▓█▄▄▄█▓░░▓█▄▄▄█▓░██▌─────▐");
+            console.log("▌──────▓█▌░▓█████▓░░░▓███▓▀░▓█▓─────▐");
+            console.log("▌─────▐▓█░░░▀▓██▀░░░░░─▀▓▀░░▓█▓─────▐");
+            console.log("▌─────▓██░░░░░░░░▀▄▄▄▄▀░░░░░░▓▓─────▐");
+            console.log("▌─────▓█▌░░░░░░░░░░▐▌░░░░░░░░▓▓▌────▐");
+            console.log("▌─────▓█░░░░░░░░░▄▀▀▀▀▄░░░░░░░█▓────▐");
+            console.log("▌────▐█▌░░░░░░░░▀░░░░░░▀░░░░░░█▓▌───▐");
+            console.log("▌────▓█░░░░░░░░░░░░░░░░░░░░░░░██▓───▐");
+            console.log("▌────▓█░░░░░░░░░░░░░░░░░░░░░░░▓█▓───▐");
+            console.log("▌────██░░░░░░░░░░░░░░░░░░░░░░░░█▓───▐");
+            console.log("▌────█▌░░░░░░░░░░░░░░░░░░░░░░░░▐▓▌──▐");
+            console.log("█████████████████████████████████████");
+            console.log(" ______   ______    _______  _______ ");
+            console.log("|      | |    _ |  |   _   ||       |");
+            console.log("|  _    ||   | ||  |  |_|  ||_     _|");
+            console.log("| | |   ||   |_||_ |       |  |   |  ");
+            console.log("| |_|   ||    __  ||       |  |   |  ");
+            console.log("|       ||   |  | ||   _   |  |   |  ");
+            console.log("|______| |___|  |_||__| |__|  |___|  ");
+            console.log("");
+            console.log("█████████████████████████████████████");
 
+            grunt.log.oklns("Your build system is now complete.");
+            grunt.log.oklns("Remember to pause your ad blocker!");
+            grunt.log.oklns("");
+            grunt.log.oklns("Run 'grunt' to start building.");
 
 
   });
