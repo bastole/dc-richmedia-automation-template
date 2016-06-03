@@ -311,18 +311,28 @@ module.exports = function(grunt) {
 
     }
     var bootStrapPreviewHTML = grunt.file.read("_templates/_preview.html.tpl");
-    bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, { data: { jobnumber: config.jobnumber, foldername: FOLDER_LIST, width: config.widthList, height: config.heightList } });
+    bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, { data: { jobnumber: config.jobnumber, description: config.description, foldername: FOLDER_LIST, width: config.widthList, height: config.heightList } });
     grunt.file.write("public/preview.html", bootStrapPreviewHTML);
   });
 
   grunt.registerTask("okMessage", "Output OK message at the end of project set up", function() {
             grunt.log.oklns("");
             grunt.log.oklns("=================================");
-            grunt.log.oklns("Your build system is now complete!");
-            grunt.log.oklns("Run grunt to start the build.");
-            grunt.log.oklns("Don't forget to turn off the ad blocker...");
+            grunt.log.oklns("Your build system is now complete.");
+            grunt.log.oklns("Run 'grunt' to fire up the workflow.");
             grunt.log.oklns("=================================");
             grunt.log.oklns("");
+            grunt.log.oklns("...__   ___    _  _____");
+            grunt.log.oklns("../  \ / o | .' \/_  _/");
+            grunt.log.oklns("./ o |/  ,' / o / / /  ");
+            grunt.log.oklns("/__,'/_/`_\/_n_/ /_/   ");
+            grunt.log.oklns("=================================");
+            grunt.log.oklns("");
+            grunt.log.oklns(" IMPORTANT! Don't forget to turn off the ad blocker!!");
+            grunt.log.oklns("");
+
+
+
   });
 
   grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp","okMessage"]);

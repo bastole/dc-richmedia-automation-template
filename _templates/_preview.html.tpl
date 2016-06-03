@@ -26,17 +26,23 @@
 	    margin-left: auto;
 	    margin-right: auto;
   	}
-  p {
- 		font-weight: bold;
-  	font-size: 22px;
-  	color: red;
+	  p {
+  		font-size: 22px;
+  		line-height: 140%;
+  		padding:20px;
   	}
+ 		p:nth-child(3) {
+ 			font-weight: bold;
+  		color: red;
+  	}	
   </style>
 
 </head>
 <body>
-		<h1><%= jobnumber %> Preview</h1>
-<p>!! IMPORTANT - Turn off your Ad Blocker !!</p>
+	<h1><%= jobnumber %> Preview</h1>
+	<p><%= description %></p>
+	<p>!! IMPORTANT - Turn off your Ad Blocker !!</p>
+
   <script>
 	  var foldername = "<%=foldername%>".split(","), 
 		width = "<%=width%>".split(","), 

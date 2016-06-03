@@ -1,7 +1,7 @@
 {
   "name": "dc-richmedia-automation-template",
   "version": "1.0.0",
-  "description": "DRAT is a grunt based build template for building multiple DoubleClick rich banners fast and robust.",
+  "description": "DRAT is a grunt based build template for developing multiple DoubleClick rich banners simultaneously.",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",

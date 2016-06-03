@@ -1,4 +1,4 @@
-var 
+var
   hasCloseBtn = true, //Toggle close X button
 
   firstPlay = true,

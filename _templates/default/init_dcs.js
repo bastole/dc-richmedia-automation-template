@@ -33,7 +33,7 @@ function HansJSLoader(scriptArray, onComplete) {
   this.onComplete = onComplete;
 }
 HansJSLoader.prototype.loadJs = function(callbackScope) {
-  Enabler.loadScript(Enabler.getUrl(callbackScope.scriptArray[callbackScope.loadedJsNum]), 
+  Enabler.loadScript(Enabler.getUrl(callbackScope.scriptArray[callbackScope.loadedJsNum]),
     function() { callbackScope.checkLoaded(callbackScope); });
   //Enabler.loadScript callback scope is global.
 };
@@ -68,7 +68,7 @@ function startCreative() {
       }
       //start timeline animation
       bgexit.addEventListener('click', bgExitHandler, false);
-      TweenLite.to(loading, 0.3, { autoAlpha: 0, y: -60 , scale:0});
+      TweenLite.to(loading, 0.3, { autoAlpha: 0, y: -60, scale: 0 });
 
       Animation.mainTimeline.restart();
     }

@@ -3,21 +3,19 @@ DRAT - [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Autom
 
 ![DRAT](https://googledrive.com/host/0B_PD2TmpY-olSm5BQWJnX09lODA/drat.png)
 
-* DRAT is a grunt based build template for building multiple [DoubleClick rich banners](https://www.google.com/doubleclick/studio/) fast and robust.
-* DRAT is for people who don't want to use HTML5 authoring tools such as Google Web Designer and Adobe Edge Animate.
-* DRAT currently supports in-page formats and YouTube video - advanced dynamic, expandable and MP4 videos will be added shortly.
+* DRAT is a [grunt](http://gruntjs.com/) based build template for developing multiple [DoubleClick](https://www.google.com/doubleclick/studio/) rich banners simultaneously.
+* DRAT is for people who want to build cool things outside the limits of [HTML5 authoring tools.](http://www.google.com/webdesigner/)
+* DRAT currently supports in-page format and YouTube video - other formats will be added shortly.
 
 #### Features
 
-* Build multiple banners fast.
-* Generates live reloading preview link to see all banners simultaneously.
-* Uses Google hosted [GSAP](http://greensock.com/gsap) library. This doesn't count towards the banner's filesize.
+* Build and preview multiple banners simultaneously.
 * Strictly polite-loads every asset.
-* Auto-optimizes images on build and generates size report.
-* Supports embedding YouTube video.
-* Supports in-page 'Close X' button for YouTube Masthead.
-* Stops animation after 30 seconds to comply with Publisher's minimum specs.
-* Stops animation and video on click to comply with Publisher's minimum specs.
+* Optimizes every image on build and generates size report.
+* Supports embedding YouTube video and 'Close X' button.
+* Uses Google hosted [GSAP](http://greensock.com/gsap). This doesn't count towards the publisher's filesize.
+* Animation stops after 30 seconds to comply with the recommended spec.
+* Video and Animation stops on click to comply with the recommended spec.
 
 #### Requirements
 
@@ -68,8 +66,9 @@ If you screwed up the questions and want to start again, run:
 ```
 $ grunt reset
 ```
+...or manually update config.json.
 
-#### Building banners
+#### Start building banners
 
 Run the following command to have the grunt watcher build your sass, js and images as you work:
 
@@ -81,11 +80,11 @@ $ grunt
 
 You can see in the build folder that all banner sub-folders are created.
 
-* /build/share - Shared js and sass across all banners. Use this for universal properties such as border thickness/color, font and animation easing etc.
+* /build/share - Shared js and sass across all banners. Use this for universal properties such as border thickness/color and font etc.
 
-* /build/bannerName/images - images used for the banner. images here be compressed and sent to public folder. make sure to place your back-up static image here(GIF, PNG and JPG).
+* /build/bannerName/images - images used for the banner. images dumped here will be compressed and sent to public folder. make sure to include your back-up static image here(GIF, PNG and JPG).
 
-* /build/bannerName/_animate.js - GSAP timeline animation and list of images to load.
+* /build/bannerName/_animate.js - This is where most of the action happens. GSAP timeline animation and list of images to load.
 
 * /build/bannerName/video_yt.js - YouTube video script.
 
@@ -93,7 +92,7 @@ You can see in the build folder that all banner sub-folders are created.
 
 #### /public folder
 
-dispatch-ready banners are here. All you have to do is drag each banner folder into [DoubleClick Studio UI](https://www.google.com/doubleclick/studio/).
+dispatch-ready banners. All you have to do is drag each folder into [DoubleClick Studio UI](https://www.google.com/doubleclick/studio/).
 
 License
 ---------------------------------------
