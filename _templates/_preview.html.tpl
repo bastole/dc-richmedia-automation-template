@@ -34,7 +34,7 @@
  		p:nth-child(3) {
  			font-weight: bold;
   		color: red;
-  	}	
+  	}
   </style>
 
 </head>
@@ -44,12 +44,12 @@
 	<p>!! IMPORTANT - Turn off your Ad Blocker !!</p>
 
   <script>
-	  var foldername = "<%=foldername%>".split(","), 
-		width = "<%=width%>".split(","), 
+	  var foldername = "<%=foldername%>".split(","),
+		width = "<%=width%>".split(","),
 		height= "<%=height%>".split(",");
 
 		for(var i = 0; i < foldername.length; i++){
-			prepareFrame(foldername[i],width[i],height[i]);	  
+			prepareFrame(foldername[i],width[i],height[i]);
 	  }
 
 	  function prepareFrame(foldername,width,height) {
