@@ -54,8 +54,6 @@ DRAT will then start asking you questions and waiting for answers before continu
  ◯ 980x150
  ◯ 970x250
  ◯ 980x250
- ◯ 970x250(+YouTube Video)
- ◯ 980x250(+YouTube Video)
 (Move up and down to reveal more choices)
 
 ? Add another creative? : (y/N)
@@ -76,23 +74,41 @@ Run the following command to have the grunt watcher build your sass, js and imag
 $ grunt
 ```
 
+#### Other Grunt Tasks
+
+```
+$ grunt - Processes banners to public/
+$ grunt clean:reset - Deletes build/ and public/
+$ grunt prompt - Creates config.json
+$ grunt setUp - Creates build/ and public/preview.html
+$ grunt reset - prompt, clean:reset, setUp
+$ grunt restart - clean:reset, setUp, grunt
+$ grunt zip - Creates /zipped folder and compressed banners
+
+```
+
+
 #### /build folder
 
 You can see in the build folder that all banner sub-folders are created.
 
-* /build/share - Shared js and sass across all banners. Use this for universal properties such as border thickness/color and font etc.
+* /build/share - Shared js and sass across all banners. Use this for universal properties such as border thickness/color and font.
 
-* /build/bannerName/images - images used for the banner. images dumped here will be compressed and sent to public folder. make sure to include your back-up static image here(GIF, PNG and JPG).
+* /build/bannerName/images - images used for the banner. images dumped here will be compressed and copied to public folder. Leave the back-up static image here(GIF, PNG and JPG).
 
-* /build/bannerName/_animate.js - This is where most of the action happens. GSAP timeline animation and list of images to load.
+* /build/bannerName/_animate.js - Preload assets, set Dynamic Profile and animate with GSAP timeline.
 
 * /build/bannerName/video_yt.js - YouTube video script.
 
-* /build/bannerName/init_dcs.js - DoubleClick Enabler listener and polite-loads GSAP from Google CDN(This doesn't count towards filesize). There's no need to modify this file.
+* /build/bannerName/init_dcs.js - DoubleClick Enabler listener and polite-loads GSAP from Google CDN(This doesn't count towards max filesize). There's no need to modify this file.
 
 #### /public folder
 
 dispatch-ready banners. All you have to do is drag each folder into [DoubleClick Studio UI](https://www.google.com/doubleclick/studio/).
+
+#### /zipped folder
+
+dispatch-ready banners. All you have to do is drag each file into [DoubleClick Studio UI](https://www.google.com/doubleclick/studio/).
 
 License
 ---------------------------------------

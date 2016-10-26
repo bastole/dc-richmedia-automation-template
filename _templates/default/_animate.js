@@ -1,3 +1,25 @@
+
+//----------------------------
+// Dynamic Profile Start - Remove this section if the banner is not dynamic
+//----------------------------
+
+Enabler.setProfileId(0);
+var devDynamicContent = {};
+
+devDynamicContent.JOB0000_XXX_300x250= [{}];
+devDynamicContent.JOB0000_XXX_300x250[0].clickURL = {};
+devDynamicContent.JOB0000_XXX_300x250[0].clickURL.Url = "https://www.google.com.au/";
+devDynamicContent.JOB0000_XXX_300x250[0].copy = "Example copy.";
+Enabler.setDevDynamicContent(devDynamicContent);
+
+var dyn = dynamicContent.JOB0000_XXX_300x250[0];
+
+document.getElementsByClassName("copy")[0].innerHTML = dyn.copy;
+
+//----------------------------
+// Dynamic Profile End
+//----------------------------
+
 var Animation =
 
   (function() {
@@ -47,3 +69,10 @@ var Animation =
     };
 
   })();
+
+
+function bgExitHandler(e) {
+  if (Animation !== undefined) Animation.mainTimeline.pause(30);
+  if(dyn.clickURL.Url === undefined) Enabler.exit('Background Exit');
+  else Enabler.exitOverride("Dynamic Exit",dyn.clickURL.Url);
+}

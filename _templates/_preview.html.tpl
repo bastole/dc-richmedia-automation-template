@@ -7,6 +7,8 @@
   <style type="text/css">
   	body {
   		font-family: Arial, san-serif;
+  		font-size: 0;
+  		padding-bottom: 80px;
   	}
   	* {
   		margin: 0;
@@ -31,9 +33,12 @@
   		line-height: 140%;
   		padding:20px;
   	}
- 		p:nth-child(3) {
+ 		.warning {
  			font-weight: bold;
   		color: red;
+  	}
+  	button {
+  		padding: 10px;
   	}
   </style>
 
@@ -41,8 +46,9 @@
 <body>
 	<h1><%= jobnumber %> Preview</h1>
 	<p><%= description %></p>
-	<p>!! IMPORTANT - Turn off your Ad Blocker !!</p>
+	<button id="captureModeToggle" onclick="captureModeToggle()">&bull; Enable Backup GIF capture mode</button>
 
+	<p class="warning">IMPORTANT - Turn off your Ad Blocker </p>
   <script>
 	  var foldername = "<%=foldername%>".split(","),
 		width = "<%=width%>".split(","),
@@ -67,6 +73,38 @@
 	    ifrm.style.width = width+"px";
 	    ifrm.style.height = height+"px";
 	    document.body.appendChild(ifrm);
+	  }
+
+	  var isCaptureMode = false;
+	  
+	  function captureModeToggle(){
+	  	var h2Tag = document.getElementsByTagName("h2");
+	  	var aTag = document.getElementsByTagName("a");
+	  	var iFrameTag = document.getElementsByTagName("iframe");
+
+
+	  	if(isCaptureMode == false){
+		  	for(var i = 0; i < h2Tag.length; i++){
+					h2Tag[i].style.display = "none";
+					aTag[i].style.display = "none";
+					iFrameTag[i].style.display = "inline-block";
+					iFrameTag[i].style.paddingBottom = "0px";
+				}
+				document.getElementById("captureModeToggle").innerHTML = "Disable Backup GIF capture mode";
+				isCaptureMode = true;
+
+	  	}
+	  	else {
+		  	for(var i = 0; i < h2Tag.length; i++){
+					h2Tag[i].style.display = "";
+					aTag[i].style.display = "";
+					iFrameTag[i].style.display = "";
+					iFrameTag[i].style.paddingBottom = "";
+				}
+				document.getElementById("captureModeToggle").innerHTML = "Enable Backup GIF capture mode";
+				isCaptureMode = false;
+	  	}
+	  
 	  }
 
 	</script>

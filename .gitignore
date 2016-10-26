@@ -1,13 +1,12 @@
 node_modules/
-public/**
+public/
+build/
 
 .sass-cache/
 .scssc
 .map
 
-*.psd
 *.ai
-*.fla
 *.mp4
 *.ogv
 *.ogg

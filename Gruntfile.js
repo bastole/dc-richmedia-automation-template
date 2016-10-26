@@ -133,7 +133,7 @@ module.exports = function(grunt) {
 							type: 'checkbox', // list, checkbox, confirm, input, password
 							message: 'Banner sizes under this creative - Pick as many as you want.',
 							default: ["300x250"],
-							choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "980x150", "970x250", "980x250", "970x250(+YouTube Video)", "980x250(+YouTube Video)"],
+							choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "468x60", "300x100", "640x200", "980x150", "970x250", "980x250"/*, "970x250(+YouTube Video)", "980x250(+YouTube Video)"*/],
 							filter: function(value) {
 								value = value.map(function(arr) {
 									arr = arr.replace("(+YouTube Video)", "_yt");
@@ -262,6 +262,18 @@ module.exports = function(grunt) {
 
 			}
 		},
+		zip_directories: {
+	    zip: {
+	      files: [{
+	        filter: "isDirectory",
+	        expand: true,
+	        cwd: DEST,
+	        src: ["*"],
+	        dest: "zipped/"
+	      }]
+	    }
+		},
+
 		watch: {
 			options: {
 				livereload: {
@@ -373,8 +385,8 @@ module.exports = function(grunt) {
 		console.log("");
 		console.log("█████████████████████████████████████");
 
-		grunt.log.oklns("Your build system is now complete.");
-		grunt.log.oklns("Remember to disable your ad blocker!");
+		grunt.log.oklns("Build is now complete.");
+		grunt.log.oklns("Remember to disable your ad blocker.");
 		grunt.log.oklns("");
 		grunt.log.oklns("Run 'grunt' to start building.");
 
@@ -384,6 +396,7 @@ module.exports = function(grunt) {
 	grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp", "okMessage"]);
 	grunt.registerTask("reset", ["prompt", "clean:reset", "setUp"]);
 	grunt.registerTask("restart", ["clean:reset", "setUp", "default"]);
+	grunt.registerTask("zip", ["zip_directories"]);
 
 
 };
