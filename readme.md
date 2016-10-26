@@ -1,7 +1,7 @@
 DRAT - [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Automation Template
 =======================
 
-![DRAT](https://googledrive.com/host/0B_PD2TmpY-olSm5BQWJnX09lODA/drat.png)
+![DRAT](https://raw.githubusercontent.com//bastole/dc-richmedia-automation-template/master/etc/drat.png)
 
 * DRAT is a [grunt](http://gruntjs.com/) based build template for developing multiple [DoubleClick](https://www.google.com/doubleclick/studio/) rich banners simultaneously.
 * DRAT is for people who want to build cool things outside the limits of [HTML5 authoring tools.](http://www.google.com/webdesigner/)
