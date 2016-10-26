@@ -95,7 +95,7 @@ You can see in the build folder that all banner sub-folders are created.
 
 * /build/share - Shared js and sass across all banners. Use this for universal properties such as border thickness/color and font.
 
-* /build/bannerName/images - images used for the banner. images dumped here will be compressed and copied to public folder. Leave the back-up static image here(GIF, PNG and JPG).
+* /build/bannerName/images - images used for the banner. images dumped here will be compressed and copied to public folder. Leave the back-up static image here(GIF/PNG/JPG).
 
 * /build/bannerName/_animate.js - Preload assets, set Dynamic Profile and animate with GSAP timeline.
 
@@ -109,7 +109,11 @@ dispatch-ready banners. All you have to do is drag each folder into [DoubleClick
 
 #### /zipped folder
 
-dispatch-ready banners. All you have to do is drag each file into [DoubleClick Studio UI](https://www.google.com/doubleclick/studio/).
+banners in .zip files. It's safer and much faster to upload compressed files to DoubleClick. 
+
+#### /etc folder
+This folder contains bits and pieces.
+back-up static image template in PSD. On e uploaded to DoubleClick, a GIF/JPG/PNG file including 'backup' in filename will automatically be assigned as a back-up image.
 
 License
 ---------------------------------------
