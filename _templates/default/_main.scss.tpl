@@ -17,7 +17,7 @@ $bannerHeight: <%= height %>px;
 }
 
 #bg1 {
-  background: olive;
+  background: blue;
 }
 
 #bg2 {
@@ -25,18 +25,18 @@ $bannerHeight: <%= height %>px;
 }
 
 #product {
-  right: 40px;
-  bottom: 16px;
+  left: 10px;
+  top: 10px;
 }
 
 #cta {
-  right: 50px;
-  bottom: 10px;
+  right: 5px;
+  bottom: 5px;
 }
 
 #logo {
-  right: 50px;
-  bottom: 46px;
+  right: 5px;
+  bottom: 36px;
 }
 .copy {
     font-size: 20px;
