@@ -36,7 +36,7 @@ $bannerHeight: <%= height %>px;
 
 #logo {
   right: 5px;
-  bottom: 36px;
+  bottom: 44px;
 }
 .copy {
     font-size: 20px;

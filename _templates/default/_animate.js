@@ -33,9 +33,9 @@ var Animation =
       fadeTime = 0.6,
 
       imageArray = [ //image files to load.
-        Enabler.getUrl('http://placehold.it/80x80?text=PRODUCT'),
-        Enabler.getUrl('http://placehold.it/100x30?text=LOGO'),
-        Enabler.getUrl('http://placehold.it/80x24?text=CTA')
+        Enabler.getUrl('http://placehold.it/100x70/ff0000/000000?text=PRODUCT'),
+        Enabler.getUrl('http://placehold.it/100x30/ffff00/000000?text=LOGO'),
+        Enabler.getUrl('http://placehold.it/110x34/00ff00/000000?text=CTA')
       ],
       imageContainerArray = [ //elemnts to contain images.
         'product',
