@@ -31,14 +31,33 @@
         font-size: initial;
     }
     
-    a.button {
-        -webkit-appearance: button;
-        -moz-appearance: button;
-        appearance: button;
+    .button {
+        -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+        -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+        box-shadow: inset 0px 1px 0px 0px #ffffff;
+        background-color: #f9f9f9;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        border: 1px solid #dcdcdc;
+        display: inline-block;
+        cursor: pointer;
+        color: #666666;
+        font-family: Arial;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 8px 24px;
         text-decoration: none;
-        color: initial;
-        margin-bottom: 10px;
-        padding: 10px;
+        text-shadow: 0px 1px 0px #ffffff;
+    }
+    
+    .button:hover {
+        background-color: #e9e9e9;
+    }
+    
+    .button:active {
+        position: relative;
+        top: 1px;
     }
     
     iframe {
@@ -60,8 +79,8 @@
         color: red;
     }
     
-    button {
-        padding: 10px;
+    .seperate-link {
+        margin-bottom: 10px;
     }
     </style>
 </head>
@@ -71,7 +90,7 @@
     <p>
         <%= description %>
     </p>
-    <button id="captureModeToggle" onclick="captureModeToggle()">&bull; Enable Backup GIF capture mode</button>
+    <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">&bull; Enable Backup GIF capture mode</a>
     <p class="warning">IMPORTANT - Turn off your Ad Blocker </p>
     <script>
     var foldername = "<%=foldername%>".split(","),
@@ -88,11 +107,11 @@
         document.body.appendChild(subheading);
 
         var anch = document.createElement("a");
-        anch.innerHTML = "Seperate View";
+        anch.innerHTML = "&bull; Seperate View";
         anch.setAttribute('href', foldername);
         document.body.appendChild(anch);
 
-        anch.className += " button";
+        anch.className += " button seperate-link";
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", foldername + "index.html");
@@ -105,7 +124,7 @@
 
     function captureModeToggle() {
         var h2Tag = document.getElementsByTagName("h2");
-        var aTag = document.getElementsByTagName("a");
+        var aTag = document.getElementsByClassName("seperate-link");
         var iFrameTag = document.getElementsByTagName("iframe");
 
 
