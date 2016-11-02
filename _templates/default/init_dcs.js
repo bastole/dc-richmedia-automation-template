@@ -1,4 +1,4 @@
-//Initialize Enabler
+ //Initialize Enabler
 if (Enabler.isInitialized()) {
   init();
 } else {
@@ -68,7 +68,7 @@ function startCreative() {
       }
       //start timeline animation
       bgexit.addEventListener('click', bgExitHandler, false);
-      TweenLite.to(loading, 0.3, { autoAlpha: 0, y: -60, scale: 0 });
+      TweenLite.to(loading, 0.2, { autoAlpha: 0, y: -60, scale: 0.9 });
 
       Animation.mainTimeline.restart();
     }

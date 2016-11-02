@@ -26,7 +26,7 @@
     <p id="loading">
       <span>Loading</span>
       <br/>
-      <span>________</span>
+      <span></span>
     </p>
     <button id="bgexit"></button>
   </div>

@@ -43,7 +43,7 @@ div {
   position: relative;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
+
   top: 50%;
   transform: translateY(-50%);
   color: white;
@@ -53,13 +53,13 @@ div {
   animation-duration: 0.6s;
   animation-fill-mode: forwards;
 
-  background: rgba(0.5,0.5,0.5,0.3);
+  background: rgba(0.4,0.4,0.4,0.25);
   padding: 10px 0;
   margin: 0 auto;
-  width:100px;
+  width:84px;
 
-  border-radius: 12px;
-  box-shadow: 0px 2px 0px rgba(0,0,0,0.6);
+  border-radius: 9px;
+  box-shadow: 0px 1px 0px rgba(0,0,0,0.4);
 
 }
 
@@ -70,10 +70,13 @@ div {
 #loading span:nth-child(3) {
   display: inline-block;
   overflow: hidden;
-  width: 112px;
-  padding-bottom: 4px;
-
-  animation: fill 5s steps(60, end);
+  width: 60px;
+  padding: 3px 0;
+  animation: fill 1s steps(60, end);
+  background: white;
+  margin: 8px 0 0px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 0px rgba(0,0,0,0.4);
 }
 
 @keyframes fadeIn {
