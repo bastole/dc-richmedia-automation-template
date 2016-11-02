@@ -49,6 +49,7 @@
         padding: 8px 24px;
         text-decoration: none;
         text-shadow: 0px 1px 0px #ffffff;
+        margin-bottom: 12px;
     }
     
     .button:hover {
@@ -74,15 +75,19 @@
         padding: 20px;
     }
     
-    .warning {
+    #warning {
         font-weight: bold;
         color: red;
+        background-color: black;
+        display: none;
     }
     
     .seperate-link {
-        margin-bottom: 10px;
     }
     </style>
+    <script>var isOnAdBlocker = true;</script>
+    <script src='http://bastole.github.io/cdn/ads.js
+'></script>
 </head>
 
 <body>
@@ -91,8 +96,10 @@
         <%= description %>
     </p>
     <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">&bull; Enable Backup GIF capture mode</a>
-    <p class="warning">IMPORTANT - Turn off your Ad Blocker </p>
+    <p id="warning">Turn off your Ad Blocker </p>
     <script>
+
+    if(isOnAdBlocker) document.getElementById("warning").style.display = "block";
     var foldername = "<%=foldername%>".split(","),
         width = "<%=width%>".split(","),
         height = "<%=height%>".split(",");

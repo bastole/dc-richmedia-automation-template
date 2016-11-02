@@ -26,7 +26,9 @@
     <p id="loading">
       <span>Loading</span>
       <br/>
-      <span></span>
+      <span class="loadingbars">
+        <span class="loadingbar-white"></span>
+      </span>
     </p>
     <button id="bgexit"></button>
   </div>

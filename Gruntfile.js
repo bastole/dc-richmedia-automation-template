@@ -253,6 +253,12 @@ module.exports = function(grunt) {
 			},
 			build: {
 				files: copyBuildFiles
+			},
+			adblocker: {
+				expand: true,
+				cwd: "_templates/",
+				src: "ads.js",
+    		dest: DEST
 			}
 		},
 		size_report: {
@@ -309,38 +315,40 @@ module.exports = function(grunt) {
 	grunt.registerTask("default", ["jshint", "clean:code", "clean:image", "concat", "sass", "imagemin", "copy:build", "size_report", 'connect:server', 'open', "watch"]);
 
 	grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
-		for (var i = 0; i < FOLDER_LIST.length; i++) {
-			var bootStrapSASS = grunt.file.read(TEMPLATE_DEFAULT.concat("_main.scss.tpl"));
-			bootStrapSASS = grunt.template.process(bootStrapSASS, {
-				data: {
-					width: config.widthList[i],
-					height: config.heightList[i]
-				}
-			});
-			grunt.file.write(SRC.concat(FOLDER_LIST[i], "main.scss"), bootStrapSASS);
-
-			var bootStrapIndexHTML = grunt.file.read(TEMPLATE_DEFAULT.concat("_index.html.tpl"));
-			bootStrapIndexHTML = grunt.template.process(bootStrapIndexHTML, {
-				data: {
-					title: FOLDER_LIST[i].replace("/", "")
-				}
-			});
-			grunt.file.write(SRC.concat(FOLDER_LIST[i], "index.html"), bootStrapIndexHTML);
-
-		}
-		var bootStrapPreviewHTML = grunt.file.read("_templates/_preview.html.tpl");
-		bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, {
-			data: {
-				jobnumber: config.jobnumber,
-				description: config.description,
-				foldername: FOLDER_LIST,
-				width: config.widthList,
-				height: config.heightList
+			for (var i = 0; i < FOLDER_LIST.length; i++) {
+				var bootStrapSASS = grunt.file.read(TEMPLATE_DEFAULT.concat("_main.scss.tpl"));
+				bootStrapSASS = grunt.template.process(bootStrapSASS, {
+					data: {
+						width: config.widthList[i],
+						height: config.heightList[i]
+					}
+				});
+				grunt.file.write(SRC.concat(FOLDER_LIST[i], "main.scss"), bootStrapSASS);
+	
+				var bootStrapIndexHTML = grunt.file.read(TEMPLATE_DEFAULT.concat("_index.html.tpl"));
+				bootStrapIndexHTML = grunt.template.process(bootStrapIndexHTML, {
+					data: {
+						title: FOLDER_LIST[i].replace("/", "")
+					}
+				});
+				grunt.file.write(SRC.concat(FOLDER_LIST[i], "index.html"), bootStrapIndexHTML);
+	
 			}
-		});
-		grunt.file.write("public/preview.html", bootStrapPreviewHTML);
-	});
+			var bootStrapPreviewHTML = grunt.file.read("_templates/_preview.html.tpl");
+			bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, {
+				data: {
+					jobnumber: config.jobnumber,
+					description: config.description,
+					foldername: FOLDER_LIST,
+					width: config.widthList,
+					height: config.heightList
+				}
+			});
+			grunt.file.write("public/preview.html", bootStrapPreviewHTML);
+		}
 
+	);
+	//
 	grunt.registerTask("okMessage", "Output OK message at the end of project set up", function() {
 
 		console.log("");
