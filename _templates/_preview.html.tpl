@@ -85,9 +85,7 @@
     .seperate-link {
     }
     </style>
-    <script>var isOnAdBlocker = true;</script>
-    <script src='http://bastole.github.io/cdn/ads.js
-'></script>
+    <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
 </head>
 
 <body>
@@ -98,8 +96,9 @@
     <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">&bull; Enable Backup GIF capture mode</a>
     <p id="warning">Turn off your Ad Blocker </p>
     <script>
-
-    if(isOnAdBlocker) document.getElementById("warning").style.display = "block";
+    if(typeof Enabler == "undefined") {
+        document.getElementById("warning").style.display = "block";
+    }
     var foldername = "<%=foldername%>".split(","),
         width = "<%=width%>".split(","),
         height = "<%=height%>".split(",");
