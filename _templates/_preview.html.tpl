@@ -96,7 +96,7 @@
     <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">&bull; Enable Backup GIF capture mode</a>
     <p id="warning">Turn off your Ad Blocker </p>
     <script>
-    if(typeof Enabler == "undefined") {
+    if (typeof Enabler == typeof undefined) {
         document.getElementById("warning").style.display = "block";
     }
     var foldername = "<%=foldername%>".split(","),

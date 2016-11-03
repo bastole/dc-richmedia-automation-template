@@ -7,7 +7,6 @@
   </title>
   <!-- Studio Enabler Required -->
   <script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
-  <script src="init_dcs.js"></script>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -24,14 +23,15 @@
       <div id="border"></div>
     </div>
     <p id="loading">
-      <span>Loading</span>
+      <span id="loadingcopy">Loading</span>
       <br/>
-      <span class="loadingbars">
-        <span class="loadingbar-white"></span>
+      <span id="loadingbars">
+        <span id="loadingbar-white"></span>
       </span>
     </p>
     <button id="bgexit"></button>
   </div>
+  <script src="init_dcs.js"></script>
 </body>
 
 </html>

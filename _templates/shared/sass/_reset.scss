@@ -53,7 +53,7 @@ div {
   animation-duration: 0.6s;
   animation-fill-mode: forwards;
 
-  background: rgba(0.4,0.4,0.4,0.25);
+  background-color: rgba(0,0,0,0.25);
   padding: 10px 0;
   margin: 0 auto;
   width:84px;
@@ -67,7 +67,7 @@ div {
   font-size: 10px;
 }
 
-.loadingbars {
+#loadingbars {
   display: inline-block;
   background: black;
   margin: 8px 0 0px;
@@ -75,13 +75,13 @@ div {
   text-align: initial;
 }
 
-.loadingbar-white {
+#loadingbar-white {
   position: absolute;
   background: white;
   animation: fill 2s steps(120, end);
 }
 
-.loadingbars, .loadingbar-white{
+#loadingbars, #loadingbar-white{
   overflow: hidden;
   width: 60px;
   height: 6px;
