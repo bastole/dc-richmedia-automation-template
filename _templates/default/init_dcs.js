@@ -1,6 +1,6 @@
 //Initialize Enabler
 if (typeof Enabler == typeof undefined) {
-    document.getElementById("loadingcopy").innerHTML = "<span style='font-size:18px;'>&#x1f641;</span>  Ad<br/>Blocked";
+    document.getElementById("loadingcopy").innerHTML = "Ad is<br/>blocked";
     document.getElementById("loadingcopy").style.color = "crimson";
 
 //    document.getElementById("loadingcopy").style.fontSize = "13.5px";

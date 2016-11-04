@@ -17,11 +17,11 @@ $bannerHeight: <%= height %>px;
 }
 
 #bg1 {
-  background: blue;
+  background: dodgerblue ;
 }
 
 #bg2 {
-  background: grey;
+  background: midnightblue ;
 }
 
 #product {
@@ -41,4 +41,5 @@ $bannerHeight: <%= height %>px;
 .copy {
     font-size: 20px;
     padding: 10px;
+    color: white;
 }
