@@ -73,7 +73,7 @@
         font-family: Arial;
         font-size: 12px;
         font-weight: bold;
-        padding: 8px 24px;
+        padding: 6px 18px;
         text-decoration: none;
         text-shadow: 0px 1px 0px #ffffff;
         margin-bottom: 12px;

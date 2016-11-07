@@ -45,13 +45,18 @@ div {
   font-family: Arial, Helvetica, sans-serif;
 
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   color: white;
   text-shadow: 0px 1px 0px black;
+  -webkit-transition: opacity 2s;
   transition: opacity 2s;
-  animation-name: fadeIn;
-  animation-duration: 0.6s;
-  animation-fill-mode: forwards;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+  -webkit-animation-duration: 0.6s;
+          animation-duration: 0.6s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 
   background-color: rgba(0,0,0,0.25);
   padding: 8px 0 8px;
@@ -78,7 +83,8 @@ div {
 #loadingbar-white {
   position: absolute;
   background: white;
-  animation: fill 5s infinite;
+  -webkit-animation: fill 5s infinite;
+          animation: fill 5s infinite;
 }
 
 #loadingbars, #loadingbar-white{
@@ -89,10 +95,38 @@ div {
   border-radius: 10px;
 }
 
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(40px);
+            transform: translateY(40px);
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    -webkit-transform: translateY(40px);
+            transform: translateY(40px);
+  }
+}
+
+@-webkit-keyframes fill {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  60% {
+    width: 40px;
+    opacity: 1;
+  }
+  80% {
+    width: 40px;
+    opacity: 1;
+  }
+  100% {
+    width: 40px;
+    opacity: 0;
   }
 }
 
