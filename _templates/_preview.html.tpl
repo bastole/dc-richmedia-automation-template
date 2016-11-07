@@ -120,6 +120,7 @@
     <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">&bull; Enable Backup GIF capture mode</a>
     <p>
         <%= description %>
+    </p>
             <p id="warning">Turn off your Ad Blocker </p>
             <ul>
                 <li>Navigation</li>
@@ -168,6 +169,8 @@
             var isCaptureMode = false;
 
             function captureModeToggle() {
+                var navList = document.getElementsByTagName("ul")[0];
+                var pageHeader = document.getElementsByTagName("h1")[0];
                 var h2Tag = document.getElementsByTagName("h2");
                 var aTag = document.getElementsByClassName("seperate-link");
                 var iFrameTag = document.getElementsByTagName("iframe");
@@ -175,6 +178,8 @@
 
                 if (isCaptureMode == false) {
                     for (var i = 0; i < h2Tag.length; i++) {
+                        navList.style.display = "none";
+                        pageHeader.style.display = "none";
                         h2Tag[i].style.display = "none";
                         aTag[i].style.display = "none";
                         iFrameTag[i].style.display = "inline-block";
@@ -185,6 +190,8 @@
 
                 } else {
                     for (var i = 0; i < h2Tag.length; i++) {
+                        navList.style.display = "";
+                        pageHeader.style.display = "";
                         h2Tag[i].style.display = "";
                         aTag[i].style.display = "";
                         iFrameTag[i].style.display = "";
