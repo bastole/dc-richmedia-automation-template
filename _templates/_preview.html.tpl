@@ -184,6 +184,7 @@
                         aTag[i].style.display = "none";
                         iFrameTag[i].style.display = "inline-block";
                         iFrameTag[i].style.paddingBottom = "0px";
+                        iFrameTag[i].contentWindow.Animation.mainTimeline.pause(30);
                     }
                     document.getElementById("captureModeToggle").innerHTML = "Disable Backup GIF capture mode";
                     isCaptureMode = true;
