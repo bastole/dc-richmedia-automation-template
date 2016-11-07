@@ -24,6 +24,9 @@ var Animation =
 
   (function() {
 
+    var stageWidth = container.offsetWidth,
+    stageHeight = container.offsetHeight;
+
     var mainTimeline = new TimelineLite({
         onComplete: function() {
           if (isLooping) mainTimeline.restart();
@@ -33,12 +36,14 @@ var Animation =
       fadeTime = 0.6,
 
       imageArray = [ //image files to load.
-        Enabler.getUrl('http://placekitten.com/100/70'),
+        Enabler.getUrl('http://lorempixel.com/100/70'),
+        Enabler.getUrl('http://lorempixel.com/'+stageWidth+'/'+stageHeight),
         Enabler.getUrl('http://placehold.it/100x30/ffff00/000000?text=LOGO'),
         Enabler.getUrl('http://placehold.it/110x34/00ff00/000000?text=CTA')
       ],
       imageContainerArray = [ //elemnts to contain images.
         'product',
+        'bg1',
         'logo',
         'cta'
       ];

@@ -133,7 +133,7 @@ module.exports = function(grunt) {
 							type: 'checkbox', // list, checkbox, confirm, input, password
 							message: 'Banner sizes under this creative - Pick as many as you want.',
 							default: ["300x250"],
-							choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "468x60", "300x100", "300x50", "320x50", "640x200", "980x150", "970x250", "980x250"/*, "970x250(+YouTube Video)", "980x250(+YouTube Video)"*/],
+							choices: ["300x250", "728x90", "300x600", "160x600", "120x600", "468x60", "300x100", "640x200", "980x150", "970x250", "980x250"/*, "970x250(+YouTube Video)", "980x250(+YouTube Video)"*/],
 							filter: function(value) {
 								value = value.map(function(arr) {
 									arr = arr.replace("(+YouTube Video)", "_yt");
