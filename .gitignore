@@ -1,6 +1,8 @@
 node_modules/
 public/
 build/
+zipped/
+backup/
 
 .sass-cache/
 .scssc
