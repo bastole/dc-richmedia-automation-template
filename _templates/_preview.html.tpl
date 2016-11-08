@@ -129,12 +129,14 @@
     }
     </style>
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
+
 </head>
 
 <body>
     <h1><%= jobnumber %> Preview</h1>
     <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">Enable Backup GIF capture view</a>
     <a class="button" href="#" id="zoomOutToggle" onclick="zoomOutToggle()">X 0.5 Zoom</a>
+    <a class="button" href="#" onclick="genarateBackupGIF()">Generate Backup GIF</a>
     <p>
         <%= description %>
     </p>
@@ -220,7 +222,7 @@
                 viewSeperateBtns[i].style.display = "";
                 iFrameTags[i].style.display = "";
                 iFrameTags[i].style.paddingBottom = "";
-            }
+            }   
             document.getElementById("captureModeToggle").innerHTML = "Enable Backup GIF capture mode";
             isCaptureMode = false;
         }
@@ -229,19 +231,17 @@
 
     function zoomOutToggle() {
         if (isZoomedOut == false) {
-
             main.setAttribute('class', "zoom-out");
-
             document.getElementById("zoomOutToggle").innerHTML = "X 1.0 Zoom";
-
             isZoomedOut = true;
         } else {
-
             main.setAttribute('class', " ");
-
             document.getElementById("zoomOutToggle").innerHTML = "X 0.5 Zoom";
             isZoomedOut = false;
         }
+    }
+    function genarateBackupGIF() {
+    //    iframe2image(iFrameTags[0]);
     }
     </script>
     <script src="http://localhost:4014/livereload.js"></script>
