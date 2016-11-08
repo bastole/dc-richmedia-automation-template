@@ -87,7 +87,7 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
         cwd: DEST.concat(FOLDER_LIST[i]),
         src: ["index.html"],
         dest: "backup/".concat(FOLDER_LIST[i]),
-        ext:".png"
+        ext: ".png"
     };
 
 }
@@ -289,14 +289,43 @@ module.exports = function(grunt) {
         },
         phantomjs_screenshot: {
             main: {
-            	options:{
-            		//delay: 100
-            		viewport: "10x10"
-            	},
+                options: {
+                    //delay: 100
+                    viewport: "10x10"
+                },
                 files: screenshotFiles
             }
         },
-
+        'screenshot-element': {
+            options: {
+            	
+              viewport: {
+                width: 10,
+              	height: 10
+            	}
+            },
+            main: {
+            	images: [
+                {
+                  url: 'public/JOB0000_Concept-A_300x250/index.html',
+                  file: 'backup/test.png',
+                  selector: '#JOB0000_Concept-A_300x250/'
+                }
+            	]
+            }
+        },
+        localscreenshots: {
+                options: {
+                    path: 'backup',
+                    type: 'png',
+                    local : {
+                        path: 'public',
+                        port: 9064
+                    },
+                    viewport: ['10x10'],
+                },
+                src: ['public/*/*.html']
+        },
         watch: {
             options: {
                 livereload: {

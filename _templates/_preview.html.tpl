@@ -128,8 +128,13 @@
         width: 200%;
     }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
+    <script>
 
+
+    </script>
 </head>
 
 <body>
@@ -168,13 +173,17 @@
         anch.innerHTML = "&bull; Seperate View";
         anch.setAttribute('href', foldername);
         main.appendChild(anch);
-
         anch.className += " button view-seperate";
+
+        var capt = document.createElement("a");
+        capt.innerHTML = "&bull; screenshot";
+        capt.setAttribute('href', "#");
+        main.appendChild(capt);
+        capt.className += " button screenshot";
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", foldername + "index.html");
         ifrm.setAttribute("id", foldername);
-
         ifrm.style.width = width + "px";
         ifrm.style.height = height + "px";
         main.appendChild(ifrm);
@@ -196,6 +205,7 @@
 
     var h2Tags = document.getElementsByTagName("h2");
     var viewSeperateBtns = document.getElementsByClassName("view-seperate");
+    var screenshotBtns = document.getElementsByClassName("screenshot");
     var iFrameTags = document.getElementsByTagName("iframe");
 
     function captureModeToggle() {
@@ -240,9 +250,22 @@
             isZoomedOut = false;
         }
     }
-    function genarateBackupGIF() {
+    function genarateBackupGIF(elemNum) {
     //    iframe2image(iFrameTags[0]);
+
+
+        html2canvas(iFrameTags[elemNum], {
+          onrendered: function(canvas) {
+            document.body.appendChild(canvas);
+          },
+          width: width[elemNum],
+          height: height[elemNum]
+        });
+
+
     }
+
+
     </script>
     <script src="http://localhost:4014/livereload.js"></script>
 </body>
