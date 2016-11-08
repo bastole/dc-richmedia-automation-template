@@ -74,9 +74,8 @@ var Animation =
 
     })();
 
-
 function bgExitHandler(e) {
-    if (Animation !== undefined) Animation.mainTimeline.pause(30);
-    if (dyn.clickURL.Url === undefined) Enabler.exit('Background Exit');
+    if (typeof Animation !== typeof undefined) Animation.mainTimeline.pause(30);
+    if (typeof dyn.clickURL.Url == typeof undefined) Enabler.exit('Background Exit');
     else Enabler.exitOverride("Dynamic Exit", dyn.clickURL.Url);
 }

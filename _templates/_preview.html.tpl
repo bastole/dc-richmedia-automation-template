@@ -18,6 +18,8 @@
     
     h1 {
         padding: 30px 0;
+        background-color: black;
+        color: white;
     }
     
     h2 {
@@ -42,22 +44,32 @@
         color: #666666;
         font-family: Arial;
         font-size: 10px;
-        padding: 4px 10px;
+        padding: 4px;
         text-decoration: none;
-        text-shadow: 0px 1px 0px #ffffff;
     }
     
     li:nth-child(1) {
         font-weight: bold;
         font-size: 12px;
-
+        padding: 4px 8px;
     }
-
+    
     li {
+        padding: 4px 4px;
         text-align: left;
-        padding: 2px
     }
-
+    
+    li a {
+        text-decoration: none;
+        color: #666666;
+        padding: 4px 4px;
+    }
+    
+    li a:hover {
+        color: white;
+        background-color: #666666;
+    }
+    
     .button {
         -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
         -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
@@ -76,7 +88,7 @@
         padding: 6px 18px;
         text-decoration: none;
         text-shadow: 0px 1px 0px #ffffff;
-        margin-bottom: 12px;
+        margin: 8px 0;
     }
     
     .button:hover {
@@ -94,6 +106,7 @@
         padding-bottom: 26px;
         margin-left: auto;
         margin-right: auto;
+        outline: 1px solid transparent;
     }
     
     p {
@@ -109,102 +122,129 @@
         display: none;
     }
     
-    .seperate-link {}
+    .zoom-out {
+        transform: scale(0.5);
+        transform-origin: 0% 0%;
+        width: 200%;
+    }
     </style>
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
 </head>
 
 <body>
     <h1><%= jobnumber %> Preview</h1>
-    </p>
-    <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">&bull; Enable Backup GIF capture mode</a>
+    <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">Enable Backup GIF capture view</a>
+    <a class="button" href="#" id="zoomOutToggle" onclick="zoomOutToggle()">X 0.5 Zoom</a>
     <p>
         <%= description %>
     </p>
-            <p id="warning">Turn off your Ad Blocker </p>
-            <ul>
-                <li>Navigation</li>
-            </ul>
-            <script>
-            if (typeof Enabler == typeof undefined) {
-                document.getElementById("warning").style.display = "block";
+    <p id="warning">Turn off your Ad Blocker </p>
+    <ul>
+        <li>Navigation</li>
+    </ul>
+    <div id="main"></div>
+    <script>
+    var main = document.getElementById("main");
+
+    if (typeof Enabler == typeof undefined) {
+        document.getElementById("warning").style.display = "block";
+    }
+    var foldername = "<%=foldername%>".split(","),
+        width = "<%=width%>".split(","),
+        height = "<%=height%>".split(",");
+
+    for (var i = 0; i < foldername.length; i++) {
+        prepareFrame(foldername[i], width[i], height[i]);
+    }
+
+    function prepareFrame(foldername, width, height) {
+        var subheading = document.createElement("h2");
+        subheading.innerHTML = foldername;
+        main.appendChild(subheading);
+
+        var anch = document.createElement("a");
+        anch.innerHTML = "&bull; Seperate View";
+        anch.setAttribute('href', foldername);
+        main.appendChild(anch);
+
+        anch.className += " button view-seperate";
+
+        var ifrm = document.createElement("iframe");
+        ifrm.setAttribute("src", foldername + "index.html");
+        ifrm.setAttribute("id", foldername);
+
+        ifrm.style.width = width + "px";
+        ifrm.style.height = height + "px";
+        main.appendChild(ifrm);
+
+        var listItem = document.createElement("li");
+        var listItemAnch = document.createElement("a");
+        listItemAnch.innerHTML = foldername;
+        listItemAnch.setAttribute('href', "#" + foldername);
+        listItem.appendChild(listItemAnch);
+        document.getElementsByTagName("ul")[0].appendChild(listItem);
+
+    }
+
+    var isCaptureMode = false,
+        isZoomedOut = false;
+
+    var navList = document.getElementsByTagName("ul")[0];
+    var pageHeader = document.getElementsByTagName("h1")[0];
+
+    var h2Tags = document.getElementsByTagName("h2");
+    var viewSeperateBtns = document.getElementsByClassName("view-seperate");
+    var iFrameTags = document.getElementsByTagName("iframe");
+
+    function captureModeToggle() {
+
+        if (isCaptureMode == false) {
+            for (var i = 0; i < h2Tags.length; i++) {
+                navList.style.display = "none";
+                pageHeader.style.display = "none";
+                h2Tags[i].style.display = "none";
+                viewSeperateBtns[i].style.display = "none";
+                iFrameTags[i].style.display = "inline-block";
+                iFrameTags[i].style.paddingBottom = "0px";
+                if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined)
+                    iFrameTags[i].contentWindow.Animation.mainTimeline.pause(30);
             }
-            var foldername = "<%=foldername%>".split(","),
-                width = "<%=width%>".split(","),
-                height = "<%=height%>".split(",");
+            document.getElementById("captureModeToggle").innerHTML = "Disable Backup GIF capture mode";
+            isCaptureMode = true;
 
-            for (var i = 0; i < foldername.length; i++) {
-                prepareFrame(foldername[i], width[i], height[i]);
+        } else {
+            for (var i = 0; i < h2Tags.length; i++) {
+                navList.style.display = "";
+                pageHeader.style.display = "";
+                h2Tags[i].style.display = "";
+                viewSeperateBtns[i].style.display = "";
+                iFrameTags[i].style.display = "";
+                iFrameTags[i].style.paddingBottom = "";
             }
+            document.getElementById("captureModeToggle").innerHTML = "Enable Backup GIF capture mode";
+            isCaptureMode = false;
+        }
 
-            function prepareFrame(foldername, width, height) {
-                var subheading = document.createElement("h2");
-                subheading.innerHTML = foldername;
-                document.body.appendChild(subheading);
+    }
 
-                var anch = document.createElement("a");
-                anch.innerHTML = "&bull; Seperate View";
-                anch.setAttribute('href', foldername);
-                document.body.appendChild(anch);
+    function zoomOutToggle() {
+        if (isZoomedOut == false) {
 
-                anch.className += " button seperate-link";
+            main.setAttribute('class', "zoom-out");
 
-                var ifrm = document.createElement("iframe");
-                ifrm.setAttribute("src", foldername + "index.html");
-                ifrm.setAttribute("id", foldername);
+            document.getElementById("zoomOutToggle").innerHTML = "X 1.0 Zoom";
 
-                ifrm.style.width = width + "px";
-                ifrm.style.height = height + "px";
-                document.body.appendChild(ifrm);
+            isZoomedOut = true;
+        } else {
 
-                var listItem = document.createElement("li");
-                var listItemAnch = document.createElement("a");
-                listItemAnch.innerHTML = foldername;
-                listItemAnch.setAttribute('href', "#" + foldername);
-                listItem.appendChild(listItemAnch);
-                document.getElementsByTagName("ul")[0].appendChild(listItem);
+            main.setAttribute('class', " ");
 
-            }
-
-            var isCaptureMode = false;
-
-            function captureModeToggle() {
-                var navList = document.getElementsByTagName("ul")[0];
-                var pageHeader = document.getElementsByTagName("h1")[0];
-                var h2Tag = document.getElementsByTagName("h2");
-                var aTag = document.getElementsByClassName("seperate-link");
-                var iFrameTag = document.getElementsByTagName("iframe");
-
-
-                if (isCaptureMode == false) {
-                    for (var i = 0; i < h2Tag.length; i++) {
-                        navList.style.display = "none";
-                        pageHeader.style.display = "none";
-                        h2Tag[i].style.display = "none";
-                        aTag[i].style.display = "none";
-                        iFrameTag[i].style.display = "inline-block";
-                        iFrameTag[i].style.paddingBottom = "0px";
-                        iFrameTag[i].contentWindow.Animation.mainTimeline.pause(30);
-                    }
-                    document.getElementById("captureModeToggle").innerHTML = "Disable Backup GIF capture mode";
-                    isCaptureMode = true;
-
-                } else {
-                    for (var i = 0; i < h2Tag.length; i++) {
-                        navList.style.display = "";
-                        pageHeader.style.display = "";
-                        h2Tag[i].style.display = "";
-                        aTag[i].style.display = "";
-                        iFrameTag[i].style.display = "";
-                        iFrameTag[i].style.paddingBottom = "";
-                    }
-                    document.getElementById("captureModeToggle").innerHTML = "Enable Backup GIF capture mode";
-                    isCaptureMode = false;
-                }
-
-            }
-            </script>
-            <script src="http://localhost:4014/livereload.js"></script>
+            document.getElementById("zoomOutToggle").innerHTML = "X 0.5 Zoom";
+            isZoomedOut = false;
+        }
+    }
+    </script>
+    <script src="http://localhost:4014/livereload.js"></script>
 </body>
 
 </html>
