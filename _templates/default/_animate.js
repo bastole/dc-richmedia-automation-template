@@ -69,6 +69,6 @@ var Animation =
 
 function bgExitHandler(e) {
     if (typeof Animation !== typeof undefined) Animation.mainTimeline.pause(30);
-    if (typeof dyn.clickURL.Url == typeof undefined) Enabler.exit('Background Exit');
+    if (typeof dyn == typeof undefined) Enabler.exit('Background Exit');
     else Enabler.exitOverride("Dynamic Exit", dyn.clickURL.Url);
 }
