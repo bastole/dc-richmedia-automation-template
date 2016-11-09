@@ -246,7 +246,7 @@ module.exports = function(grunt) {
 
         imagemin: {
             all: {
-                files: imageMinFiles
+                files: []//imageMinFiles
             }
         },
 
@@ -262,11 +262,8 @@ module.exports = function(grunt) {
             build: {
                 files: copyBuildFiles
             },
-            adblocker: {
-                expand: true,
-                cwd: "_templates/",
-                src: "ads.js",
-                dest: DEST
+            imagemin: {
+                files: imageMinFiles
             }
         },
         size_report: {
@@ -335,11 +332,11 @@ module.exports = function(grunt) {
             },
             codeUpdated: {
                 files: ["build/**/*.{html,js,css,scss}"],
-                tasks: ["jshint", "clean:code", "concat", "sass", "copy:build", "size_report"]
+                tasks: ["jshint", "clean:code", "concat", "sass", "copy:build"]
             },
             imageUpdated: {
                 files: ["build/**/*.{jpg,png,gif,svg}"],
-                tasks: ["clean:image", "imagemin", "size_report"]
+                tasks: ["clean:image", "copy:imagemin"]
             }
         },
         connect: {
@@ -358,7 +355,7 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask("default", ["jshint", "clean:code", "clean:image", "concat", "sass", "imagemin", "copy:build", "size_report", 'connect:server', 'open', "watch"]);
+    grunt.registerTask("default", ["jshint", "clean:code", "clean:image", "concat", "sass", "copy:imagemin", "copy:build", "connect:server", "open", "watch"]);
 
     grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
             for (var i = 0; i < FOLDER_LIST.length; i++) {

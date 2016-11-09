@@ -35,23 +35,16 @@ var Animation =
             fadeTime = 0.6,
 
             imageArray = [ //image files to load.
-                Enabler.getUrl('http://lorempixel.com/' + (stageWidth - 20) + '/' + (stageHeight - 20)),
-                Enabler.getUrl('http://lorempixel.com/' + stageWidth + '/' + stageHeight),
-                Enabler.getUrl('http://placehold.it/100x30/ffff00/000000?text=LOGO'),
-                Enabler.getUrl('http://placehold.it/110x34/00ff00/000000?text=CTA')
+                Enabler.getUrl("temp_bg.jpg"),
+                Enabler.getUrl("temp_logo.png"),
+                Enabler.getUrl("temp_cta.png")
             ],
             imageContainerArray = [ //elemnts to contain images.
                 'product',
-                'bg1',
                 'logo',
                 'cta'
             ];
 
-        mainTimeline = new TimelineLite({
-            onComplete: function() {
-                if (isLooping) mainTimeline.restart();
-            }
-        });
 
         mainTimeline
             .set(fade, { autoAlpha: 1 })
