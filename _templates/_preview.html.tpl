@@ -48,28 +48,30 @@
         text-decoration: none;
     }
     
-    li:nth-child(1) {
-        font-weight: bold;
-        font-size: 12px;
-        padding: 4px 8px;
-    }
-    
     li {
-        padding: 4px 4px;
+        padding: 4px 12px;
         text-align: left;
-    }
-    
+    }    
     li a {
         text-decoration: none;
         color: #666666;
-        padding: 4px 4px;
     }
-    
-    li a:hover {
-        color: white;
+
+    li:hover{
         background-color: #666666;
     }
-    
+    li:hover a {
+        color: white;
+    }
+    li:nth-child(1) {
+        font-weight: bold;
+        font-size: 12px;
+    }
+    li:nth-child(1):hover {
+        background-color: initial;
+
+    }
+
     .button {
         -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
         -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
@@ -85,10 +87,10 @@
         font-family: Arial;
         font-size: 12px;
         font-weight: bold;
-        padding: 6px 18px;
+        padding: 6px 12px;
         text-decoration: none;
         text-shadow: 0px 1px 0px #ffffff;
-        margin: 8px 0;
+        margin: 8px 4px;
     }
     
     .button:hover {
@@ -139,9 +141,11 @@
 
 <body>
     <h1><%= jobnumber %> Preview</h1>
+
+<a class="button" href="#" id="compactViewToggle" onclick="compactViewToggle()">Enable Compact View</a><a class="button" href="#" id="showLastFrame" onclick="showLastFrame()">Show Last Frame</a><a class="button" href="#" id="zoomOutToggle" onclick="zoomOutToggle()">X 0.5 Zoom</a>
+<!--
     <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">Enable Backup GIF capture view</a>
-    <a class="button" href="#" id="zoomOutToggle" onclick="zoomOutToggle()">X 0.5 Zoom</a>
-    <a class="button" href="#" onclick="genarateBackupGIF()">Generate Backup GIF</a>
+-->
     <p>
         <%= description %>
     </p>
@@ -170,16 +174,25 @@
         main.appendChild(subheading);
 
         var anch = document.createElement("a");
-        anch.innerHTML = "&bull; Seperate View";
+        anch.innerHTML = "Seperate View";
         anch.setAttribute('href', foldername);
-        main.appendChild(anch);
         anch.className += " button view-seperate";
-
+        main.appendChild(anch);
         var capt = document.createElement("a");
-        capt.innerHTML = "&bull; screenshot";
+        capt.innerHTML = "Take Screenshot";
         capt.setAttribute('href', "#");
-        main.appendChild(capt);
         capt.className += " button screenshot";
+        // capt.addEventListener('click', function() { 
+        //     genarateBackupGIF(i);
+        // }, false);
+
+        (function(v){ //start wrapper code
+            capt.addEventListener('click', function() { 
+                genarateBackupGIF(v);
+            }, false);
+        })(i);//passing in i to v here
+
+        main.appendChild(capt);
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", foldername + "index.html");
@@ -197,7 +210,8 @@
 
     }
 
-    var isCaptureMode = false,
+    var isCompactView = false,
+        isCaptureMode = false,
         isZoomedOut = false;
 
     var navList = document.getElementsByTagName("ul")[0];
@@ -208,21 +222,20 @@
     var screenshotBtns = document.getElementsByClassName("screenshot");
     var iFrameTags = document.getElementsByTagName("iframe");
 
-    function captureModeToggle() {
+    function compactViewToggle() {
 
-        if (isCaptureMode == false) {
+        if (isCompactView == false) {
             for (var i = 0; i < h2Tags.length; i++) {
                 navList.style.display = "none";
                 pageHeader.style.display = "none";
                 h2Tags[i].style.display = "none";
                 viewSeperateBtns[i].style.display = "none";
+                screenshotBtns[i].style.display = "none";
                 iFrameTags[i].style.display = "inline-block";
                 iFrameTags[i].style.paddingBottom = "0px";
-                if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined)
-                    iFrameTags[i].contentWindow.Animation.mainTimeline.pause(30);
             }
-            document.getElementById("captureModeToggle").innerHTML = "Disable Backup GIF capture mode";
-            isCaptureMode = true;
+            document.getElementById("compactViewToggle").innerHTML = "Disable Compact View";
+            isCompactView = true;
 
         } else {
             for (var i = 0; i < h2Tags.length; i++) {
@@ -230,14 +243,26 @@
                 pageHeader.style.display = "";
                 h2Tags[i].style.display = "";
                 viewSeperateBtns[i].style.display = "";
+                screenshotBtns[i].style.display = "";
                 iFrameTags[i].style.display = "";
                 iFrameTags[i].style.paddingBottom = "";
             }   
-            document.getElementById("captureModeToggle").innerHTML = "Enable Backup GIF capture mode";
-            isCaptureMode = false;
+            document.getElementById("compactViewToggle").innerHTML = "Enable Compact View";
+            isCompactView = false;
         }
 
     }
+
+    function showLastFrame() {
+
+            for (var i = 0; i < h2Tags.length; i++) {
+                if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined){
+                    iFrameTags[i].contentWindow.Animation.mainTimeline.pause(30);
+                }
+            }
+
+    }
+
 
     function zoomOutToggle() {
         if (isZoomedOut == false) {
@@ -253,10 +278,13 @@
     function genarateBackupGIF(elemNum) {
     //    iframe2image(iFrameTags[0]);
 
-
-        html2canvas(iFrameTags[elemNum], {
+        html2canvas(iFrameTags[elemNum].contentWindow.document.body, {
           onrendered: function(canvas) {
-            document.body.appendChild(canvas);
+         //   document.body.appendChild(canvas);
+            var img = canvas.toDataURL("image/gif");
+            window.open(img);
+
+
           },
           width: width[elemNum],
           height: height[elemNum]
