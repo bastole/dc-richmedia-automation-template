@@ -204,7 +204,7 @@ module.exports = function(grunt) {
 
         clean: {
             code: {
-                src: ["public/**.{html,js,css}", "!public/preview.html"]
+                src: ["public/**.{html,js,css}", "!public/preview.html", "!public/html2canvas.js"]
             },
             image: {
                 src: ["public/**.{jpg,png,gif,svg}"]
@@ -252,16 +252,26 @@ module.exports = function(grunt) {
 
         copy: {
             setUp: {
-                files: copySetUpFiles.concat({
+                files: copySetUpFiles.concat(
+                {
+                    expand: true,
+                    cwd: "_templates/",
+                    src: "html2canvas.js",
+                    dest: DEST
+                },
+                {
                     expand: true,
                     cwd: "_templates/",
                     src: "shared/**/*.*",
                     dest: SRC
-                })
+                }
+                
+                )
             },
             build: {
                 files: copyBuildFiles
             },
+
             imagemin: {
                 files: imageMinFiles
             }
@@ -283,45 +293,6 @@ module.exports = function(grunt) {
                     dest: "zipped/"
                 }]
             }
-        },
-        phantomjs_screenshot: {
-            main: {
-                options: {
-                    //delay: 100
-                    viewport: "10x10"
-                },
-                files: screenshotFiles
-            }
-        },
-        'screenshot-element': {
-            options: {
-            	
-              viewport: {
-                width: 10,
-              	height: 10
-            	}
-            },
-            main: {
-            	images: [
-                {
-                  url: 'public/JOB0000_Concept-A_300x250/index.html',
-                  file: 'backup/test.png',
-                  selector: '#JOB0000_Concept-A_300x250/'
-                }
-            	]
-            }
-        },
-        localscreenshots: {
-                options: {
-                    path: 'backup',
-                    type: 'png',
-                    local : {
-                        path: 'public',
-                        port: 9064
-                    },
-                    viewport: ['10x10'],
-                },
-                src: ['public/*/*.html']
         },
         watch: {
             options: {
