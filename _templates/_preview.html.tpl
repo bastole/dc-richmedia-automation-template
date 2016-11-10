@@ -20,7 +20,7 @@
     
     header {
         background-color: black;
-        padding: 36px;
+        padding: 30px;
     }
     
     h1 {
@@ -45,15 +45,12 @@
         position: fixed;
         top: 4px;
         left: 4px;
-        -moz-box-shadow: inset 0px 1px 0px 0px #EEE;
-        -webkit-box-shadow: inset 0px 1px 0px 0px #EEE;
-        box-shadow: inset 0px 1px 0px 0px #EEE;
-        background-color: #CCC;
         -moz-border-radius: 3px;
         -webkit-border-radius: 3px;
         border-radius: 3px;
-        border: 1px solid #BBB;
-        color: #666;
+        border: 1px solid #444;
+        background-color: #222;
+        color: #CCC;
         font-size: 9px;
         padding: 2px;
         text-decoration: none;
@@ -70,6 +67,7 @@
         max-height: 1400px;
         max-width: 220px;
         background-color: #f9f9f9;
+        color: #333;
 
         -moz-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
         -webkit-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
@@ -85,10 +83,15 @@
     nav ul li a {
         text-decoration: none;
         color: #666;
+        padding: 4px 0;
     }
     
     nav ul li:nth-child(1) {
         font-size: 12px;
+        margin-bottom: 6px;
+    }
+    nav ul li:last-child {
+        margin-bottom: 10px;
     }
     
     nav ul .nav-item {}
@@ -139,9 +142,9 @@
     }
     
     #warning {
-        font-weight: 700;
-        color: red;
-        background-color: #CCC;
+        color: white;
+        background-color: crimson;
+        padding: 20px 0;
         display: none;
     }
     
@@ -151,6 +154,12 @@
         width: 200%;
     }
     
+    #previewmode-buttons {
+        padding: 20px;
+        background-color: black;
+        margin-bottom: 30px;
+    }
+
     #previewmode-buttons ul {
         list-style: none;
         height: 40px;
@@ -167,7 +176,7 @@
         box-shadow: inset #fff 0 1px 0, inset rgba(0, 0, 0, 0.03) 0 -1px 0;
         width: 270px;
         display: block;
-        margin: 20px auto;
+        margin: 0 auto;
     }
     
     #previewmode-buttons li {
@@ -222,7 +231,7 @@
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <h1><%= jobnumber %></h1>
         <p>
             <%= description %>
@@ -230,7 +239,7 @@
         <p id="warning">Turn off the Ad blocker </p>
         <nav>
             <ul>
-                <li>Navigation &#9662;</li>
+                <li><a href="#header">Navigation &#9662; </a></li>
             </ul>
         </nav>
     </header>
@@ -258,9 +267,10 @@
 
     function prepareFrame(foldername, width, height) {
         var subheading = document.createElement("h2");
-        subheading.innerHTML = foldername.replace('/','');
-        main.appendChild(subheading);
 
+        subheading.innerHTML = foldername.replace('/','');
+        subheading.setAttribute('id', "heading-"+foldername);
+        main.appendChild(subheading);
         var anch = document.createElement("a");
         anch.innerHTML = "Seperate View";
         anch.setAttribute('href', foldername);
@@ -290,7 +300,7 @@
         listItem.setAttribute('class', "nav-item");
         var listItemAnch = document.createElement("a");
         listItemAnch.innerHTML = foldername;
-        listItemAnch.setAttribute('href', "#" + foldername);
+        listItemAnch.setAttribute('href', "#heading-" + foldername);
         listItem.appendChild(listItemAnch);
         document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].appendChild(listItem);
 
