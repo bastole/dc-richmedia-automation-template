@@ -226,8 +226,9 @@
         padding-top: 3px;
     }
     </style>
-    <script src="html2canvas.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
+    <script src="html2canvas.js"></script>
 </head>
 
 <body>
@@ -376,18 +377,25 @@
 
         html2canvas(iFrameTags[elemNum].contentWindow.document.body, {
             onrendered: function(canvas) {
-                //   document.body.appendChild(canvas);
-                var img = canvas.toDataURL("image/gif");
-                window.open(img);
 
+                var img = canvas.toDataURL("image/png");
+//                window.open(img);
+
+                $("<a>", {
+                href: img,
+                download: "backup_"+foldername[elemNum].replace('/','')
+                })
+                .on("click", function() {$(this).remove()})
+                .appendTo("nav")[0].click()
 
             },
             width: width[elemNum],
             height: height[elemNum]
         });
-
-
     }
+
+
+
     </script>
     <script src="http://localhost:4014/livereload.js"></script>
 </body>
