@@ -273,8 +273,17 @@ module.exports = function(grunt) {
             },
 
             imagemin: {
-                files: imageMinFiles
+                files: imageMinFiles.concat(
+								{
+                    expand: true,
+                    flatten:true,
+                    cwd: SRC,
+                    src: ["**/*.{jpg,png,gif,svg}"],
+                    dest: DEST
+                }
+                )
             }
+
         },
         size_report: {
             all: {
@@ -414,11 +423,9 @@ module.exports = function(grunt) {
 
 
     });
-
     grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp", "okMessage"]);
     grunt.registerTask("reset", ["prompt", "clean:reset", "setUp"]);
     grunt.registerTask("restart", ["clean:reset", "setUp", "default"]);
     grunt.registerTask("zip", ["zip_directories"]);
-
 
 };

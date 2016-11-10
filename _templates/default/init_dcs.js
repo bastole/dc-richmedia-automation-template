@@ -2,10 +2,7 @@
 if (typeof Enabler == typeof undefined) {
     document.getElementById("loadingcopy").innerHTML = "Ad is<br/>blocked";
     document.getElementById("loadingcopy").style.color = "crimson";
-
-//    document.getElementById("loadingcopy").style.fontSize = "13.5px";
     document.getElementById("loadingbars").style.display = "none";
-
     document.getElementById("loading").style.backgroundColor = "rgba(0,0,0,0.85)";
 } else if (Enabler.isInitialized()) {
     init();
