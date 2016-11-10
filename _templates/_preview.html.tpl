@@ -6,8 +6,10 @@
         <%= jobnumber %> Preview</title>
     <style type="text/css">
     body {
-        font-family: Arial, san-serif;
-        padding-bottom: 80px;
+        padding-bottom: 50px;
+        font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #777;
+        font-weight: 300;
     }
     
     * {
@@ -16,77 +18,102 @@
         text-align: center;
     }
     
-    h1 {
-        padding: 30px 0;
+    header {
         background-color: black;
+        padding: 36px;
+    }
+    
+    h1 {
         color: white;
+        font-size: 38px;
+        font-weight: 400;
     }
     
     h2 {
-        padding: 20px 0;
+        padding: 16px 0;
+        font-weight: 400;
     }
     
-    a {}
+    p {
+        font-size: 20px;
+        line-height: 140%;
+        font-weight: 400;
+    }
     
-    ul {
+    nav ul {
         list-style-type: none;
         position: fixed;
         top: 4px;
         left: 4px;
-        -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
-        -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-        box-shadow: inset 0px 1px 0px 0px #ffffff;
-        background-color: #f9f9f9;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        border-radius: 6px;
-        border: 1px solid #dcdcdc;
-        color: #666666;
-        font-family: Arial;
-        font-size: 10px;
-        padding: 4px;
+        -moz-box-shadow: inset 0px 1px 0px 0px #EEE;
+        -webkit-box-shadow: inset 0px 1px 0px 0px #EEE;
+        box-shadow: inset 0px 1px 0px 0px #EEE;
+        background-color: #CCC;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        border: 1px solid #BBB;
+        color: #666;
+        font-size: 9px;
+        padding: 2px;
         text-decoration: none;
+        max-height: 26px;
+        max-width: 92px;
+        overflow-y: hidden;
+        -moz-transition: max-height 0.1s linear, max-width 0.1s linear 0.1s, background-color 0.2s linear;
+        -webkit-transition: max-height 0.1s linear, max-width 0.1s linear 0.1s, background-color 0.2s linear;
+        -o-transition: max-height 0.1s linear, max-width 0.1s linear 0.1s, background-color 0.2s linear;
+        transition: max-height 0.1s linear, max-width 0.1s linear 0.1s, background-color 0.2s linear;
     }
     
-    li {
+    nav ul:hover {
+        max-height: 1400px;
+        max-width: 220px;
+        background-color: #f9f9f9;
+
+        -moz-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
+        -webkit-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
+        -o-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
+        transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
+    }
+    
+    nav ul li {
         padding: 4px 12px;
         text-align: left;
-    }    
-    li a {
+    }
+    
+    nav ul li a {
         text-decoration: none;
-        color: #666666;
+        color: #666;
     }
-
-    li:hover{
-        background-color: #666666;
-    }
-    li:hover a {
-        color: white;
-    }
-    li:nth-child(1) {
-        font-weight: bold;
+    
+    nav ul li:nth-child(1) {
         font-size: 12px;
     }
-    li:nth-child(1):hover {
-        background-color: initial;
-
+    
+    nav ul .nav-item {}
+    
+    nav ul .nav-item:hover {
+        background-color: #DDD;
     }
-
+    
+    nav ul .nav-item:hover a {
+        color: black;
+    }
+    
     .button {
         -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
         -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
         box-shadow: inset 0px 1px 0px 0px #ffffff;
         background-color: #f9f9f9;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        border-radius: 6px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
         border: 1px solid #dcdcdc;
         display: inline-block;
         cursor: pointer;
-        color: #666666;
-        font-family: Arial;
+        color: #666;
         font-size: 12px;
-        font-weight: bold;
         padding: 6px 12px;
         text-decoration: none;
         text-shadow: 0px 1px 0px #ffffff;
@@ -105,22 +132,16 @@
     iframe {
         border: none;
         display: block;
-        padding-bottom: 26px;
+        padding-bottom: 36px;
         margin-left: auto;
         margin-right: auto;
         outline: 1px solid transparent;
     }
     
-    p {
-        font-size: 22px;
-        line-height: 140%;
-        padding: 20px;
-    }
-    
     #warning {
-        font-weight: bold;
+        font-weight: 700;
         color: red;
-        background-color: black;
+        background-color: #CCC;
         display: none;
     }
     
@@ -129,28 +150,98 @@
         transform-origin: 0% 0%;
         width: 200%;
     }
+    
+    #previewmode-buttons ul {
+        list-style: none;
+        height: 40px;
+        padding: 0;
+        background: #eee;
+        background: -moz-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f8f8f8), color-stop(100%, #dddddd));
+        background: -webkit-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
+        background: -o-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
+        background: -ms-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
+        background: linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
+        border-radius: 5px;
+        border: 1px solid #d2d2d2;
+        box-shadow: inset #fff 0 1px 0, inset rgba(0, 0, 0, 0.03) 0 -1px 0;
+        width: 270px;
+        display: block;
+        margin: 20px auto;
+    }
+    
+    #previewmode-buttons li {
+        width: 89px;
+        float: left;
+        border-right: 1px solid #d2d2d2;
+        height: 40px;
+    }
+    
+    #previewmode-buttons li:hover {
+        background: #bbb;
+        background: -moz-linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cfcfcf), color-stop(100%, #cfcfcf));
+        background: -webkit-linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
+        background: -o-linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
+        background: -ms-linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
+        background: linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
+    }
+    
+    #previewmode-buttons ul li + li {
+        width: 88px;
+        border-left: 1px solid #fff;
+    }
+    
+    #previewmode-buttons ul li + li + li {
+        width: 89px;
+        border-right: none;
+    }
+    
+    #previewmode-buttons ul a {
+        line-height: 1;
+        font-size: 11px;
+        color: #999;
+        display: block;
+        text-align: center;
+        padding-top: 6px;
+        height: 34px;
+        font-weight: 400;
+        text-decoration: none;
+    }
+    
+    #previewmode-buttons ul a strong {
+        font-size: 13px;
+        display: block;
+        color: #222;
+        font-weight: 700;
+        padding-top: 3px;
+    }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="html2canvas.js"></script>
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
-
 </head>
 
 <body>
-    <h1><%= jobnumber %> Preview</h1>
-
-<a class="button" href="#" id="compactViewToggle" onclick="compactViewToggle()">Enable Compact View</a><a class="button" href="#" id="showLastFrame" onclick="showLastFrame()">Show Last Frame</a><a class="button" href="#" id="zoomOutToggle" onclick="zoomOutToggle()">X 0.5 Zoom</a>
-<!--
-    <a class="button" href="#" id="captureModeToggle" onclick="captureModeToggle()">Enable Backup GIF capture view</a>
--->
-    <p>
-        <%= description %>
-    </p>
-    <p id="warning">Turn off your Ad Blocker </p>
-    <ul>
-        <li>Navigation</li>
-    </ul>
-    <div id="main"></div>
+    <header>
+        <h1><%= jobnumber %></h1>
+        <p>
+            <%= description %>
+        </p>
+        <p id="warning">Turn off the Ad blocker </p>
+        <nav>
+            <ul>
+                <li>Navigation &#9662;</li>
+            </ul>
+        </nav>
+    </header>
+    <section id="previewmode-buttons">
+        <ul>
+            <li><a href="#" id="compactViewToggle" onclick="compactViewToggle()">View on <strong>Compact</strong></a></li>
+            <li><a href="#" id="showLastFrame" onclick="showLastFrame()">Jump to <strong>End frame</strong></a></li>
+            <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle()">Zoom on <strong>0.5x</strong></a></li>
+        </ul>
+    </section>
+    <section id="main"></section>
     <script>
     var main = document.getElementById("main");
 
@@ -167,7 +258,7 @@
 
     function prepareFrame(foldername, width, height) {
         var subheading = document.createElement("h2");
-        subheading.innerHTML = foldername;
+        subheading.innerHTML = foldername.replace('/','');
         main.appendChild(subheading);
 
         var anch = document.createElement("a");
@@ -179,15 +270,12 @@
         capt.innerHTML = "Take Screenshot";
         capt.setAttribute('href', "#");
         capt.className += " button screenshot";
-        // capt.addEventListener('click', function() { 
-        //     genarateBackupGIF(i);
-        // }, false);
 
-        (function(v){ //start wrapper code
-            capt.addEventListener('click', function() { 
+        (function(v) {
+            capt.addEventListener('click', function() {
                 genarateBackupGIF(v);
             }, false);
-        })(i);//passing in i to v here
+        })(i);
 
         main.appendChild(capt);
 
@@ -199,11 +287,12 @@
         main.appendChild(ifrm);
 
         var listItem = document.createElement("li");
+        listItem.setAttribute('class', "nav-item");
         var listItemAnch = document.createElement("a");
         listItemAnch.innerHTML = foldername;
         listItemAnch.setAttribute('href', "#" + foldername);
         listItem.appendChild(listItemAnch);
-        document.getElementsByTagName("ul")[0].appendChild(listItem);
+        document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].appendChild(listItem);
 
     }
 
@@ -211,8 +300,8 @@
         isCaptureMode = false,
         isZoomedOut = false;
 
-    var navList = document.getElementsByTagName("ul")[0];
-    var pageHeader = document.getElementsByTagName("h1")[0];
+    var navList = document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0];
+    var pageHeader = document.getElementsByTagName("header")[0];
 
     var h2Tags = document.getElementsByTagName("h2");
     var viewSeperateBtns = document.getElementsByClassName("view-seperate");
@@ -231,7 +320,7 @@
                 iFrameTags[i].style.display = "inline-block";
                 iFrameTags[i].style.paddingBottom = "0px";
             }
-            document.getElementById("compactViewToggle").innerHTML = "Disable Compact View";
+            document.getElementById("compactViewToggle").innerHTML = "View on <strong>Standard</strong>";
             isCompactView = true;
 
         } else {
@@ -243,8 +332,8 @@
                 screenshotBtns[i].style.display = "";
                 iFrameTags[i].style.display = "";
                 iFrameTags[i].style.paddingBottom = "";
-            }   
-            document.getElementById("compactViewToggle").innerHTML = "Enable Compact View";
+            }
+            document.getElementById("compactViewToggle").innerHTML = "View on <strong>Compact</strong>";
             isCompactView = false;
         }
 
@@ -252,45 +341,43 @@
 
     function showLastFrame() {
 
-            for (var i = 0; i < h2Tags.length; i++) {
-                if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined){
-                    iFrameTags[i].contentWindow.Animation.mainTimeline.pause(30);
-                }
+        for (var i = 0; i < h2Tags.length; i++) {
+            if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
+                iFrameTags[i].contentWindow.Animation.mainTimeline.pause(30);
             }
+        }
 
     }
-
 
     function zoomOutToggle() {
         if (isZoomedOut == false) {
             main.setAttribute('class', "zoom-out");
-            document.getElementById("zoomOutToggle").innerHTML = "X 1.0 Zoom";
+            document.getElementById("zoomOutToggle").innerHTML = "Zoom on <strong>1.0x</strong>";
             isZoomedOut = true;
         } else {
             main.setAttribute('class', " ");
-            document.getElementById("zoomOutToggle").innerHTML = "X 0.5 Zoom";
+            document.getElementById("zoomOutToggle").innerHTML = "Zoom on <strong>0.5x</strong>";
             isZoomedOut = false;
         }
     }
+
     function genarateBackupGIF(elemNum) {
-    //    iframe2image(iFrameTags[0]);
+        //    iframe2image(iFrameTags[0]);
 
         html2canvas(iFrameTags[elemNum].contentWindow.document.body, {
-          onrendered: function(canvas) {
-         //   document.body.appendChild(canvas);
-            var img = canvas.toDataURL("image/gif");
-            window.open(img);
+            onrendered: function(canvas) {
+                //   document.body.appendChild(canvas);
+                var img = canvas.toDataURL("image/gif");
+                window.open(img);
 
 
-          },
-          width: width[elemNum],
-          height: height[elemNum]
+            },
+            width: width[elemNum],
+            height: height[elemNum]
         });
 
 
     }
-
-
     </script>
     <script src="http://localhost:4014/livereload.js"></script>
 </body>

@@ -21,7 +21,7 @@ $bannerHeight: <%= height %>px;
 }
 
 #bg2 {
-  background: midnightblue ;
+  background: #444 ;
 }
 
 #product {
