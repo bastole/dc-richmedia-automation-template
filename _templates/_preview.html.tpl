@@ -68,7 +68,6 @@
         max-width: 220px;
         background-color: #f9f9f9;
         color: #333;
-
         -moz-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
         -webkit-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
         -o-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
@@ -90,6 +89,7 @@
         font-size: 12px;
         margin-bottom: 6px;
     }
+    
     nav ul li:last-child {
         margin-bottom: 10px;
     }
@@ -159,7 +159,7 @@
         background-color: black;
         margin-bottom: 30px;
     }
-
+    
     #previewmode-buttons ul {
         list-style: none;
         height: 40px;
@@ -269,8 +269,8 @@
     function prepareFrame(foldername, width, height) {
         var subheading = document.createElement("h2");
 
-        subheading.innerHTML = foldername.replace('/','');
-        subheading.setAttribute('id', "heading-"+foldername);
+        subheading.innerHTML = foldername.replace('/', '');
+        subheading.setAttribute('id', "heading-" + foldername);
         main.appendChild(subheading);
         var anch = document.createElement("a");
         anch.innerHTML = "Seperate View";
@@ -283,7 +283,9 @@
         capt.className += " button screenshot";
 
         (function(v) {
-            capt.addEventListener('click', function() {
+            capt.addEventListener('click', function(evt) {
+                evt.preventDefault();
+
                 genarateBackupGIF(v);
             }, false);
         })(i);
@@ -373,29 +375,26 @@
     }
 
     function genarateBackupGIF(elemNum) {
-        //    iframe2image(iFrameTags[0]);
 
         html2canvas(iFrameTags[elemNum].contentWindow.document.body, {
             onrendered: function(canvas) {
 
                 var img = canvas.toDataURL("image/png");
-//                window.open(img);
 
                 $("<a>", {
-                href: img,
-                download: "backup_"+foldername[elemNum].replace('/','')
-                })
-                .on("click", function() {$(this).remove()})
-                .appendTo("nav")[0].click()
-
+                        href: img,
+                        download: "backup_" + foldername[elemNum].replace('/', '')
+                    })
+                    .on("click", function() {
+                        $(this).remove()
+                    })
+                    .appendTo("body")[0]
+                    .click()
             },
             width: width[elemNum],
             height: height[elemNum]
         });
     }
-
-
-
     </script>
     <script src="http://localhost:4014/livereload.js"></script>
 </body>

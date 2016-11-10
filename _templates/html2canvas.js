@@ -1030,7 +1030,7 @@ function h2cRenderContext(width, height) {
   };
 }
 _html2canvas.Parse = function (images, options) {
-  window.scroll(0,0);
+  //window.scroll(0,0);
 
   var element = (( options.elements === undefined ) ? document.body : options.elements[0]), // select body by default
   numDraws = 0,
