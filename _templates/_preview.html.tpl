@@ -263,14 +263,14 @@
         height = "<%=height%>".split(",");
 
     for (var i = 0; i < foldername.length; i++) {
-        prepareFrame(foldername[i], width[i], height[i]);
+        prepareFrame(foldername[i], width[i], height[i],i);
     }
 
-    function prepareFrame(foldername, width, height) {
+    function prepareFrame(foldername, width, height,i) {
         var subheading = document.createElement("h2");
 
         subheading.innerHTML = foldername.replace('/', '');
-        subheading.setAttribute('id', "heading-" + foldername);
+        subheading.setAttribute('id', "heading-" + foldername.replace('/', ''));
         main.appendChild(subheading);
         var anch = document.createElement("a");
         anch.innerHTML = "Seperate View";
@@ -282,19 +282,18 @@
         capt.setAttribute('href', "#");
         capt.className += " button screenshot";
 
-        (function(v) {
-            capt.addEventListener('click', function(evt) {
-                evt.preventDefault();
+        capt.addEventListener('click', function(evt) {
+            evt.preventDefault();
 
-                genarateBackupGIF(v);
-            }, false);
-        })(i);
+            genarateBackupGIF(i);
+
+        }, false);
 
         main.appendChild(capt);
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", foldername + "index.html");
-        ifrm.setAttribute("id", foldername);
+        ifrm.setAttribute("id", foldername.replace('/', ''));
         ifrm.style.width = width + "px";
         ifrm.style.height = height + "px";
         main.appendChild(ifrm);
@@ -303,9 +302,23 @@
         listItem.setAttribute('class', "nav-item");
         var listItemAnch = document.createElement("a");
         listItemAnch.innerHTML = foldername;
-        listItemAnch.setAttribute('href', "#heading-" + foldername);
+        listItemAnch.setAttribute('href', "#");
         listItem.appendChild(listItemAnch);
         document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].appendChild(listItem);
+
+
+        listItemAnch.addEventListener('click', function(evt) {
+            evt.preventDefault();
+
+            console.log("#heading-" + foldername.replace('/', ''));
+            $('html, body').animate({
+                scrollTop: $("#heading-" + foldername.replace('/', '')).offset().top
+            }, 250);
+
+        }, false);
+
+
+
 
     }
 
