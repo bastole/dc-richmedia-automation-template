@@ -250,15 +250,9 @@
     <script src="https://use.fontawesome.com/9fbee15718.js"></script>
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
     <script src="html2canvas.js"></script>
-    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TimelineMax.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
     <script src="gsap-timeline-slider.js"></script>
-    <script>
-    ...
-    var slider = new GSAPTLSlider(timeline, "container", {
-        width: 300
-    });
-</script>
 
 </head>
 
@@ -303,6 +297,7 @@
             <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle()">Zoom on <strong>0.5x</strong></a></li>
         </ul>
     </section>
+    <a href="#" onclick="initSlider(e);" class="button"> Initiate Slider </a>
     <section id="main"></section>
     <script>
     var main = document.getElementById("main");
@@ -397,6 +392,28 @@
             }
         }, false);
         controlSection.appendChild(bannerPlay);
+
+        //Slider Button
+        var bannerSlider = document.createElement("a");
+        bannerSlider.innerHTML = 'Slider On';
+        bannerSlider.setAttribute('title', "Slider");
+        bannerSlider.setAttribute('href', "#");
+        bannerSlider.className += " button banner-play-interface";
+        bannerSlider.addEventListener('click', function(evt) {
+            evt.preventDefault();
+            if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
+                initSlider(i);
+            }
+        }, false);
+        controlSection.appendChild(bannerSlider);
+
+
+//
+        //Timeline Slider
+        var sliderSection = document.createElement("section");
+        sliderSection.setAttribute('id', "slider-" + foldername.replace('/', ''));
+        controlSection.appendChild(sliderSection);       
+
 
 //
 
@@ -509,6 +526,15 @@
         });
     }
     </script>
+
+    <script>
+    function initSlider(elemNum){
+        var slider = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + foldername[elemNum].replace('/', ''), {
+            width: 200
+        });
+    }
+</script>
+
     <script src="http://localhost:4014/livereload.js"></script>
 </body>
 
