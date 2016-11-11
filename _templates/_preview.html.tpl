@@ -250,6 +250,16 @@
     <script src="https://use.fontawesome.com/9fbee15718.js"></script>
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
     <script src="html2canvas.js"></script>
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TimelineMax.min.js"></script>
+    <script src="gsap-timeline-slider.js"></script>
+    <script>
+    ...
+    var slider = new GSAPTLSlider(timeline, "container", {
+        width: 300
+    });
+</script>
+
 </head>
 
 <body>
@@ -400,7 +410,7 @@
         var navItem = document.createElement("li");
         navItem.setAttribute('class', "nav-item");
         var navItemAnch = document.createElement("a");
-        navItemAnch.innerHTML = foldername;
+        navItemAnch.innerHTML = foldername.replace('/', '');
         navItemAnch.setAttribute('href', "#");
         navItem.appendChild(navItemAnch);
         document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].appendChild(navItem);

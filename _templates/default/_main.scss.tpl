@@ -21,6 +21,10 @@ $bannerHeight: <%= height %>px;
 }
 
 #bg2 {
+  background: crimson ;
+}
+
+#bg3 {
   background: #444 ;
 }
 
