@@ -148,9 +148,42 @@
         top: 1px;
     }
     .button.long i {
-        padding-right: 4px;
+        padding-right: 2px;
     }
+    .slider-section {
+        display: inline-block;
+    cursor: pointer;
+    padding-top: 0px;
+    user-select: none;
+    margin-left: 4px;
 
+    }
+    .slider-section div:nth-child(2){ /* rail */
+  
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+
+    height: 5px !important;
+    background-color: #666 !important;
+    margin: 0 !important;
+
+    }
+    .slider-section div:nth-child(3){ /* thumb */
+
+    -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background-color: #f9f9f9;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    color: #666;
+
+    }
     iframe {
         border: none;
         display: block;
@@ -292,12 +325,12 @@
     </header>
     <section id="previewmode-buttons">
         <ul>
-            <li><a href="#" id="compactViewToggle" onclick="compactViewToggle()">View on <strong>Compact</strong></a></li>
-            <li><a href="#" id="showLastFrame" onclick="showLastFrame()">Set all to <strong>End Frame</strong></a></li>
-            <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle()">Zoom on <strong>0.5x</strong></a></li>
+            <li><a href="#" id="compactViewToggle" onclick="compactViewToggle(event)">View on <strong>Compact</strong></a></li>
+            <li><a href="#" id="showLastFrame" onclick="showLastFrame(event)">Set all to <strong>End Frame</strong></a></li>
+            <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
         </ul>
     </section>
-    <a href="#" onclick="initSlider(e);" class="button"> Initiate Slider </a>
+
     <section id="main"></section>
     <script>
     var main = document.getElementById("main");
@@ -309,7 +342,12 @@
         width = "<%=width%>".split(","),
         height = "<%=height%>".split(",");
 
+    var sliderArray = new Array(foldername.length);
+    var isSliderOn = new Array(foldername.length);
+
     for (var i = 0; i < foldername.length; i++) {
+        isSliderOn[i] = false;
+
         preparePreview(foldername[i], width[i], height[i],i);
     }
 
@@ -337,14 +375,14 @@
         anch.setAttribute('title', "Open this banner in a new tab");
         anch.setAttribute('href', foldername);
         anch.setAttribute('target', '_blank');
-        anch.className += " button long view-separate";
+        anch.className += " button long";
         controlSection.appendChild(anch);
 
         var capt = document.createElement("a");
         capt.innerHTML = '<i class="fa fa-camera" aria-hidden="true"></i> Screenshot';
         capt.setAttribute('title', "Take a screenshot");
         capt.setAttribute('href', "#");
-        capt.className += " button long screenshot";
+        capt.className += " button long";
         capt.addEventListener('click', function(evt) {
             evt.preventDefault();
             genarateBackupGIF(i);
@@ -356,7 +394,7 @@
         bannerRewind.innerHTML = '<i class="fa fa-fast-backward" aria-hidden="true"></i>';
         bannerRewind.setAttribute('title', "Rewind");
         bannerRewind.setAttribute('href', "#");
-        bannerRewind.className += " button banner-play-interface";
+        bannerRewind.className += " button";
         bannerRewind.addEventListener('click', function(evt) {
             evt.preventDefault();
             if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
@@ -370,7 +408,7 @@
         bannerPause.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
         bannerPause.setAttribute('title', "Pause");
         bannerPause.setAttribute('href', "#");
-        bannerPause.className += " button banner-play-interface";
+        bannerPause.className += " button";
         bannerPause.addEventListener('click', function(evt) {
             evt.preventDefault();
             if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
@@ -384,7 +422,7 @@
         bannerPlay.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
         bannerPlay.setAttribute('title', "Play");
         bannerPlay.setAttribute('href', "#");
-        bannerPlay.className += " button banner-play-interface";
+        bannerPlay.className += " button";
         bannerPlay.addEventListener('click', function(evt) {
             evt.preventDefault();
             if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
@@ -393,27 +431,32 @@
         }, false);
         controlSection.appendChild(bannerPlay);
 
-        //Slider Button
-        var bannerSlider = document.createElement("a");
-        bannerSlider.innerHTML = 'Slider On';
-        bannerSlider.setAttribute('title', "Slider");
-        bannerSlider.setAttribute('href', "#");
-        bannerSlider.className += " button banner-play-interface";
-        bannerSlider.addEventListener('click', function(evt) {
-            evt.preventDefault();
-            if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
-                initSlider(i);
-            }
-        }, false);
-        controlSection.appendChild(bannerSlider);
-
-
 //
         //Timeline Slider
         var sliderSection = document.createElement("section");
         sliderSection.setAttribute('id', "slider-" + foldername.replace('/', ''));
+        sliderSection.setAttribute('class', "slider-section");
+        
         controlSection.appendChild(sliderSection);       
+//
 
+        //Slider Button
+        var bannerSlider = document.createElement("a");
+        bannerSlider.innerHTML = '<i class="fa fa-sliders" aria-hidden="true"></i> Toggle Slider';
+        bannerSlider.setAttribute('title', "Toggle Slider");
+        bannerSlider.setAttribute('href', "#");
+        bannerSlider.className += " button long";
+
+        bannerSlider.addEventListener('click', function(evt) {
+            evt.preventDefault();
+            if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
+                if(isSliderOn[i] != true)
+                addSlider(i);
+                else
+                removeSlider(i);
+            }
+        }, false);
+        controlSection.appendChild(bannerSlider);
 
 //
 
@@ -453,7 +496,9 @@
 
     var iFrameTags = document.getElementsByTagName("iframe");
 
-    function compactViewToggle() {
+    function compactViewToggle(evt) {
+
+        evt.preventDefault();
 
         if (isCompactView == false) {
             for (var i = 0; i < h2Tags.length; i++) {
@@ -482,7 +527,9 @@
 
     }
 
-    function showLastFrame() {
+    function showLastFrame(evt) {
+
+        evt.preventDefault();
 
         for (var i = 0; i < h2Tags.length; i++) {
             if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
@@ -492,7 +539,10 @@
 
     }
 
-    function zoomOutToggle() {
+    function zoomOutToggle(evt) {
+
+        evt.preventDefault();
+
         if (isZoomedOut == false) {
             main.setAttribute('class', "zoom-out");
             document.getElementById("zoomOutToggle").innerHTML = "Zoom on <strong>1.0x</strong>";
@@ -525,13 +575,34 @@
             height: height[elemNum]
         });
     }
-    </script>
 
-    <script>
-    function initSlider(elemNum){
-        var slider = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + foldername[elemNum].replace('/', ''), {
+    function addSlider(elemNum){
+        sliderArray[elemNum] = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + foldername[elemNum].replace('/', ''), {
+            button: {
+                display: "none"
+            },
+            container: {
+
+            },
+           thumb: {
+            width: "6px",
+            height: "13px",
+            padding: "0px",
+            margin: "0px",
+            "margin-left": "-5px",
+            top: "5px",
+            "vertical-align": "top",
+            position: "relative"
+
+           },
             width: 200
         });
+        isSliderOn[elemNum] = true;
+    }
+    function removeSlider(elemNum){
+
+        sliderArray[elemNum].clear()
+        isSliderOn[elemNum] = false;
     }
 </script>
 
