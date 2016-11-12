@@ -39,25 +39,26 @@
         line-height: 140%;
         font-weight: 400;
     }
+    
     a {
         text-decoration: none;
     }
+    
     nav {
         position: fixed;
         top: 4px;
         left: 4px;
-
     }
+    
     nav ul {
         list-style-type: none;
-
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        border: 1px solid #444;
-        background-color: #222;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        border: 0;
+        background-color: #303030;
         color: #DDD;
-        font-size: 9px;
+        font-size: 11px;
         padding: 2px;
         text-decoration: none;
         max-height: 26px;
@@ -71,9 +72,9 @@
     
     nav ul:hover {
         max-height: 1400px;
-        max-width: 220px;
-        border: 1px solid #CCC;
-        background-color: #f9f9f9;
+        max-width: 240px;
+        border: 0;
+        background-color: #e6e6e6;
         color: #333;
         -moz-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
         -webkit-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
@@ -95,17 +96,17 @@
     nav ul li:nth-child(1) {
         font-size: 12px;
     }
-
+    
     nav ul li:nth-child(1) a i:nth-child(1) {
         padding-right: 6px;
         padding-bottom: 10px;
-
     }
+    
     nav ul li:nth-child(1) a i:nth-child(2) {
         padding-left: 6px;
         padding-bottom: 10px;
     }
-
+    
     nav ul li:last-child {
         margin-bottom: 10px;
     }
@@ -113,14 +114,15 @@
     nav ul .nav-item {}
     
     nav ul .nav-item:hover {
-        background-color: #DDD;
+        background-color: #c0c0c0;
     }
     
     nav ul .nav-item:hover a {
         color: black;
     }
+    /* Old-style button*/
     
-    .button {
+    .button-old {
         -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
         -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
         box-shadow: inset 0px 1px 0px 0px #ffffff;
@@ -139,51 +141,82 @@
         margin: 8px 4px;
     }
     
-    .button:hover {
+    .button-old:hover {
         background-color: #e9e9e9;
+    }
+    
+    .button-old:active {
+        position: relative;
+        top: 1px;
+    }
+    /* Simple button*/
+    
+    .button {
+        background-color: #e6e6e6;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        border: 0;
+        display: inline-block;
+        cursor: pointer;
+        color: #666;
+        font-size: 11px;
+        padding: 6px 10px;
+        text-decoration: none;
+        margin: 8px 3px;
+        -moz-transition: all 0.3s ease;
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    
+    .button:hover {
+        background-color: #0078e7;
+        color: white;
     }
     
     .button:active {
         position: relative;
         top: 1px;
     }
-    .button.long i {
+    
+    .long i {
         padding-right: 2px;
     }
+    
     .slider-section {
+        display: none;
+        cursor: pointer;
+        padding-top: 0px;
+        user-select: none;
+        margin-left: 4px;
+    }
+    
+    .slider-section div:nth-child(2) {
+        /* rail */
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        border: 1px solid #dcdcdc;
+        height: 5px !important;
+        background-color: #666 !important;
+        margin: 0 !important;
+    }
+    
+    .slider-section div:nth-child(3) {
+        /* thumb */
+        -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+        -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+        box-shadow: inset 0px 1px 0px 0px #ffffff;
+        background-color: #f9f9f9;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        border: 1px solid #dcdcdc;
         display: inline-block;
-    cursor: pointer;
-    padding-top: 0px;
-    user-select: none;
-    margin-left: 4px;
-
+        color: #666;
     }
-    .slider-section div:nth-child(2){ /* rail */
-  
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    border: 1px solid #dcdcdc;
-
-    height: 5px !important;
-    background-color: #666 !important;
-    margin: 0 !important;
-
-    }
-    .slider-section div:nth-child(3){ /* thumb */
-
-    -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
-    -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-    box-shadow: inset 0px 1px 0px 0px #ffffff;
-    background-color: #f9f9f9;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    border: 1px solid #dcdcdc;
-    display: inline-block;
-    color: #666;
-
-    }
+    
     iframe {
         border: none;
         display: block;
@@ -217,45 +250,58 @@
         height: 40px;
         padding: 0;
         background: #eee;
-        background: -moz-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f8f8f8), color-stop(100%, #dddddd));
-        background: -webkit-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
-        background: -o-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
-        background: -ms-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
-        background: linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
-        border-radius: 5px;
-        border: 1px solid #d2d2d2;
-        box-shadow: inset #fff 0 1px 0, inset rgba(0, 0, 0, 0.03) 0 -1px 0;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        border: 0;
         width: 270px;
         display: block;
         margin: 0 auto;
     }
     
-    #previewmode-buttons li {
-        width: 89px;
+    #previewmode-buttons ul li {
+        box-sizing: border-box;
+        width: 90px;
         float: left;
-        border-right: 1px solid #d2d2d2;
+        border-right: 1px solid rgba(0, 0, 0, 0.3);
         height: 40px;
+        -moz-transition: all 0.3s ease;
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
     }
     
-    #previewmode-buttons li:hover {
-        background: #bbb;
-        background: -moz-linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cfcfcf), color-stop(100%, #cfcfcf));
-        background: -webkit-linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
-        background: -o-linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
-        background: -ms-linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
-        background: linear-gradient(top, #eeeeee 0%, #cfcfcf 100%);
+    #previewmode-buttons ul li:hover {
+        background-color: #0078e7;
+    }
+    
+    #previewmode-buttons ul li:hover a,
+    #previewmode-buttons ul li:hover a strong {
+        color: white;
+        -moz-transition: all 0.3s ease;
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
     }
     
     #previewmode-buttons ul li + li {
-        width: 88px;
-        border-left: 1px solid #fff;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
     }
     
     #previewmode-buttons ul li + li + li {
-        width: 89px;
         border-right: none;
+    }
+    
+    #previewmode-buttons ul li:first-child {
+        -moz-border-radius: 2px 0 0 2px;
+        -webkit-border-radius: 2px 0 0 2px;
+        border-radius: 2px 0 0 2px;
+    }
+    
+    #previewmode-buttons ul li:last-child {
+        -moz-border-radius: 0 2px 2px 0;
+        -webkit-border-radius: 0 2px 2px 0;
+        border-radius: 0 2px 2px 0;
     }
     
     #previewmode-buttons ul a {
@@ -277,21 +323,17 @@
         font-weight: 700;
         padding-top: 3px;
     }
-
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/9fbee15718.js"></script>
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
     <script src="html2canvas.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
     <script src="gsap-timeline-slider.js"></script>
-
 </head>
 
 <body>
     <header id="header">
-
         <div class="header-logo" style="width: 48px; height: 48px; position: relative; margin: 0 auto;">
             <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 180 171.6" xml:space="preserve">
@@ -310,8 +352,6 @@
                 </g>
             </svg>
         </div>
-
-
         <h1><%= jobnumber %></h1>
         <p>
             <%= description %>
@@ -330,7 +370,6 @@
             <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
         </ul>
     </section>
-
     <section id="main"></section>
     <script>
     var main = document.getElementById("main");
@@ -348,7 +387,7 @@
     for (var i = 0; i < foldername.length; i++) {
         isSliderOn[i] = false;
 
-        preparePreview(foldername[i], width[i], height[i],i);
+        preparePreview(foldername[i], width[i], height[i], i);
     }
 
 
@@ -359,17 +398,17 @@
         }, 250);
     }, false);
 
-    function preparePreview(foldername, width, height,i) {
+    function preparePreview(foldername, width, height, i) {
         var subheading = document.createElement("h2");
         subheading.innerHTML = foldername.replace('/', '');
         subheading.setAttribute('id', "heading-" + foldername.replace('/', ''));
         main.appendChild(subheading);
- 
+
         var controlSection = document.createElement("section");
         controlSection.setAttribute('class', "control-section");
-        main.appendChild(controlSection);       
+        main.appendChild(controlSection);
 
-//
+        //
         var anch = document.createElement("a");
         anch.innerHTML = '<i class="fa fa-external-link-square" aria-hidden="true"></i> Open in new tab';
         anch.setAttribute('title', "Open this banner in a new tab");
@@ -431,18 +470,18 @@
         }, false);
         controlSection.appendChild(bannerPlay);
 
-//
+        //
         //Timeline Slider
         var sliderSection = document.createElement("section");
         sliderSection.setAttribute('id', "slider-" + foldername.replace('/', ''));
         sliderSection.setAttribute('class', "slider-section");
-        
-        controlSection.appendChild(sliderSection);       
-//
+
+        controlSection.appendChild(sliderSection);
+        //
 
         //Slider Button
         var bannerSlider = document.createElement("a");
-        bannerSlider.innerHTML = '<i class="fa fa-sliders" aria-hidden="true"></i> Toggle Slider';
+        bannerSlider.innerHTML = '<i class="fa fa-sliders" aria-hidden="true"></i> Toggle slider';
         bannerSlider.setAttribute('title', "Toggle Slider");
         bannerSlider.setAttribute('href', "#");
         bannerSlider.className += " button long";
@@ -450,15 +489,15 @@
         bannerSlider.addEventListener('click', function(evt) {
             evt.preventDefault();
             if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
-                if(isSliderOn[i] != true)
-                addSlider(i);
+                if (isSliderOn[i] != true)
+                    addSlider(i);
                 else
-                removeSlider(i);
+                    removeSlider(i);
             }
         }, false);
         controlSection.appendChild(bannerSlider);
 
-//
+        //
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", foldername + "index.html");
@@ -576,7 +615,9 @@
         });
     }
 
-    function addSlider(elemNum){
+    function addSlider(elemNum) {
+
+        document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.display = "inline-block";
         sliderArray[elemNum] = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + foldername[elemNum].replace('/', ''), {
             button: {
                 display: "none"
@@ -584,28 +625,30 @@
             container: {
 
             },
-           thumb: {
-            width: "6px",
-            height: "13px",
-            padding: "0px",
-            margin: "0px",
-            "margin-left": "-5px",
-            top: "5px",
-            "vertical-align": "top",
-            position: "relative"
+            thumb: {
+                width: "6px",
+                height: "13px",
+                padding: "0px",
+                margin: "0px",
+                "margin-left": "-5px",
+                top: "5px",
+                "vertical-align": "top",
+                position: "relative"
 
-           },
+            },
             width: 200
         });
         isSliderOn[elemNum] = true;
     }
-    function removeSlider(elemNum){
+
+    function removeSlider(elemNum) {
+
+        document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.display = "none";
 
         sliderArray[elemNum].clear()
         isSliderOn[elemNum] = false;
     }
-</script>
-
+    </script>
     <script src="http://localhost:4014/livereload.js"></script>
 </body>
 
