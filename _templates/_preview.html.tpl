@@ -51,35 +51,35 @@
     }
     
     nav ul {
-        list-style-type: none;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
         border: 0;
+        list-style-type: none;
         background-color: #303030;
         color: #DDD;
         font-size: 11px;
         padding: 2px;
         text-decoration: none;
-        max-height: 26px;
+        max-height: 34px;
         max-width: 34px;
         overflow: hidden;
-        -moz-transition: max-height 0.1s linear, max-width 0.1s linear 0.1s, background-color 0.2s linear;
-        -webkit-transition: max-height 0.1s linear, max-width 0.1s linear 0.1s, background-color 0.2s linear;
-        -o-transition: max-height 0.1s linear, max-width 0.1s linear 0.1s, background-color 0.2s linear;
-        transition: max-height 0.1s linear, max-width 0.1s linear 0.1s, background-color 0.2s linear;
+
+        transition: border-radius 0.1s linear 0.1s, max-height 0.1s linear, max-width 0.1s linear 0.1s, background-color 0.2s linear;
     }
     
     nav ul:hover {
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+
         max-height: 1400px;
         max-width: 240px;
         border: 0;
         background-color: #e6e6e6;
         color: #333;
-        -moz-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
-        -webkit-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
-        -o-transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
-        transition: max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
+
+        transition: border-radius 0.2s linear, max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
     }
     
     nav ul li {
@@ -95,6 +95,7 @@
     
     nav ul li:nth-child(1) {
         font-size: 12px;
+        padding-top: 8px;
     }
     
     nav ul li:nth-child(1) a i:nth-child(1) {
@@ -247,24 +248,26 @@
     
     #previewmode-buttons ul {
         list-style: none;
-        height: 40px;
         padding: 0;
         background: #eee;
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
         border-radius: 2px;
         border: 0;
-        width: 270px;
-        display: block;
+        width: 300px;
+        display: inline-block;
         margin: 0 auto;
     }
     
     #previewmode-buttons ul li {
         box-sizing: border-box;
-        width: 90px;
+        display: block;
+        width: 100px;
         float: left;
+
         border-right: 1px solid rgba(0, 0, 0, 0.3);
-        height: 40px;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+
         -moz-transition: all 0.3s ease;
         -webkit-transition: all 0.3s ease;
         -o-transition: all 0.3s ease;
@@ -284,40 +287,36 @@
         transition: all 0.3s ease;
     }
     
-    #previewmode-buttons ul li + li {
-        border-left: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    
-    #previewmode-buttons ul li + li + li {
-        border-right: none;
-    }
-    
+
     #previewmode-buttons ul li:first-child {
         -moz-border-radius: 2px 0 0 2px;
         -webkit-border-radius: 2px 0 0 2px;
         border-radius: 2px 0 0 2px;
+        border-left: none;
+
     }
     
     #previewmode-buttons ul li:last-child {
         -moz-border-radius: 0 2px 2px 0;
         -webkit-border-radius: 0 2px 2px 0;
         border-radius: 0 2px 2px 0;
+        border-right: none;
+
     }
     
     #previewmode-buttons ul a {
         line-height: 1;
-        font-size: 11px;
+        font-size: 12px;
         color: #999;
         display: block;
         text-align: center;
-        padding-top: 6px;
-        height: 34px;
+        padding: 8px 0;
         font-weight: 400;
         text-decoration: none;
     }
     
     #previewmode-buttons ul a strong {
-        font-size: 13px;
+        font-size: 15px;
         display: block;
         color: #222;
         font-weight: 700;
