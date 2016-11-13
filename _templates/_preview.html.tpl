@@ -54,9 +54,9 @@
         -moz-border-radius: 20px;
         -webkit-border-radius: 20px;
         border-radius: 20px;
-        border: 0;
+        border: 1px solid #666;
         list-style-type: none;
-        background-color: #303030;
+        background-color: black;
         color: #DDD;
         font-size: 11px;
         padding: 2px;
@@ -69,14 +69,14 @@
     }
     
     nav ul:hover {
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0;
 
         max-height: 1400px;
         max-width: 240px;
-        border: 0;
-        background-color: #e6e6e6;
+        border: 1px solid black;
+        background-color: white;
         color: #333;
 
         transition: border-radius 0.2s linear, max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
