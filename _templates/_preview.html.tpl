@@ -186,36 +186,22 @@
     }
     
     .slider-section {
-        display: none;
-        cursor: pointer;
-        padding-top: 0px;
-        user-select: none;
-        margin-left: 4px;
+        /* rail */
+        width: 0;
+        height: 21px;
+        overflow: hidden;
+        display: inline-block;
+        transition: all 0.2s ease;
     }
     
     .slider-section div:nth-child(2) {
         /* rail */
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
-        border: 1px solid #dcdcdc;
-        height: 5px !important;
-        background-color: #666 !important;
-        margin: 0 !important;
+
     }
     
     .slider-section div:nth-child(3) {
         /* thumb */
-        -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
-        -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-        box-shadow: inset 0px 1px 0px 0px #ffffff;
-        background-color: #f9f9f9;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
-        border: 1px solid #dcdcdc;
-        display: inline-block;
-        color: #666;
+
     }
     .iframe-wrapper {
         padding-bottom: 36px;
@@ -641,34 +627,20 @@
 
         document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.display = "inline-block";
         sliderArray[elemNum] = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + foldername[elemNum].replace('/', ''), {
-            button: {
-                display: "none"
-            },
-            container: {
 
-            },
-            thumb: {
-                width: "6px",
-                height: "13px",
-                padding: "0px",
-                margin: "0px",
-                "margin-left": "-5px",
-                top: "5px",
-                "vertical-align": "top",
-                position: "relative"
-
-            },
-            width: 200
         });
+        document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.width = "225px";
         isSliderOn[elemNum] = true;
     }
 
     function removeSlider(elemNum) {
 
-        document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.display = "none";
 
         sliderArray[elemNum].clear()
         isSliderOn[elemNum] = false;
+        document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.width = 0;
+
+
     }
     </script>
     <script src="http://localhost:4014/livereload.js"></script>
