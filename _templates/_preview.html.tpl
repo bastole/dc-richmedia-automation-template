@@ -217,14 +217,18 @@
         display: inline-block;
         color: #666;
     }
-    
+    .iframe-wrapper {
+        padding-bottom: 36px;
+        margin: 0 auto;
+        transition: all 0.2s ease;
+
+    }
+
     iframe {
         border: none;
         display: block;
-        padding-bottom: 36px;
-        margin-left: auto;
-        margin-right: auto;
-        outline: 1px solid transparent;
+        transition: all 0.2s ease;
+
     }
     
     #warning {
@@ -237,7 +241,7 @@
     .zoom-out {
         transform: scale(0.5);
         transform-origin: 0% 0%;
-        width: 200%;
+
     }
     
     #previewmode-buttons {
@@ -498,12 +502,18 @@
 
         //
 
+        var ifrmWrapper  = document.createElement("div");
+        ifrmWrapper.setAttribute("class", "iframe-wrapper");
+        ifrmWrapper.style.width = width + "px";
+        ifrmWrapper.style.height = height + "px";
+        main.appendChild(ifrmWrapper);
+
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", foldername + "index.html");
         ifrm.setAttribute("id", foldername.replace('/', ''));
         ifrm.style.width = width + "px";
         ifrm.style.height = height + "px";
-        main.appendChild(ifrm);
+        ifrmWrapper.appendChild(ifrm);
 
         var navItem = document.createElement("li");
         navItem.setAttribute('class', "nav-item");
@@ -533,6 +543,8 @@
     var controlButtons = document.getElementsByClassName("control-section");
 
     var iFrameTags = document.getElementsByTagName("iframe");
+    var iFrameWrappers = document.getElementsByClassName("iframe-wrapper");
+
 
     function compactViewToggle(evt) {
 
@@ -544,8 +556,8 @@
                 pageHeader.style.display = "none";
                 h2Tags[i].style.display = "none";
                 controlButtons[i].style.display = "none";
-                iFrameTags[i].style.display = "inline-block";
-                iFrameTags[i].style.paddingBottom = "0px";
+                iFrameWrappers[i].style.display = "inline-block";
+                iFrameWrappers[i].style.paddingBottom = "0px";
             }
             document.getElementById("compactViewToggle").innerHTML = "View on <strong>Standard</strong>";
             isCompactView = true;
@@ -556,8 +568,8 @@
                 pageHeader.style.display = "";
                 h2Tags[i].style.display = "";
                 controlButtons[i].style.display = "";
-                iFrameTags[i].style.display = "";
-                iFrameTags[i].style.paddingBottom = "";
+                iFrameWrappers[i].style.display = "";
+                iFrameWrappers[i].style.paddingBottom = "";
             }
             document.getElementById("compactViewToggle").innerHTML = "View on <strong>Compact</strong>";
             isCompactView = false;
@@ -582,11 +594,22 @@
         evt.preventDefault();
 
         if (isZoomedOut == false) {
-            main.setAttribute('class', "zoom-out");
+            for (var i = 0; i < iFrameTags.length; i++) {
+
+
+            iFrameTags[i].setAttribute('class', "zoom-out");
+            iFrameWrappers[i].style.width = iFrameTags[i].offsetWidth * 0.5 + "px";
+            iFrameWrappers[i].style.height = iFrameTags[i].offsetHeight * 0.5 + "px";
+            }
             document.getElementById("zoomOutToggle").innerHTML = "Zoom on <strong>1.0x</strong>";
             isZoomedOut = true;
+            
         } else {
-            main.setAttribute('class', " ");
+            for (var i = 0; i < iFrameTags.length; i++) {
+            iFrameTags[i].setAttribute('class', " ");
+            iFrameWrappers[i].style.width = iFrameTags[i].offsetWidth * 1 + "px";
+            iFrameWrappers[i].style.height = iFrameTags[i].offsetHeight * 1 + "px";
+            }
             document.getElementById("zoomOutToggle").innerHTML = "Zoom on <strong>0.5x</strong>";
             isZoomedOut = false;
         }
