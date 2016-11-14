@@ -15,7 +15,7 @@
                 msUserSelect: 'none',
                 userSelect: 'none',
                 width: '225px;',
-                marginLeft: '4px'
+                marginLeft: 0
 
             },
             button: {
@@ -137,7 +137,11 @@
             }
             this.tl = tl;
             this.spy();
-            this.tl.time(0);
+//            this.tl.time(0);
+            this.tl.pause();
+            var x = (this.railW * this.tl.time()) / this.tl.duration();
+            this.thumb.style.left = (-this.railW + x) + "px";
+//
             if (this.wasPlaying) {
                 this.tl.play();
                 this.toggle(false);

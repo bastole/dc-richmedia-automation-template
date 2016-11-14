@@ -11,21 +11,25 @@ $bannerHeight: <%= height %>px;
 
 #bg1,
 #bg2,
-#bg3 {
+#bg3,
+#bg4, {
   width: $bannerWidth;
   height: $bannerHeight;
 }
 
 #bg1 {
-  background: dodgerblue ;
+  background: crimson;
 }
 
 #bg2 {
-  background: crimson ;
+  background: orange;
 }
 
 #bg3 {
-  background: #444 ;
+  background: dodgerblue;
+}
+#bg4 {
+  background: #444;
 }
 
 #product {

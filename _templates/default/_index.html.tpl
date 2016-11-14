@@ -16,8 +16,9 @@
     <div id="content">
       <div id="bg1"></div>
       <div id="product" class="hidden"></div>
-      <div id="bg2" class="hidden"><p class="copy">Example Copy.</p></div>
-      <div id="bg3" class="hidden"><p class="copy">End Frame Copy.</p></div>
+      <div id="bg2" class="hidden"><p class="copy">Example Copy One.</p></div>
+      <div id="bg3" class="hidden"><p class="copy">Example Copy Two.</p></div>
+      <div id="bg4" class="hidden"><p class="copy">End Frame Copy.</p></div>
       <div id="logo" class="hidden"></div>
       <div id="cta" class="hidden"></div>
       <div id="fade"></div>

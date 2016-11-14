@@ -191,23 +191,17 @@
         height: 21px;
         overflow: hidden;
         display: inline-block;
+        vertical-align: middle;
+
         transition: all 0.2s ease;
     }
     
-    .slider-section div:nth-child(2) {
-        /* rail */
-
-    }
-    
-    .slider-section div:nth-child(3) {
-        /* thumb */
-
-    }
     .iframe-wrapper {
         margin: 0 auto;
         display: inline-block;
-        padding-bottom: 36px;
-        transition: all 0.3s linear;
+        vertical-align: top;
+        padding-bottom: 150px;
+        transition: all 0.2s linear;
 
     }
 
@@ -215,7 +209,7 @@
         margin: 0 auto;
         border: none;
         display: block;
-        transition: all 0.3s cubic-bezier(0,0, 1, 0.43);
+        transition: all 0.2s cubic-bezier(0,0, 1, 0.43);
 
     }
     
@@ -229,7 +223,7 @@
     .zoom-out {
         transform: scale(0.5);
         transform-origin: 0% 0%;
-        transition: all 0.3s cubic-bezier(0, 0.57, 1, 1);
+        transition: all 0.2s cubic-bezier(0, 0.57, 1, 1);
     }
     
     #previewmode-buttons {
@@ -273,6 +267,9 @@
     #previewmode-buttons ul li:hover a,
     #previewmode-buttons ul li:hover a strong {
         color: white;
+        transform: scale(1.07);
+        transform-origin: 50% 50%;
+
         -moz-transition: all 0.3s ease;
         -webkit-transition: all 0.3s ease;
         -o-transition: all 0.3s ease;
@@ -357,8 +354,11 @@
     <section id="previewmode-buttons">
         <ul>
             <li><a href="#" id="compactViewToggle" onclick="compactViewToggle(event)">View on <strong>Compact</strong></a></li>
-            <li><a href="#" id="showLastFrame" onclick="showLastFrame(event)">Set all to <strong>End Frame</strong></a></li>
-            <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
+<!--             <li><a href="#" id="showLastFrame" onclick="showLastFrame(event)">Set all to <strong>End Frame</strong></a></li>
+ -->            
+            <li><a href="#" id="showLastFrame" onclick="screenshotAll(event)">Screenshot <strong>Everything</strong></a></li>
+
+ <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
         </ul>
     </section>
     <section id="main"></section>
@@ -401,21 +401,21 @@
 
         //
         var anch = document.createElement("a");
-        anch.innerHTML = '<i class="fa fa-external-link-square" aria-hidden="true"></i> Open in new tab';
+        anch.innerHTML = '<i class="fa fa-external-link-square" aria-hidden="true"></i>';
         anch.setAttribute('title', "Open this banner in a new tab");
         anch.setAttribute('href', foldername);
         anch.setAttribute('target', '_blank');
-        anch.className += " button long";
+        anch.className += " button";
         controlSection.appendChild(anch);
 
         var capt = document.createElement("a");
-        capt.innerHTML = '<i class="fa fa-camera" aria-hidden="true"></i> Screenshot';
-        capt.setAttribute('title', "Take a screenshot");
+        capt.innerHTML = '<i class="fa fa-camera" aria-hidden="true"></i>';
+        capt.setAttribute('title', "Screenshot this banner");
         capt.setAttribute('href', "#");
-        capt.className += " button long";
+        capt.className += " button";
         capt.addEventListener('click', function(evt) {
             evt.preventDefault();
-            genarateBackupGIF(i);
+            screenshotSelected(i);
         }, false);
         controlSection.appendChild(capt);
 
@@ -472,7 +472,7 @@
 
         //Slider Button
         var bannerSlider = document.createElement("a");
-        bannerSlider.innerHTML = '<i class="fa fa-sliders" aria-hidden="true"></i> Toggle slider';
+        bannerSlider.innerHTML = '<i class="fa fa-sliders" aria-hidden="true"></i> Toggle Slider';
         bannerSlider.setAttribute('title', "Toggle Slider");
         bannerSlider.setAttribute('href', "#");
         bannerSlider.className += " button long";
@@ -544,7 +544,6 @@
                 pageHeader.style.display = "none";
                 h2Tags[i].style.display = "none";
                 controlButtons[i].style.display = "none";
-                iFrameWrappers[i].style.display = "inline-block";
                 iFrameWrappers[i].style.paddingBottom = "0px";
             }
             document.getElementById("compactViewToggle").innerHTML = "View on <strong>Standard</strong>";
@@ -556,7 +555,6 @@
                 pageHeader.style.display = "";
                 h2Tags[i].style.display = "";
                 controlButtons[i].style.display = "";
-                iFrameWrappers[i].style.display = "";
                 iFrameWrappers[i].style.paddingBottom = "";
             }
             document.getElementById("compactViewToggle").innerHTML = "View on <strong>Compact</strong>";
@@ -603,7 +601,7 @@
         }
     }
 
-    function genarateBackupGIF(elemNum) {
+    function screenshotSelected(elemNum) {
 
         html2canvas(iFrameTags[elemNum].contentWindow.document.body, {
             onrendered: function(canvas) {
@@ -623,6 +621,15 @@
             width: width[elemNum],
             height: height[elemNum]
         });
+    }
+
+    function screenshotAll(evt){
+        evt.preventDefault();
+        for (var i = 0; i < iFrameTags.length; i++) {
+            screenshotSelected(i);
+            
+        }
+
     }
 
     function addSlider(elemNum) {

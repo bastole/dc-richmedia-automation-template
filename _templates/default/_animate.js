@@ -52,13 +52,18 @@ var Animation =
             .to(fade, fadeTime, { delay: 0.5, autoAlpha: 0 })
             .set(product, { autoAlpha: 1, scale: 3 })
             .to(product, fadeTime, { scale: 1, ease: Back.easeOut.config(1.7) })
-            .to(bg2, fadeTime, { delay: 2, autoAlpha: 1 })
-            .to(bg3, fadeTime, { delay: 2, autoAlpha: 1 })
+            .set(bg2, { x: 600 })
+            .to(bg2, fadeTime, { delay: 2, autoAlpha: 1, x: 0 })
+            .set(bg3, { scale: 0 })
+            .to(bg3, fadeTime, { delay: 2, autoAlpha: 1, scale: 1 })
+            .set(bg4, { rotation: 720 })            
+            .to(bg4, fadeTime, { delay: 2, autoAlpha: 1, rotation: 0 })            
             .set(logo, { y: -600 })
             .to(logo, 1.2, { y: 0, autoAlpha: 1, ease: Power2.easeOut })
             .set(cta, { x: -600 })
             .to(cta, 1.2, { x: 0, autoAlpha: 1, ease: Power2.easeOut })
-            .to(cta, fadeTime, { delay: 7 });
+//            .to(cta, fadeTime, { delay: 7 })
+;
 
         mainTimeline.pause(0);
 
