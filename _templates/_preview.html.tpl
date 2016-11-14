@@ -115,43 +115,25 @@
     nav ul .nav-item {}
     
     nav ul .nav-item:hover {
-        background-color: #c0c0c0;
+        background-color: #0078e7;
+
     }
     
     nav ul .nav-item:hover a {
-        color: black;
-    }
-    /* Old-style button*/
-    
-    .button-old {
-        -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
-        -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-        box-shadow: inset 0px 1px 0px 0px #ffffff;
-        background-color: #f9f9f9;
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        border: 1px solid #dcdcdc;
-        display: inline-block;
-        cursor: pointer;
-        color: #666;
-        font-size: 10px;
-        padding: 4px 8px;
-        text-decoration: none;
-        text-shadow: 0px 1px 0px #ffffff;
-        margin: 8px 4px;
-    }
-    
-    .button-old:hover {
-        background-color: #e9e9e9;
-    }
-    
-    .button-old:active {
-        position: relative;
-        top: 1px;
+        color: white;
     }
     /* Simple button*/
     
+    .control-section {
+    }
+    .control-section.not-active .button{
+        pointer-events: none;
+        cursor: default;
+        color: #999;
+        background-color: #aaa;
+
+    }
+
     .button {
         background-color: #e6e6e6;
         -moz-border-radius: 2px;
@@ -165,6 +147,14 @@
         padding: 6px 10px;
         text-decoration: none;
         margin: 8px 3px;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
         -moz-transition: all 0.3s ease;
         -webkit-transition: all 0.3s ease;
         -o-transition: all 0.3s ease;
@@ -176,6 +166,11 @@
         color: white;
     }
     
+/*    .button:hover i {
+        transform: scale(1.3);
+        transform-origin: 50% 50%;
+    }
+*/
     .button:active {
         position: relative;
         top: 1px;
@@ -396,7 +391,8 @@
         main.appendChild(subheading);
 
         var controlSection = document.createElement("section");
-        controlSection.setAttribute('class', "control-section");
+        controlSection.setAttribute('class', "control-section not-active");
+        controlSection.setAttribute('id', "control-section-" + foldername.replace('/', ''));
         main.appendChild(controlSection);
 
         //
@@ -636,19 +632,20 @@
 
         document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.display = "inline-block";
         sliderArray[elemNum] = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + foldername[elemNum].replace('/', ''), {
-
         });
         document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.width = "225px";
         isSliderOn[elemNum] = true;
     }
 
     function removeSlider(elemNum) {
-
-
         sliderArray[elemNum].clear()
         isSliderOn[elemNum] = false;
         document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.width = 0;
+    }
 
+    function iFrameAnimationLoaded(creativeName){
+       console.log(creativeName);
+       document.getElementById("control-section-" + creativeName).setAttribute('class', "control-section");
 
     }
     </script>

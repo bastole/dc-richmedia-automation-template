@@ -80,3 +80,12 @@ function bgExitHandler(e) {
     if (typeof dyn == typeof undefined) Enabler.exit('Background Exit');
     else Enabler.exitOverride("Dynamic Exit", dyn.clickURL.Url);
 }
+
+// for Preview: TimeLine is ready.
+var callOutside = window.parent.iFrameAnimationLoaded;
+if (typeof window.parent.iFrameAnimationLoaded !== "undefined") { 
+    callOutside(document.title);
+}
+
+
+

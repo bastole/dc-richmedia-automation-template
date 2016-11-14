@@ -24,17 +24,17 @@
                 display: 'none'
             },
             rail: {
-                backgroundColor: '#666',
+                backgroundColor: '#CCC',
                 width: '220px',
                 height: '5px',
                 margin: 0,
                 verticalAlign: 'middle',
-                border: '1px solid #dcdcdc',
+                border: '1px solid white',
                 display: 'inline-block'
 
             },
             thumb: {
-                backgroundColor: '#f9f9f9',
+                backgroundColor: '#666',
                 width: '6px',
                 height: '13px',
                 padding: 0,
@@ -45,7 +45,7 @@
                 display: 'inline-block',
                 position: 'relative',
                 color: '#666',
-                border: '1px solid #dcdcdc'
+                border: '1px solid white'
 
             },
             width: 0
