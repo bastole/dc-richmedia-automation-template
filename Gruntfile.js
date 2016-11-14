@@ -204,9 +204,9 @@ module.exports = function(grunt) {
 
         clean: {
             code: {
-                src: ["public/**.{html,js,css}", "!public/preview.html", "!public/html2canvas.js", "!public/gsap-timeline-slider.js"]
+                src: ["public/**.{html,js,css}", "!public/preview.html", "!public/html2canvas.js", "!public/gsap-timeline-slider.js", "!public/config.json"]
             },
-            image: {
+            image: {    
                 src: ["public/**.{jpg,png,gif,svg}"]
             },
             reset: {
@@ -264,6 +264,12 @@ module.exports = function(grunt) {
                     cwd: "_templates/",
                     src: "shared/**/*.*",
                     dest: SRC
+                },
+                {
+                    expand: true,
+                    cwd: "",
+                    src: "config.json",
+                    dest: DEST
                 }
                 
                 )
