@@ -204,16 +204,18 @@
 
     }
     .iframe-wrapper {
-        padding-bottom: 36px;
         margin: 0 auto;
-        transition: all 0.2s ease;
+        display: inline-block;
+        padding-bottom: 36px;
+        transition: all 0.3s linear;
 
     }
 
     iframe {
+        margin: 0 auto;
         border: none;
         display: block;
-        transition: all 0.2s ease;
+        transition: all 0.3s cubic-bezier(0,0, 1, 0.43);
 
     }
     
@@ -227,7 +229,7 @@
     .zoom-out {
         transform: scale(0.5);
         transform-origin: 0% 0%;
-
+        transition: all 0.3s cubic-bezier(0, 0.57, 1, 1);
     }
     
     #previewmode-buttons {
@@ -490,8 +492,8 @@
 
         var ifrmWrapper  = document.createElement("div");
         ifrmWrapper.setAttribute("class", "iframe-wrapper");
-        ifrmWrapper.style.width = width + "px";
-        ifrmWrapper.style.height = height + "px";
+       ifrmWrapper.style.width = width + "px";
+       ifrmWrapper.style.height = height + "px";
         main.appendChild(ifrmWrapper);
 
         var ifrm = document.createElement("iframe");
@@ -584,8 +586,8 @@
 
 
             iFrameTags[i].setAttribute('class', "zoom-out");
-            iFrameWrappers[i].style.width = iFrameTags[i].offsetWidth * 0.5 + "px";
-            iFrameWrappers[i].style.height = iFrameTags[i].offsetHeight * 0.5 + "px";
+           iFrameWrappers[i].style.width = iFrameTags[i].offsetWidth * 0.5 + "px";
+           iFrameWrappers[i].style.height = iFrameTags[i].offsetHeight * 0.5 + "px";
             }
             document.getElementById("zoomOutToggle").innerHTML = "Zoom on <strong>1.0x</strong>";
             isZoomedOut = true;
@@ -593,8 +595,8 @@
         } else {
             for (var i = 0; i < iFrameTags.length; i++) {
             iFrameTags[i].setAttribute('class', " ");
-            iFrameWrappers[i].style.width = iFrameTags[i].offsetWidth * 1 + "px";
-            iFrameWrappers[i].style.height = iFrameTags[i].offsetHeight * 1 + "px";
+           iFrameWrappers[i].style.width = iFrameTags[i].offsetWidth * 1 + "px";
+           iFrameWrappers[i].style.height = iFrameTags[i].offsetHeight * 1 + "px";
             }
             document.getElementById("zoomOutToggle").innerHTML = "Zoom on <strong>0.5x</strong>";
             isZoomedOut = false;
