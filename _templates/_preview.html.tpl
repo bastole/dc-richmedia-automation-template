@@ -414,6 +414,8 @@
     if (typeof Enabler == typeof undefined) {
         document.getElementById("warning").style.display = "block";
     }
+    var configParsed = <%=config%>;
+    console.log(configJSON);
     var foldername = "<%=foldername%>".split(","),
         width = "<%=width%>".split(","),
         height = "<%=height%>".split(",");

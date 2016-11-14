@@ -362,10 +362,11 @@ module.exports = function(grunt) {
                 });
                 grunt.file.write(SRC.concat(FOLDER_LIST[i], "index.html"), bootStrapIndexHTML);
 
-            }
+            }   
             var bootStrapPreviewHTML = grunt.file.read("_templates/_preview.html.tpl");
             bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, {
                 data: {
+                    config: Object.values(config),
                     jobnumber: config.jobnumber,
                     description: config.description,
                     foldername: FOLDER_LIST,
