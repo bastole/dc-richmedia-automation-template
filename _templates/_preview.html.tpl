@@ -51,10 +51,10 @@
     }
     
     nav ul {
-        -moz-border-radius: 20px;
-        -webkit-border-radius: 20px;
-        border-radius: 20px;
-        border: 1px solid #666;
+        -moz-border-radius: 40px;
+        -webkit-border-radius: 40px;
+        border-radius: 40px;
+        border: 2px solid #666;
         list-style-type: none;
         background-color: black;
         color: #DDD;
@@ -75,13 +75,13 @@
 
         max-height: 1400px;
         max-width: 240px;
-        border: 1px solid black;
+        border: 2px solid black;
         background-color: white;
         color: #333;
 
         transition: border-radius 0.2s linear, max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
     }
-    
+
     nav ul li {
         padding: 4px 12px;
         text-align: left;
@@ -92,20 +92,22 @@
         color: inherit;
         padding: 4px 0;
     }
-    
+
     nav ul li:nth-child(1) {
         font-size: 12px;
         padding-top: 8px;
+        padding-bottom: 10px;
+        min-width: 150px;        
     }
     
     nav ul li:nth-child(1) a i:nth-child(1) {
-        padding-right: 6px;
-        padding-bottom: 10px;
+        padding-right: 12px;
+
     }
     
     nav ul li:nth-child(1) a i:nth-child(2) {
-        padding-left: 6px;
-        padding-bottom: 10px;
+        padding-left: 12px;
+
     }
     
     nav ul li:last-child {
@@ -306,9 +308,58 @@
         font-weight: 700;
         padding-top: 3px;
     }
+
+
+/* Icon start */
+
+@font-face {
+  font-family: 'preview-icon';
+  src: url('data:application/octet-stream;base64,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') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+ 
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "preview-icon";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+ 
+  font-variant: normal;
+  text-transform: none;
+     
+  line-height: 1em;
+ 
+  /* font-size: 120%; */
+
+}
+.icon-picture:before { content: '\e800'; } /* '' */
+.icon-camera:before { content: '\e801'; } /* '' */
+.icon-down-dir:before { content: '\e802'; } /* '' */
+.icon-attention:before { content: '\e803'; } /* '' */
+.icon-attention-circled:before { content: '\e804'; } /* '' */
+.icon-play:before { content: '\e805'; } /* '' */
+.icon-pause:before { content: '\e806'; } /* '' */
+.icon-to-start-alt:before { content: '\e807'; } /* '' */
+.icon-up-dir:before { content: '\e808'; } /* '' */
+.icon-link-ext:before { content: '\f08e'; } /* '' */
+.icon-menu:before { content: '\f0c9'; } /* '' */
+.icon-link-ext-alt:before { content: '\f14c'; } /* '' */
+.icon-sliders:before { content: '\f1de'; } /* '' */
+
+
+/* Icon end */
+
     </style>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://use.fontawesome.com/9fbee15718.js"></script>
+   <!--  <script src="https://use.fontawesome.com/9fbee15718.js"></script> -->
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
     <script src="html2canvas.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
@@ -339,10 +390,10 @@
         <p>
             <%= description %>
         </p>
-        <p id="warning">Turn off the Ad blocker </p>
+        <p id="warning"><i class="icon-attention"></i> Turn off the Ad blocker </p>
         <nav>
             <ul>
-                <li><a id="scroll-to-top" href="#"><i class="fa fa-bars" aria-hidden="true"></i> Scroll to Top <i class="fa fa-caret-up" aria-hidden="true"></i></a></li>
+                <li><a id="scroll-to-top" href="#"><i class="icon-menu"></i> Scroll to Top <i class="icon-up-dir"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -397,7 +448,7 @@
 
         //
         var anch = document.createElement("a");
-        anch.innerHTML = '<i class="fa fa-external-link-square" aria-hidden="true"></i>';
+        anch.innerHTML = '<i class="icon-link-ext"></i>';
         anch.setAttribute('title', "Open this banner in a new tab");
         anch.setAttribute('href', foldername);
         anch.setAttribute('target', '_blank');
@@ -405,7 +456,7 @@
         controlSection.appendChild(anch);
 
         var capt = document.createElement("a");
-        capt.innerHTML = '<i class="fa fa-camera" aria-hidden="true"></i>';
+        capt.innerHTML = '<i class="icon-camera"></i>';
         capt.setAttribute('title', "Screenshot this banner");
         capt.setAttribute('href', "#");
         capt.className += " button";
@@ -417,7 +468,7 @@
 
         //Rewind Button
         var bannerRewind = document.createElement("a");
-        bannerRewind.innerHTML = '<i class="fa fa-fast-backward" aria-hidden="true"></i>';
+        bannerRewind.innerHTML = '<i class="icon-to-start-alt"></i>';
         bannerRewind.setAttribute('title', "Rewind");
         bannerRewind.setAttribute('href', "#");
         bannerRewind.className += " button";
@@ -431,7 +482,7 @@
 
         //Pause Button
         var bannerPause = document.createElement("a");
-        bannerPause.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+        bannerPause.innerHTML = '<i class="icon-pause"></i>';
         bannerPause.setAttribute('title', "Pause");
         bannerPause.setAttribute('href', "#");
         bannerPause.className += " button";
@@ -445,7 +496,7 @@
 
         //Play Button
         var bannerPlay = document.createElement("a");
-        bannerPlay.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+        bannerPlay.innerHTML = '<i class="icon-play"></i>';
         bannerPlay.setAttribute('title', "Play");
         bannerPlay.setAttribute('href', "#");
         bannerPlay.className += " button";
@@ -468,7 +519,7 @@
 
         //Slider Button
         var bannerSlider = document.createElement("a");
-        bannerSlider.innerHTML = '<i class="fa fa-sliders" aria-hidden="true"></i> Toggle Slider';
+        bannerSlider.innerHTML = '<i class="icon-sliders"></i> Toggle Slider';
         bannerSlider.setAttribute('title', "Toggle Slider");
         bannerSlider.setAttribute('href', "#");
         bannerSlider.className += " button long";
