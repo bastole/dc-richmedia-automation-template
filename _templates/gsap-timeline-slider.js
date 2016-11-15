@@ -188,7 +188,7 @@
             if (o) o.f.apply(o.c, o.p);
         },
         onComplete: function() {
-            this.tl.time(0);
+         //   this.tl.time(0);
             this.tl.pause();
             this.toggle(true);
             var o = this.old.complete;

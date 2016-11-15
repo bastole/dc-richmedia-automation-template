@@ -542,6 +542,15 @@
         }, false);
         controlSection.appendChild(bannerRewind);
 
+        //
+        //Timeline Slider
+        var sliderSection = document.createElement("section");
+        sliderSection.setAttribute('id', "slider-" + folderList.replace('/', ''));
+        sliderSection.setAttribute('class', "slider-section");
+
+        controlSection.appendChild(sliderSection);
+        //
+
         //Pause Button
         var bannerPause = document.createElement("a");
         bannerPause.innerHTML = '<i class="icon-pause"></i>';
@@ -569,16 +578,9 @@
             }
         }, false);
         controlSection.appendChild(bannerPlay);
-
-        //
-        //Timeline Slider
-        var sliderSection = document.createElement("section");
-        sliderSection.setAttribute('id', "slider-" + folderList.replace('/', ''));
-        sliderSection.setAttribute('class', "slider-section");
-
-        controlSection.appendChild(sliderSection);
         //
 
+/*
         //Slider Button
         var bannerSlider = document.createElement("a");
         bannerSlider.innerHTML = '<i class="icon-sliders"></i> Toggle Slider';
@@ -590,13 +592,13 @@
             evt.preventDefault();
             if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
                 if (isSliderOn[i] != true)
-                    addSlider(i);
+                    addSliderOnClick(i);
                 else
-                    removeSlider(i);
+                    removeSliderOnClick(i);
             }
         }, false);
         controlSection.appendChild(bannerSlider);
-
+*/
         //
 
         var ifrmWrapper  = document.createElement("div");
@@ -608,6 +610,7 @@
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", folderList + "index.html");
         ifrm.setAttribute("id", folderList.replace('/', ''));
+        ifrm.setAttribute("elemnum", i);
         ifrm.style.width = width + "px";
         ifrm.style.height = height + "px";
         ifrmWrapper.appendChild(ifrm);
@@ -740,8 +743,7 @@
 
     }
 
-    function addSlider(elemNum) {
-
+    function addSliderOnClick(elemNum) {
         document.getElementById("slider-" + folderList[elemNum].replace('/', '')).style.display = "inline-block";
         sliderArray[elemNum] = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + folderList[elemNum].replace('/', ''), {
         });
@@ -749,15 +751,25 @@
         isSliderOn[elemNum] = true;
     }
 
-    function removeSlider(elemNum) {
+    function removeSliderOnClick(elemNum) {
         sliderArray[elemNum].clear()
         isSliderOn[elemNum] = false;
         document.getElementById("slider-" + folderList[elemNum].replace('/', '')).style.width = 0;
     }
 
     function iFrameAnimationLoaded(creativeName){
-       console.log(creativeName);
+//       console.log(creativeName);
        document.getElementById("control-section-" + creativeName).setAttribute('class', "control-section");
+
+//Add Slider
+        var elemNum = parseInt(document.getElementById(creativeName).getAttribute('elemnum'));
+
+        document.getElementById("slider-" + folderList[elemNum].replace('/', '')).style.display = "inline-block";
+        sliderArray[elemNum] = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + folderList[elemNum].replace('/', ''), {
+        });
+        document.getElementById("slider-" + folderList[elemNum].replace('/', '')).style.width = "225px";
+        isSliderOn[elemNum] = true;
+
 
     }
     </script>
