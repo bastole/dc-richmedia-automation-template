@@ -23,27 +23,34 @@
         background-color: black;
         padding: 30px 0;
         margin-bottom: 50px;
+        z-index: 10000;
 
     }
 
     header, #main, #header-top {
+        -moz-transition: all 0.6s ease;
+        -webkit-transition: all 0.6s ease;
+        -o-transition: all 0.6s ease;
+        transition: all 0.6s ease;
+    }
+    #header-logo, #page-title, #page-description {
         -moz-transition: all 0.3s ease;
         -webkit-transition: all 0.3s ease;
         -o-transition: all 0.3s ease;
         transition: all 0.3s ease;
     }
-    #header-logo, #page-title, #page-description {
-        -moz-transition: all 0.4s ease;
-        -webkit-transition: all 0.4s ease;
-        -o-transition: all 0.4s ease;
-        transition: all 0.4s ease;
-    }
 
-    .expanded {
-        max-height: 800px;        
+    #header-top{
+        max-height: 800px;
     }
 
     .collapsed {
+        padding: 10px 0;
+        background-color: rgba(0,0,0,0.7);
+
+    }
+
+    .collapsed #header-top{
         max-height: 0;        
         overflow: hidden;
     }
@@ -76,8 +83,10 @@
     
     nav {
         position: fixed;
-        top: 4px;
-        left: 4px;
+        top: 10px;
+        left: 10px;
+        z-index: 20000;
+
     }
     
     nav ul {
@@ -253,7 +262,6 @@
     }
     
     #previewmode-buttons {
-        background-color: black;
         font-size: 0;
     }
     
@@ -395,8 +403,8 @@
 </head>
 
 <body>
-    <header >
-    <section id="header-top" class="expanded">
+    <header class="expanded">
+    <section id="header-top">
         <div id="header-logo" style="width: 48px; height: 48px; position: relative; margin: 0 auto;">
             <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 180 171.6" xml:space="preserve">
@@ -422,10 +430,8 @@
     <section id="previewmode-buttons">
         <ul>
             <li><a href="#" id="compactViewToggle" onclick="compactViewToggle(event)">View on <strong>Compact</strong></a></li>
-          
             <li><a href="#" id="showLastFrame" onclick="screenshotAll(event)">Screenshot <strong>Everything</strong></a></li>
-
- <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
+            <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
         </ul>
     </section>
 
@@ -445,19 +451,18 @@
     }
     var
         main = document.getElementById("main"),
-        headerTop = document.getElementById("header-top");
+        headerTop = document.getElementById("header-top"),
+        header = document.getElementsByTagName("header")[0];
 
 //Collapsiing header
     $(window).scroll(function() {
        if($(window).scrollTop()) {
-        headerTop.setAttribute('class', 'collapsed');
+        header.setAttribute('class', 'collapsed');
         main.style.paddingTop = "240px";
-        document.getElementsByTagName("header")[0].style.padding = "10px 0";
        }
        else {
-        headerTop.setAttribute('class', 'expanded');
+        header.setAttribute('class', 'expanded');
         main.style.paddingTop = "";
-        document.getElementsByTagName("header")[0].style.padding = "";
        }
     });
 
