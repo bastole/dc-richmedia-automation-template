@@ -1,12 +1,10 @@
 
 $bannerWidth: <%= width %>px;
 $bannerHeight: <%= height %>px;
-@import '../shared/sass/_base';
-@import '../shared/sass/_reset';
-@import '../shared/sass/_font';
+@import '../shared/_global';
 
 /*============================
-=            Main            =
+  Style for <%= width %>x<%= height %>
 ============================*/
 
 #bg1,

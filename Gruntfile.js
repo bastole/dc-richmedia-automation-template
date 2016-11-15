@@ -10,7 +10,7 @@ _.mixin(_.str.exports());
 var
     SRC = "build/",
     DEST = "public/",
-    JS_PARTIAL = SRC.concat("shared/js/"),
+    JS_PARTIAL = SRC.concat("shared/"),
     TEMPLATE_DEFAULT = "_templates/default/",
     FOLDER_LIST = [],
     SIZE_LIST = [];
@@ -50,7 +50,7 @@ for (var i = 0; i < FOLDER_LIST.length; i++) {
         dest: DEST.concat(FOLDER_LIST[i], "main.js")
     };
     sassFiles[i] = {
-        src: SRC.concat(FOLDER_LIST[i], "main.scss"),
+        src: SRC.concat(FOLDER_LIST[i], "local.scss"),
         dest: DEST.concat(FOLDER_LIST[i], "style.css")
     };
     imageMinFiles[i] = {
@@ -338,14 +338,14 @@ module.exports = function(grunt) {
 
     grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
             for (var i = 0; i < FOLDER_LIST.length; i++) {
-                var bootStrapSASS = grunt.file.read(TEMPLATE_DEFAULT.concat("_main.scss.tpl"));
+                var bootStrapSASS = grunt.file.read(TEMPLATE_DEFAULT.concat("_local.scss.tpl"));
                 bootStrapSASS = grunt.template.process(bootStrapSASS, {
                     data: {
                         width: widthList[i],
                         height: heightList[i]
                     }
                 });
-                grunt.file.write(SRC.concat(FOLDER_LIST[i], "main.scss"), bootStrapSASS);
+                grunt.file.write(SRC.concat(FOLDER_LIST[i], "local.scss"), bootStrapSASS);
 
                 var bootStrapIndexHTML = grunt.file.read(TEMPLATE_DEFAULT.concat("_index.html.tpl"));
                 bootStrapIndexHTML = grunt.template.process(bootStrapIndexHTML, {
