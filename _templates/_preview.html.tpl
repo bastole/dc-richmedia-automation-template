@@ -155,11 +155,6 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-
-        -moz-transition: all 0.3s ease;
-        -webkit-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        transition: all 0.3s ease;
     }
     
     .button:hover {
@@ -167,11 +162,6 @@
         color: white;
     }
     
-/*    .button:hover i {
-        transform: scale(1.3);
-        transform-origin: 50% 50%;
-    }
-*/
     .button:active {
         position: relative;
         top: 1px;
@@ -246,14 +236,9 @@
         display: block;
         width: 100px;
         float: left;
-
         border-right: 1px solid rgba(0, 0, 0, 0.3);
         border-left: 1px solid rgba(255, 255, 255, 0.3);
 
-        -moz-transition: all 0.3s ease;
-        -webkit-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        transition: all 0.3s ease;
     }
     
     #previewmode-buttons ul li:hover {
@@ -263,16 +248,20 @@
     #previewmode-buttons ul li:hover a,
     #previewmode-buttons ul li:hover a strong {
         color: white;
-        transform: scale(1.07);
+        transform: scale(1.04);
         transform-origin: 50% 50%;
-
-        -moz-transition: all 0.3s ease;
-        -webkit-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        transition: all 0.3s ease;
     }
-    
+    .button,
+    #previewmode-buttons ul li,
+    #previewmode-buttons ul li a,
+    #previewmode-buttons ul li a strong {    
 
+        -moz-transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+
+    }
     #previewmode-buttons ul li:first-child {
         -moz-border-radius: 2px 0 0 2px;
         -webkit-border-radius: 2px 0 0 2px;
