@@ -203,7 +203,7 @@ module.exports = function(grunt) {
 
         clean: {
             code: {
-                src: ["public/**.{html,js,css}", "!public/preview.html", "!public/html2canvas.js", "!public/gsap-timeline-slider.js"]
+                src: ["public/**.{html,js,css}", "!public/index.html", "!public/html2canvas.js", "!public/gsap-timeline-slider.js"]
             },
             image: {    
                 src: ["public/**.{jpg,png,gif,svg}"]
@@ -328,7 +328,7 @@ module.exports = function(grunt) {
         },
         open: {
             server: {
-                path: 'http://localhost:9054/preview.html',
+                path: 'http://localhost:9054/',
             }
         }
 
@@ -369,7 +369,7 @@ module.exports = function(grunt) {
                 }
             }
             );
-            grunt.file.write("public/preview.html", bootStrapPreviewHTML);
+            grunt.file.write("public/index.html", bootStrapPreviewHTML);
         }
 
     );
