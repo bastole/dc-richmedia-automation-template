@@ -230,8 +230,38 @@
         padding-bottom: 150px;
         -webkit-transition: all 0.2s linear;
         transition: all 0.2s linear;
+
+
     }
-    
+
+    #main {
+
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+    }
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(-3000px);
+        transform: translateY(-3000px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(-3000px);
+        transform: translateY(-3000px);
+    }
+}
+
+
     iframe {
         margin: 0 auto;
         border: none;
@@ -322,6 +352,7 @@
         font-weight: 700;
         padding-top: 3px;
     }
+
     /* Icon start */
     
     @font-face {
