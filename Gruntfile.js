@@ -23,10 +23,10 @@ for (var i = 0; i < config.list.length; i++) {
     }
 }
 
-config.widthList = SIZE_LIST.map(function(a) {
+var widthList = SIZE_LIST.map(function(a) {
     return a.match(/(\d+)/g)[0];
 });
-config.heightList = SIZE_LIST.map(function(a) {
+var heightList = SIZE_LIST.map(function(a) {
     return a.match(/(\d+)/g)[1];
 });
 
@@ -180,7 +180,6 @@ module.exports = function(grunt) {
                             console.log(JSON.stringify(promptResult));
                             grunt.file.write("config.json", JSON.stringify(promptResult));
 
-
                         } else {
                             grunt.task.run("prompt:addCreative");
                         }
@@ -204,7 +203,7 @@ module.exports = function(grunt) {
 
         clean: {
             code: {
-                src: ["public/**.{html,js,css}", "!public/preview.html", "!public/html2canvas.js", "!public/gsap-timeline-slider.js", "!public/config.json"]
+                src: ["public/**.{html,js,css}", "!public/preview.html", "!public/html2canvas.js", "!public/gsap-timeline-slider.js"]
             },
             image: {    
                 src: ["public/**.{jpg,png,gif,svg}"]
@@ -264,12 +263,6 @@ module.exports = function(grunt) {
                     cwd: "_templates/",
                     src: "shared/**/*.*",
                     dest: SRC
-                },
-                {
-                    expand: true,
-                    cwd: "",
-                    src: "config.json",
-                    dest: DEST
                 }
                 
                 )
@@ -348,8 +341,8 @@ module.exports = function(grunt) {
                 var bootStrapSASS = grunt.file.read(TEMPLATE_DEFAULT.concat("_main.scss.tpl"));
                 bootStrapSASS = grunt.template.process(bootStrapSASS, {
                     data: {
-                        width: config.widthList[i],
-                        height: config.heightList[i]
+                        width: widthList[i],
+                        height: heightList[i]
                     }
                 });
                 grunt.file.write(SRC.concat(FOLDER_LIST[i], "main.scss"), bootStrapSASS);
@@ -364,16 +357,18 @@ module.exports = function(grunt) {
 
             }   
             var bootStrapPreviewHTML = grunt.file.read("_templates/_preview.html.tpl");
-            bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, {
+            bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML
+                , {
                 data: {
-                    config: Object.values(config),
+                    config: JSON.stringify(config),
                     jobnumber: config.jobnumber,
                     description: config.description,
                     foldername: FOLDER_LIST,
-                    width: config.widthList,
-                    height: config.heightList
+                    width: widthList,
+                    height: heightList
                 }
-            });
+            }
+            );
             grunt.file.write("public/preview.html", bootStrapPreviewHTML);
         }
 

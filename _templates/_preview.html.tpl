@@ -2,8 +2,7 @@
 <html>
 
 <head>
-    <title>
-        <%= jobnumber %> Preview</title>
+    <title>Preview</title>
     <style type="text/css">
     body {
         padding-bottom: 50px;
@@ -386,9 +385,9 @@
                 </g>
             </svg>
         </div>
-        <h1><%= jobnumber %></h1>
+        <h1></h1>
         <p>
-            <%= description %>
+            
         </p>
         <p id="warning"><i class="icon-attention"></i> Turn off the Ad blocker </p>
         <nav>
@@ -400,8 +399,7 @@
     <section id="previewmode-buttons">
         <ul>
             <li><a href="#" id="compactViewToggle" onclick="compactViewToggle(event)">View on <strong>Compact</strong></a></li>
-<!--             <li><a href="#" id="showLastFrame" onclick="showLastFrame(event)">Set all to <strong>End Frame</strong></a></li>
- -->            
+          
             <li><a href="#" id="showLastFrame" onclick="screenshotAll(event)">Screenshot <strong>Everything</strong></a></li>
 
  <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
@@ -414,11 +412,31 @@
     if (typeof Enabler == typeof undefined) {
         document.getElementById("warning").style.display = "block";
     }
-    var configParsed = <%=config%>;
-    console.log(configJSON);
-    var foldername = "<%=foldername%>".split(","),
-        width = "<%=width%>".split(","),
-        height = "<%=height%>".split(",");
+
+    var config = <%=config%>;
+    var
+        FOLDER_LIST = [],
+        SIZE_LIST = [];
+
+        for (var i = 0; i < config.list.length; i++) {
+            for (var j = 0; j < config.list[i].dimension.length; j++) {
+                FOLDER_LIST.push(config.jobnumber.concat("_", config.list[i].creative, "_", config.list[i].dimension[j], "/"));
+                SIZE_LIST.push(config.list[i].dimension[j]);
+
+            }
+        }
+
+    var foldername = FOLDER_LIST;
+    var width = SIZE_LIST.map(function(a) {
+        return a.match(/(\d+)/g)[0];
+    });
+    var height = SIZE_LIST.map(function(a) {
+        return a.match(/(\d+)/g)[1];
+    });
+
+    document.getElementsByTagName("title")[0].innerHTML = config.jobnumber + " Preview";
+    document.getElementsByTagName("h1")[0].innerHTML = config.jobnumber;
+    document.getElementsByTagName("p")[0].innerHTML = config.description;
 
     var sliderArray = new Array(foldername.length);
     var isSliderOn = new Array(foldername.length);
