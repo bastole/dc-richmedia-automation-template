@@ -26,7 +26,7 @@
 
     }
 
-    #main, #header-top {
+    header, #main, #header-top {
         -moz-transition: all 0.3s ease;
         -webkit-transition: all 0.3s ease;
         -o-transition: all 0.3s ease;
@@ -254,6 +254,7 @@
     
     #previewmode-buttons {
         background-color: black;
+        font-size: 0;
     }
     
     #previewmode-buttons ul {
@@ -451,10 +452,12 @@
        if($(window).scrollTop()) {
         headerTop.setAttribute('class', 'collapsed');
         main.style.paddingTop = "240px";
+        document.getElementsByTagName("header")[0].style.padding = "10px 0";
        }
        else {
         headerTop.setAttribute('class', 'expanded');
         main.style.paddingTop = "";
+        document.getElementsByTagName("header")[0].style.padding = "";
        }
     });
 
@@ -493,7 +496,9 @@
     document.getElementById("scroll-to-top").addEventListener('click', function(evt) {
         evt.preventDefault();
         $('html, body').animate({
-            scrollTop: $("#header").offset().top
+        //    scrollTop: $("#header-top").offset().top
+            scrollTop: $(window).scrollTop()
+
         }, 250);
     }, false);
 
@@ -652,7 +657,7 @@
         if (isCompactView == false) {
             for (var i = 0; i < h2Tags.length; i++) {
                 navList.style.display = "none";
-                headerTop.style.display = "none";
+               // headerTop.style.display = "none";
                 h2Tags[i].style.display = "none";
                 controlButtons[i].style.display = "none";
                 iFrameWrappers[i].style.paddingBottom = "0px";
@@ -663,7 +668,7 @@
         } else {
             for (var i = 0; i < h2Tags.length; i++) {
                 navList.style.display = "";
-                headerTop.style.display = "";
+                // headerTop.style.display = "";
                 h2Tags[i].style.display = "";
                 controlButtons[i].style.display = "";
                 iFrameWrappers[i].style.paddingBottom = "";
