@@ -18,10 +18,41 @@
     }
     
     header {
+        position: fixed;
+        width: 100%;
         background-color: black;
-        padding: 30px;
+        padding: 30px 0;
+        margin-bottom: 50px;
+
     }
-    
+
+    #main, #header-top {
+        -moz-transition: all 0.3s ease;
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    #header-logo, #page-title, #page-description {
+        -moz-transition: all 0.4s ease;
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+
+    .expanded {
+        max-height: 800px;        
+    }
+
+    .collapsed {
+        max-height: 0;        
+        overflow: hidden;
+    }
+
+    .collapsed #header-logo, .collapsed #page-title, .collapsed #page-description{
+        transform: translateY(-250px) scale(0);
+
+    }
+
     h1 {
         color: white;
         font-size: 38px;
@@ -96,6 +127,7 @@
         font-size: 12px;
         padding-top: 8px;
         padding-bottom: 10px;
+        padding-left: 11.5px;
         min-width: 150px;        
     }
     
@@ -123,6 +155,21 @@
     nav ul .nav-item:hover a {
         color: white;
     }
+    #main {
+        padding-top: 360px;
+    }
+
+    #warning {
+        color: white;
+        background-color: crimson;
+        padding: 20px 0;
+        display: none;
+    }
+
+    #page-description {
+        padding: 20px 0;
+    }
+
     /* Simple button*/
     
     .control-section {
@@ -198,14 +245,7 @@
         transition: all 0.2s cubic-bezier(0,0, 1, 0.43);
 
     }
-    
-    #warning {
-        color: white;
-        background-color: crimson;
-        padding: 20px 0;
-        display: none;
-    }
-    
+        
     .zoom-out {
         transform: scale(0.5);
         transform-origin: 0% 0%;
@@ -213,9 +253,7 @@
     }
     
     #previewmode-buttons {
-        padding: 20px;
         background-color: black;
-        margin-bottom: 30px;
     }
     
     #previewmode-buttons ul {
@@ -251,6 +289,7 @@
         transform: scale(1.04);
         transform-origin: 50% 50%;
     }
+
     .button,
     #previewmode-buttons ul li,
     #previewmode-buttons ul li a,
@@ -355,8 +394,9 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="header-logo" style="width: 48px; height: 48px; position: relative; margin: 0 auto;">
+    <header >
+    <section id="header-top" class="expanded">
+        <div id="header-logo" style="width: 48px; height: 48px; position: relative; margin: 0 auto;">
             <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 180 171.6" xml:space="preserve">
                 <g>
@@ -374,17 +414,10 @@
                 </g>
             </svg>
         </div>
-        <h1></h1>
-        <p>
-            
-        </p>
+        <h1 id="page-title"></h1>
+        <p id="page-description"></p>
         <p id="warning"><i class="icon-attention"></i> Turn off the Ad blocker </p>
-        <nav>
-            <ul>
-                <li><a id="scroll-to-top" href="#"><i class="icon-menu"></i> Scroll to Top <i class="icon-up-dir"></i></a></li>
-            </ul>
-        </nav>
-    </header>
+</section>
     <section id="previewmode-buttons">
         <ul>
             <li><a href="#" id="compactViewToggle" onclick="compactViewToggle(event)">View on <strong>Compact</strong></a></li>
@@ -394,32 +427,52 @@
  <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
         </ul>
     </section>
+
+
+    </header>
+    <nav>
+        <ul>
+            <li><a id="scroll-to-top" href="#"><i class="icon-menu"></i> Scroll to Top <i class="icon-up-dir"></i></a></li>
+        </ul>
+    </nav>
+
     <section id="main"></section>
     <script>
-    var main = document.getElementById("main");
 
     if (typeof Enabler == typeof undefined) {
         document.getElementById("warning").style.display = "block";
     }
+    var
+        main = document.getElementById("main"),
+        headerTop = document.getElementById("header-top");
+
+//Collapsiing header
+    $(window).scroll(function() {
+       if($(window).scrollTop()) {
+        headerTop.setAttribute('class', 'collapsed');
+        main.style.paddingTop = "240px";
+       }
+       else {
+        headerTop.setAttribute('class', 'expanded');
+        main.style.paddingTop = "";
+       }
+    });
 
     var config = <%=config%>;
-    var
-        FOLDER_LIST = [],
-        SIZE_LIST = [];
 
-        for (var i = 0; i < config.list.length; i++) {
-            for (var j = 0; j < config.list[i].dimension.length; j++) {
-                FOLDER_LIST.push(config.jobnumber.concat("_", config.list[i].creative, "_", config.list[i].dimension[j], "/"));
-                SIZE_LIST.push(config.list[i].dimension[j]);
+    var folderList = [];
+    var sizeList = [];
 
-            }
+    for (var i = 0; i < config.list.length; i++) {
+        for (var j = 0; j < config.list[i].dimension.length; j++) {
+            folderList.push(config.jobnumber.concat("_", config.list[i].creative, "_", config.list[i].dimension[j], "/"));
+            sizeList.push(config.list[i].dimension[j]);
         }
-
-    var foldername = FOLDER_LIST;
-    var width = SIZE_LIST.map(function(a) {
+    }
+    var width = sizeList.map(function(a) {
         return a.match(/(\d+)/g)[0];
     });
-    var height = SIZE_LIST.map(function(a) {
+    var height = sizeList.map(function(a) {
         return a.match(/(\d+)/g)[1];
     });
 
@@ -427,13 +480,13 @@
     document.getElementsByTagName("h1")[0].innerHTML = config.jobnumber;
     document.getElementsByTagName("p")[0].innerHTML = config.description;
 
-    var sliderArray = new Array(foldername.length);
-    var isSliderOn = new Array(foldername.length);
+    var sliderArray = new Array(folderList.length);
+    var isSliderOn = new Array(folderList.length);
 
-    for (var i = 0; i < foldername.length; i++) {
+    for (var i = 0; i < folderList.length; i++) {
         isSliderOn[i] = false;
 
-        preparePreview(foldername[i], width[i], height[i], i);
+        preparePreview(folderList[i], width[i], height[i], i);
     }
 
 
@@ -444,22 +497,22 @@
         }, 250);
     }, false);
 
-    function preparePreview(foldername, width, height, i) {
+    function preparePreview(folderList, width, height, i) {
         var subheading = document.createElement("h2");
-        subheading.innerHTML = foldername.replace('/', '');
-        subheading.setAttribute('id', "heading-" + foldername.replace('/', ''));
+        subheading.innerHTML = folderList.replace('/', '');
+        subheading.setAttribute('id', "heading-" + folderList.replace('/', ''));
         main.appendChild(subheading);
 
         var controlSection = document.createElement("section");
         controlSection.setAttribute('class', "control-section not-active");
-        controlSection.setAttribute('id', "control-section-" + foldername.replace('/', ''));
+        controlSection.setAttribute('id', "control-section-" + folderList.replace('/', ''));
         main.appendChild(controlSection);
 
         //
         var anch = document.createElement("a");
         anch.innerHTML = '<i class="icon-link-ext"></i>';
         anch.setAttribute('title', "Open this banner in a new tab");
-        anch.setAttribute('href', foldername);
+        anch.setAttribute('href', folderList);
         anch.setAttribute('target', '_blank');
         anch.className += " button";
         controlSection.appendChild(anch);
@@ -520,7 +573,7 @@
         //
         //Timeline Slider
         var sliderSection = document.createElement("section");
-        sliderSection.setAttribute('id', "slider-" + foldername.replace('/', ''));
+        sliderSection.setAttribute('id', "slider-" + folderList.replace('/', ''));
         sliderSection.setAttribute('class', "slider-section");
 
         controlSection.appendChild(sliderSection);
@@ -553,8 +606,8 @@
         main.appendChild(ifrmWrapper);
 
         var ifrm = document.createElement("iframe");
-        ifrm.setAttribute("src", foldername + "index.html");
-        ifrm.setAttribute("id", foldername.replace('/', ''));
+        ifrm.setAttribute("src", folderList + "index.html");
+        ifrm.setAttribute("id", folderList.replace('/', ''));
         ifrm.style.width = width + "px";
         ifrm.style.height = height + "px";
         ifrmWrapper.appendChild(ifrm);
@@ -562,7 +615,7 @@
         var navItem = document.createElement("li");
         navItem.setAttribute('class', "nav-item");
         var navItemAnch = document.createElement("a");
-        navItemAnch.innerHTML = foldername.replace('/', '');
+        navItemAnch.innerHTML = folderList.replace('/', '');
         navItemAnch.setAttribute('href', "#");
         navItem.appendChild(navItemAnch);
         document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].appendChild(navItem);
@@ -570,7 +623,7 @@
         navItemAnch.addEventListener('click', function(evt) {
             evt.preventDefault();
             $('html, body').animate({
-                scrollTop: $("#heading-" + foldername.replace('/', '')).offset().top
+                scrollTop: $("#heading-" + folderList.replace('/', '')).offset().top-120
             }, 250);
         }, false);
 
@@ -581,7 +634,6 @@
         isZoomedOut = false;
 
     var navList = document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0];
-    var pageHeader = document.getElementsByTagName("header")[0];
 
     var h2Tags = document.getElementsByTagName("h2");
     var controlButtons = document.getElementsByClassName("control-section");
@@ -597,7 +649,7 @@
         if (isCompactView == false) {
             for (var i = 0; i < h2Tags.length; i++) {
                 navList.style.display = "none";
-                pageHeader.style.display = "none";
+                headerTop.style.display = "none";
                 h2Tags[i].style.display = "none";
                 controlButtons[i].style.display = "none";
                 iFrameWrappers[i].style.paddingBottom = "0px";
@@ -608,7 +660,7 @@
         } else {
             for (var i = 0; i < h2Tags.length; i++) {
                 navList.style.display = "";
-                pageHeader.style.display = "";
+                headerTop.style.display = "";
                 h2Tags[i].style.display = "";
                 controlButtons[i].style.display = "";
                 iFrameWrappers[i].style.paddingBottom = "";
@@ -666,7 +718,7 @@
 
                 $("<a>", {
                         href: img,
-                        download: "backup_" + foldername[elemNum].replace('/', '')
+                        download: "backup_" + folderList[elemNum].replace('/', '')
                     })
                     .on("click", function() {
                         $(this).remove()
@@ -690,17 +742,17 @@
 
     function addSlider(elemNum) {
 
-        document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.display = "inline-block";
-        sliderArray[elemNum] = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + foldername[elemNum].replace('/', ''), {
+        document.getElementById("slider-" + folderList[elemNum].replace('/', '')).style.display = "inline-block";
+        sliderArray[elemNum] = new GSAPTLSlider(iFrameTags[elemNum].contentWindow.Animation.mainTimeline, "slider-" + folderList[elemNum].replace('/', ''), {
         });
-        document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.width = "225px";
+        document.getElementById("slider-" + folderList[elemNum].replace('/', '')).style.width = "225px";
         isSliderOn[elemNum] = true;
     }
 
     function removeSlider(elemNum) {
         sliderArray[elemNum].clear()
         isSliderOn[elemNum] = false;
-        document.getElementById("slider-" + foldername[elemNum].replace('/', '')).style.width = 0;
+        document.getElementById("slider-" + folderList[elemNum].replace('/', '')).style.width = 0;
     }
 
     function iFrameAnimationLoaded(creativeName){
