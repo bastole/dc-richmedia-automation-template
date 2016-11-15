@@ -235,28 +235,31 @@
     }
 
     #main {
+        /*
+        animation: name duration timing-function delay iteration-count direction fill-mode play-state;
 
-        -webkit-animation-name: fadeIn;
-        animation-name: fadeIn;
-        -webkit-animation-duration: 1s;
-        animation-duration: 1s;
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
+        animation-name: none
+        animation-duration: 0s
+        animation-timing-function: ease
+        animation-delay: 0s
+        animation-iteration-count: 1
+        animation-direction: normal
+        animation-fill-mode: none
+        animation-play-state: running
+
+
+
+        */
+
+        animation: slideIn 1.2s cubic-bezier(0,1,.02,1) 0s 1 normal forwards running;
+
+
 
     }
 
-@-webkit-keyframes fadeIn {
+@keyframes slideIn {
     from {
-        opacity: 0;
-        -webkit-transform: translateY(-3000px);
-        transform: translateY(-3000px);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        -webkit-transform: translateY(-3000px);
+        opacity: 1;
         transform: translateY(-3000px);
     }
 }
