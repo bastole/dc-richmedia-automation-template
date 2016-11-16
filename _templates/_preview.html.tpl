@@ -24,20 +24,22 @@
         padding: 30px 0;
         margin-bottom: 50px;
         z-index: 10000;
+        animation: slideInHeader 0.8s cubic-bezier(0,1,.02,1) 0s 1 normal forwards running;
+
     }
     
     header,
     #main,
     #header-top {
-        -webkit-transition: all 0.6s ease;
-        transition: all 0.6s ease;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
     }
     
     #header-logo,
     #page-title,
     #page-description {
-        -webkit-transition: all 0.3s ease;
-        transition: all 0.3s ease;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
     }
     
     #header-top {
@@ -261,6 +263,12 @@
     from {
         opacity: 1;
         transform: translateY(-3000px);
+    }
+}
+@keyframes slideInHeader {
+    from {
+        opacity: 1;
+        transform: translateY(-400px);
     }
 }
 
