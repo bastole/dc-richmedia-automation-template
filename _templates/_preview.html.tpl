@@ -24,8 +24,7 @@
         padding: 30px 0;
         margin-bottom: 50px;
         z-index: 10000;
-        animation: slideInHeader 0.8s cubic-bezier(0,1,.02,1) 0s 1 normal forwards running;
-
+        animation: slideInHeader 0.8s cubic-bezier(0, 1, .02, 1) 0s 1 normal forwards running;
     }
     
     header,
@@ -232,47 +231,27 @@
         padding-bottom: 150px;
         -webkit-transition: all 0.2s linear;
         transition: all 0.2s linear;
-
-
     }
-
+    
     #main {
-        /*
-        animation: name duration timing-function delay iteration-count direction fill-mode play-state;
-
-        animation-name: none
-        animation-duration: 0s
-        animation-timing-function: ease
-        animation-delay: 0s
-        animation-iteration-count: 1
-        animation-direction: normal
-        animation-fill-mode: none
-        animation-play-state: running
-
-
-
-        */
-
-        animation: slideIn 1.2s cubic-bezier(0,1,.02,1) 0s 1 normal forwards running;
-
-
-
+        /*        animation: slideIn 1.2s cubic-bezier(0,1,.02,1) 0s 1 normal forwards running;
+*/
     }
-
-@keyframes slideIn {
-    from {
-        opacity: 1;
-        transform: translateY(-3000px);
+    
+    @keyframes slideIn {
+        from {
+            opacity: 1;
+            transform: translateY(-3000px);
+        }
     }
-}
-@keyframes slideInHeader {
-    from {
-        opacity: 1;
-        transform: translateY(-400px);
+    
+    @keyframes slideInHeader {
+        from {
+            opacity: 1;
+            transform: translateY(-400px);
+        }
     }
-}
-
-
+    
     iframe {
         margin: 0 auto;
         border: none;
@@ -363,7 +342,6 @@
         font-weight: 700;
         padding-top: 3px;
     }
-
     /* Icon start */
     
     @font-face {
@@ -392,67 +370,54 @@
     .icon-picture:before {
         content: '\e800';
     }
-    /* '' */
-    
+        
     .icon-camera:before {
         content: '\e801';
     }
-    /* '' */
-    
+        
     .icon-down-dir:before {
         content: '\e802';
     }
-    /* '' */
-    
+        
     .icon-attention:before {
         content: '\e803';
     }
-    /* '' */
-    
+        
     .icon-attention-circled:before {
         content: '\e804';
     }
-    /* '' */
-    
+        
     .icon-play:before {
         content: '\e805';
     }
-    /* '' */
-    
+        
     .icon-pause:before {
         content: '\e806';
     }
-    /* '' */
-    
+        
     .icon-to-start-alt:before {
         content: '\e807';
     }
-    /* '' */
-    
+        
     .icon-up-dir:before {
         content: '\e808';
     }
-    /* '' */
-    
+        
     .icon-link-ext:before {
         content: '\f08e';
     }
-    /* '' */
-    
+        
     .icon-menu:before {
         content: '\f0c9';
     }
-    /* '' */
-    
+        
     .icon-link-ext-alt:before {
         content: '\f14c';
     }
-    /* '' */
-    
+        
     .icon-sliders:before {
         content: '\f1de';
     }
-    /* '' */
     /* Icon end */
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -467,7 +432,7 @@
     <header class="expanded">
         <section id="header-top">
             <div id="header-logo" style="width: 48px; height: 48px; position: relative; margin: 0 auto;">
-                <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 180 171.6" xml:space="preserve">
                     <g>
                         <path style="fill: #fff;" d="M86,59.6c16.6-10.2,38.1-11.5,56.3-1.6c0-0.5,0-1.1,0-1.6C142.4,25.2,117.1,0,86,0C54.9,0,29.6,25.2,29.6,56.4     c0,0.6,0,1.1,0,1.6C47.9,48.2,69.4,49.4,86,59.6"></path>
@@ -642,28 +607,6 @@
             }
         }, false);
         controlSection.appendChild(bannerPlay);
-        //
-
-        /*
-                //Slider Button
-                var bannerSlider = document.createElement("a");
-                bannerSlider.innerHTML = '<i class="icon-sliders"></i> Toggle Slider';
-                bannerSlider.setAttribute('title', "Toggle Slider");
-                bannerSlider.setAttribute('href', "#");
-                bannerSlider.className += " button long";
-
-                bannerSlider.addEventListener('click', function(evt) {
-                    evt.preventDefault();
-                    if (typeof iFrameTags[i].contentWindow.Animation !== typeof undefined) {
-                        if (isSliderOn[i] != true)
-                            addSliderOnClick(i);
-                        else
-                            removeSliderOnClick(i);
-                    }
-                }, false);
-                controlSection.appendChild(bannerSlider);
-        */
-        //
 
         var ifrmWrapper = document.createElement("div");
         ifrmWrapper.setAttribute("class", "iframe-wrapper");
@@ -707,7 +650,6 @@
 
     var iFrameTags = document.getElementsByTagName("iframe");
     var iFrameWrappers = document.getElementsByClassName("iframe-wrapper");
-
 
     function compactViewToggle(evt) {
 
@@ -821,7 +763,7 @@
     }
 
     function iFrameAnimationLoaded(creativeName) {
-        //       console.log(creativeName);
+
         document.getElementById("control-section-" + creativeName).setAttribute('class', "control-section");
 
         //Add Slider
