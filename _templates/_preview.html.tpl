@@ -20,48 +20,41 @@
     header {
         position: fixed;
         width: 100%;
-        background-color: black;
-        padding: 30px 0;
+
         margin-bottom: 50px;
         z-index: 10000;
-        animation: slideInHeader 0.8s cubic-bezier(0, 1, .02, 1) 0s 1 normal forwards running;
+
+        padding: 10px 0;
+        background-color: rgba(0, 0, 0, 0.7);
+
+
+/*        background-color: black;
+        padding: 30px 0;*/
+
     }
     
     header,
     #main,
     #header-top {
-        -webkit-transition: all 0.2s ease;
-        transition: all 0.2s ease;
+
     }
     
     #header-logo,
     #page-title,
     #page-description {
-        -webkit-transition: all 0.2s ease;
-        transition: all 0.2s ease;
+
+        -webkit-transform: translateY(-10px) scale(0);
+        transform: translateY(-10px) scale(0);
+
+
     }
     
     #header-top {
-        max-height: 800px;
-    }
-    
-    .collapsed {
-        padding: 10px 0;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-    
-    .collapsed #header-top {
-        max-height: 0;
         overflow: hidden;
+        max-height: 0;
     }
     
-    .collapsed #header-logo,
-    .collapsed #page-title,
-    .collapsed #page-description {
-        -webkit-transform: translateY(-250px) scale(0);
-        transform: translateY(-250px) scale(0);
-    }
-    
+        
     h1 {
         color: white;
         font-size: 38px;
@@ -473,19 +466,72 @@
     }
     var
         main = document.getElementById("main"),
+        pageTitle = document.getElementById("page-title"),
+        pageDescription = document.getElementById("page-description"),
+        headerLogo = document.getElementById("header-logo"),
         headerTop = document.getElementById("header-top"),
         header = document.getElementsByTagName("header")[0];
 
     //Collapsiing header
+
     $(window).scroll(function() {
         if ($(window).scrollTop()) {
-            header.setAttribute('class', 'collapsed');
-            main.style.paddingTop = "240px";
+TweenLite.to(header, 0.5, { css: {padding:"10px 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
+TweenLite.to(headerTop, 0.5, { css: {maxHeight:"0"}, ease: Power2.easeOut });
+
+TweenLite.to(headerLogo, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
+TweenLite.to(pageTitle, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
+TweenLite.to(pageDescription, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
+
         } else {
-            header.setAttribute('class', 'expanded');
-            main.style.paddingTop = "";
+TweenLite.to(header, 0.5, { css: {padding:"30px 0", backgroundColor:"black"}, ease: Power2.easeOut });
+TweenLite.to(headerTop, 0.5, { css: {maxHeight:"800px"}, ease: Power2.easeOut });
+
+TweenLite.to(headerLogo, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
+TweenLite.to(pageTitle, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
+TweenLite.to(pageDescription, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
+
         }
     });
+    
+     $(document).ready(function() {
+        if ($(window).scrollTop()) {
+TweenLite.set(header, { css: {padding:"10px 0", backgroundColor:"rgba(0, 0, 0, 0.7)"} });
+TweenLite.set(headerTop, { css: {maxHeight:"0"} });
+
+TweenLite.set(headerLogo, { scale:0, y:-10 });
+TweenLite.set(pageTitle, { scale:0, y:-10 });
+TweenLite.set(pageDescription, { scale:0, y:-10 });
+
+        } else {
+TweenLite.set(header, { css: {padding:"30px 0", backgroundColor:"black"} });
+TweenLite.set(headerTop, { css: {maxHeight:"800px"} });
+
+TweenLite.set(headerLogo, { scale:1, y:0 });
+TweenLite.set(pageTitle, { scale:1, y:0 });
+TweenLite.set(pageDescription, { scale:1, y:0 });
+
+        }
+    });   
+
+    function collapseHeader(){
+TweenLite.to(header, 0.5, { css: {padding:"10px 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
+TweenLite.to(headerTop, 0.5, { css: {maxHeight:"0"}, ease: Power2.easeOut });
+
+TweenLite.to(headerLogo, 0.5, { scale:0, y:-250, ease: Power2.easeOut });
+TweenLite.to(pageTitle, 0.5, { scale:0, y:-250, ease: Power2.easeOut });
+TweenLite.to(pageDescription, 0.5, { scale:0, y:-250, ease: Power2.easeOut });
+
+    }
+    function expandHeader(){
+TweenLite.to(header, 0.5, { css: {padding:"30px 0", backgroundColor:"black"}, ease: Power2.easeOut });
+TweenLite.to(headerTop, 0.5, { css: {maxHeight:"800px"}, ease: Power2.easeOut });
+
+TweenLite.to(headerLogo, 0.5, { scale:1, y:0, ease: Power2.easeOut });
+TweenLite.to(pageTitle, 0.5, { scale:1, y:0, ease: Power2.easeOut });
+TweenLite.to(pageDescription, 0.5, { scale:1, y:0, ease: Power2.easeOut });
+
+    }
 
     var config = <%=config%>;
 
@@ -658,7 +704,7 @@
         if (isCompactView == false) {
             for (var i = 0; i < h2Tags.length; i++) {
                 navList.style.display = "none";
-                // headerTop.style.display = "none";
+
                 h2Tags[i].style.display = "none";
                 controlButtons[i].style.display = "none";
                 iFrameWrappers[i].style.paddingBottom = "0px";
@@ -669,7 +715,7 @@
         } else {
             for (var i = 0; i < h2Tags.length; i++) {
                 navList.style.display = "";
-                // headerTop.style.display = "";
+
                 h2Tags[i].style.display = "";
                 controlButtons[i].style.display = "";
                 iFrameWrappers[i].style.paddingBottom = "";
