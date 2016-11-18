@@ -424,7 +424,7 @@
     <!--  <script src="https://use.fontawesome.com/9fbee15718.js"></script> -->
     <script src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
     <script src="html2canvas.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+    <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.19.0_643d6911392a3398cb1607993edabfa7_min.js"></script>
     <script src="gsap-timeline-slider.js"></script>
 </head>
 
