@@ -24,7 +24,7 @@
         margin-bottom: 50px;
         z-index: 10000;
 
-        padding: 10px 0;
+        padding: 10px 0 0;
         background-color: rgba(0, 0, 0, 0.7);
 
 
@@ -32,13 +32,7 @@
         padding: 30px 0;*/
 
     }
-    
-    header,
-    #main,
-    #header-top {
-
-    }
-    
+      
     #header-logo,
     #page-title,
     #page-description {
@@ -226,25 +220,6 @@
         transition: all 0.2s linear;
     }
     
-    #main {
-        /*        animation: slideIn 1.2s cubic-bezier(0,1,.02,1) 0s 1 normal forwards running;
-*/
-    }
-    
-    @keyframes slideIn {
-        from {
-            opacity: 1;
-            transform: translateY(-3000px);
-        }
-    }
-    
-    @keyframes slideInHeader {
-        from {
-            opacity: 1;
-            transform: translateY(-400px);
-        }
-    }
-    
     iframe {
         margin: 0 auto;
         border: none;
@@ -336,9 +311,11 @@
         padding-top: 3px;
     }
 
-    #barProgress {
-        background-color: : blue;
+    #headerBarProgress {
+        background-color: #0078e7;
         height: 3px;
+        width: 0%;
+        margin-top: 20px;
     }
 
     /* Icon start */
@@ -428,7 +405,7 @@
 </head>
 
 <body>
-    <header class="expanded">
+    <header>
         <section id="header-top">
             <div id="header-logo" style="width: 48px; height: 48px; position: relative; margin: 0 auto;">
 
@@ -459,7 +436,7 @@
                 <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
             </ul>
         </section>
-        <section id="barProgress"></section>
+        <section id="headerBarProgress"></section>
     </header>
     <nav>
         <ul>
@@ -482,8 +459,19 @@
     //Collapsiing header
 
     $(window).scroll(function() {
+
+var body = document.body,
+    html = document.documentElement;
+
+var docHeight = Math.max( body.scrollHeight, body.offsetHeight, 
+                       html.clientHeight, html.scrollHeight, html.offsetHeight ) - window.innerHeight;
+
+    console.log(docHeight + " :: "+$(window).scrollTop());
+
+//    TweenLite.to(headerBarProgress,0.3,{css:{width:}})
+  
         if ($(window).scrollTop()) {
-TweenLite.to(header, 0.5, { css: {padding:"10px 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
+TweenLite.to(header, 0.5, { css: {padding:"10px 0 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
 TweenLite.to(headerTop, 0.5, { css: {maxHeight:"0"}, ease: Power2.easeOut });
 
 TweenLite.to(headerLogo, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
@@ -491,7 +479,7 @@ TweenLite.to(pageTitle, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
 TweenLite.to(pageDescription, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
 
         } else {
-TweenLite.to(header, 0.5, { css: {padding:"30px 0", backgroundColor:"black"}, ease: Power2.easeOut });
+TweenLite.to(header, 0.5, { css: {padding:"30px 0 0", backgroundColor:"black"}, ease: Power2.easeOut });
 TweenLite.to(headerTop, 0.5, { css: {maxHeight:"800px"}, ease: Power2.easeOut });
 
 TweenLite.to(headerLogo, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
@@ -511,7 +499,7 @@ TweenLite.set(pageTitle, { scale:0, y:-10 });
 TweenLite.set(pageDescription, { scale:0, y:-10 });
 
         } else {
-TweenLite.set(header, { css: {padding:"30px 0", backgroundColor:"black"} });
+TweenLite.set(header, { css: {padding:"30px 0 0", backgroundColor:"black"} });
 TweenLite.set(headerTop, { css: {maxHeight:"800px"} });
 
 TweenLite.set(headerLogo, { scale:1, y:0 });
@@ -522,7 +510,7 @@ TweenLite.set(pageDescription, { scale:1, y:0 });
     });   
 
     function collapseHeader(){
-TweenLite.to(header, 0.5, { css: {padding:"10px 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
+TweenLite.to(header, 0.5, { css: {padding:"10px 0 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
 TweenLite.to(headerTop, 0.5, { css: {maxHeight:"0"}, ease: Power2.easeOut });
 
 TweenLite.to(headerLogo, 0.5, { scale:0, y:-250, ease: Power2.easeOut });
