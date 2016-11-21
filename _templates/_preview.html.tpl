@@ -312,8 +312,8 @@
     }
 
     #headerBarProgress {
-        background-color: #0078e7;
-        height: 3px;
+        background-color: #EEE;
+        height:6px;
         width: 0%;
         margin-top: 20px;
     }
@@ -466,9 +466,9 @@ var body = document.body,
 var docHeight = Math.max( body.scrollHeight, body.offsetHeight, 
                        html.clientHeight, html.scrollHeight, html.offsetHeight ) - window.innerHeight;
 
-    console.log(docHeight + " :: "+$(window).scrollTop());
+    var barWidth = ($(window).scrollTop()/docHeight * 100)+"%";
 
-//    TweenLite.to(headerBarProgress,0.3,{css:{width:}})
+    TweenLite.to(headerBarProgress,0.3,{css:{width:barWidth, ease: Power2.easeOut}});
   
         if ($(window).scrollTop()) {
 TweenLite.to(header, 0.5, { css: {padding:"10px 0 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
