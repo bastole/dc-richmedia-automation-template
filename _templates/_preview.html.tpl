@@ -335,6 +335,12 @@
         font-weight: 700;
         padding-top: 3px;
     }
+
+    #barProgress {
+        background-color: : blue;
+        height: 3px;
+    }
+
     /* Icon start */
     
     @font-face {
@@ -453,6 +459,7 @@
                 <li><a href="#" id="zoomOutToggle" onclick="zoomOutToggle(event)">Zoom on <strong>0.5x</strong></a></li>
             </ul>
         </section>
+        <section id="barProgress"></section>
     </header>
     <nav>
         <ul>
