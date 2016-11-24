@@ -20,19 +20,14 @@
     header {
         position: fixed;
         width: 100%;
-
         margin-bottom: 50px;
         z-index: 10000;
-
         padding: 10px 0 0;
         background-color: rgba(0, 0, 0, 0.7);
-
-
-/*        background-color: black;
+        /*        background-color: black;
         padding: 30px 0;*/
-
     }
-      
+    
     #header-logo,
     #page-title,
     #page-description {
@@ -45,7 +40,6 @@
         max-height: 0;
     }
     
-        
     h1 {
         color: white;
         font-size: 38px;
@@ -308,14 +302,13 @@
         font-weight: 700;
         padding-top: 3px;
     }
-
+    
     #headerBarProgress {
         background-color: #EEE;
-        height:6px;
+        height: 6px;
         width: 0%;
         margin-top: 20px;
     }
-
     /* Icon start */
     
     @font-face {
@@ -344,51 +337,51 @@
     .icon-picture:before {
         content: '\e800';
     }
-        
+    
     .icon-camera:before {
         content: '\e801';
     }
-        
+    
     .icon-down-dir:before {
         content: '\e802';
     }
-        
+    
     .icon-attention:before {
         content: '\e803';
     }
-        
+    
     .icon-attention-circled:before {
         content: '\e804';
     }
-        
+    
     .icon-play:before {
         content: '\e805';
     }
-        
+    
     .icon-pause:before {
         content: '\e806';
     }
-        
+    
     .icon-to-start-alt:before {
         content: '\e807';
     }
-        
+    
     .icon-up-dir:before {
         content: '\e808';
     }
-        
+    
     .icon-link-ext:before {
         content: '\f08e';
     }
-        
+    
     .icon-menu:before {
         content: '\f0c9';
     }
-        
+    
     .icon-link-ext-alt:before {
         content: '\f14c';
     }
-        
+    
     .icon-sliders:before {
         content: '\f1de';
     }
@@ -406,7 +399,6 @@
     <header>
         <section id="header-top">
             <div id="header-logo" style="width: 48px; height: 48px; position: relative; margin: 0 auto;">
-
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 180 171.6" xml:space="preserve">
                     <g>
                         <path style="fill: #fff;" d="M86,59.6c16.6-10.2,38.1-11.5,56.3-1.6c0-0.5,0-1.1,0-1.6C142.4,25.2,117.1,0,86,0C54.9,0,29.6,25.2,29.6,56.4     c0,0.6,0,1.1,0,1.6C47.9,48.2,69.4,49.4,86,59.6"></path>
@@ -463,76 +455,215 @@
     $(window).scroll(function() {
 
 
-var docHeight = Math.max( body.scrollHeight, body.offsetHeight, 
-                       html.clientHeight, html.scrollHeight, html.offsetHeight ) - window.innerHeight;
+        var docHeight = Math.max(body.scrollHeight, body.offsetHeight,
+            html.clientHeight, html.scrollHeight, html.offsetHeight) - window.innerHeight;
 
-    var barWidth = ($(window).scrollTop()/docHeight * 100)+"%";
+        var barWidth = ($(window).scrollTop() / docHeight * 100) + "%";
 
-    TweenLite.to(headerBarProgress,0.3,{css:{width:barWidth}, ease: Power2.easeOut});
+        TweenLite.to(headerBarProgress, 0.3, {
+            css: {
+                width: barWidth
+            },
+            ease: Power2.easeOut
+        });
 
         if ($(window).scrollTop() > 100) {
-            if(isHeaderCollapsed == false){
+            if (isHeaderCollapsed == false) {
 
-            TweenLite.to(header, 0.5, { css: {padding:"10px 0 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
-            TweenLite.to(headerTop, 0.5, { css: {maxHeight:"0"}, ease: Power2.easeOut });
-            
-            TweenLite.to(headerLogo, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
-            TweenLite.to(pageTitle, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
-            TweenLite.to(pageDescription, 0.3, { scale:0, y:-10, ease: Power2.easeOut });}
-        isHeaderCollapsed = true;
+                TweenLite.to(header, 0.5, {
+                    css: {
+                        padding: "10px 0 0",
+                        backgroundColor: "rgba(0, 0, 0, 0.7)"
+                    },
+                    ease: Power2.easeOut
+                });
+                TweenLite.to(headerTop, 0.5, {
+                    css: {
+                        maxHeight: "0"
+                    },
+                    ease: Power2.easeOut
+                });
+
+                TweenLite.to(headerLogo, 0.3, {
+                    scale: 0,
+                    y: -10,
+                    ease: Power2.easeOut
+                });
+                TweenLite.to(pageTitle, 0.3, {
+                    scale: 0,
+                    y: -10,
+                    ease: Power2.easeOut
+                });
+                TweenLite.to(pageDescription, 0.3, {
+                    scale: 0,
+                    y: -10,
+                    ease: Power2.easeOut
+                });
+            }
+            isHeaderCollapsed = true;
 
         } else {
-            if(isHeaderCollapsed == true){
+            if (isHeaderCollapsed == true) {
 
-            TweenLite.to(header, 0.5, { css: {padding:"30px 0 0", backgroundColor:"black"}, ease: Power2.easeOut });
-            TweenLite.to(headerTop, 0.5, { css: {maxHeight:"800px"}, ease: Power2.easeOut });
-            
-            TweenLite.to(headerLogo, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
-            TweenLite.to(pageTitle, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
-            TweenLite.to(pageDescription, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });}
-        isHeaderCollapsed = false;
+                TweenLite.to(header, 0.5, {
+                    css: {
+                        padding: "30px 0 0",
+                        backgroundColor: "black"
+                    },
+                    ease: Power2.easeOut
+                });
+                TweenLite.to(headerTop, 0.5, {
+                    css: {
+                        maxHeight: "800px"
+                    },
+                    ease: Power2.easeOut
+                });
+
+                TweenLite.to(headerLogo, 0.3, {
+                    scale: 1,
+                    y: 0,
+                    ease: Power2.easeOut,
+                    delay: 0.2
+                });
+                TweenLite.to(pageTitle, 0.3, {
+                    scale: 1,
+                    y: 0,
+                    ease: Power2.easeOut,
+                    delay: 0.2
+                });
+                TweenLite.to(pageDescription, 0.3, {
+                    scale: 1,
+                    y: 0,
+                    ease: Power2.easeOut,
+                    delay: 0.2
+                });
+            }
+            isHeaderCollapsed = false;
 
         }
     });
-    
-     $(document).ready(function() {
-        if ($(window).scrollTop() > 100) {
-TweenLite.set(header, { css: {padding:"10px 0", backgroundColor:"rgba(0, 0, 0, 0.7)"} });
-TweenLite.set(headerTop, { css: {maxHeight:"0"} });
 
-TweenLite.set(headerLogo, { scale:0, y:-10 });
-TweenLite.set(pageTitle, { scale:0, y:-10 });
-TweenLite.set(pageDescription, { scale:0, y:-10 });
-        isHeaderCollapsed = true;
+    $(document).ready(function() {
+        if ($(window).scrollTop() > 100) {
+            TweenLite.set(header, {
+                css: {
+                    padding: "10px 0",
+                    backgroundColor: "rgba(0, 0, 0, 0.7)"
+                }
+            });
+            TweenLite.set(headerTop, {
+                css: {
+                    maxHeight: "0"
+                }
+            });
+
+            TweenLite.set(headerLogo, {
+                scale: 0,
+                y: -10
+            });
+            TweenLite.set(pageTitle, {
+                scale: 0,
+                y: -10
+            });
+            TweenLite.set(pageDescription, {
+                scale: 0,
+                y: -10
+            });
+            isHeaderCollapsed = true;
 
         } else {
-TweenLite.set(header, { css: {padding:"30px 0 0", backgroundColor:"black"} });
-TweenLite.set(headerTop, { css: {maxHeight:"800px"} });
+            TweenLite.set(header, {
+                css: {
+                    padding: "30px 0 0",
+                    backgroundColor: "black"
+                }
+            });
+            TweenLite.set(headerTop, {
+                css: {
+                    maxHeight: "800px"
+                }
+            });
 
-TweenLite.set(headerLogo, { scale:1, y:0 });
-TweenLite.set(pageTitle, { scale:1, y:0 });
-TweenLite.set(pageDescription, { scale:1, y:0 });
-        isHeaderCollapsed = false;
+            TweenLite.set(headerLogo, {
+                scale: 1,
+                y: 0
+            });
+            TweenLite.set(pageTitle, {
+                scale: 1,
+                y: 0
+            });
+            TweenLite.set(pageDescription, {
+                scale: 1,
+                y: 0
+            });
+            isHeaderCollapsed = false;
 
         }
-    });   
+    });
 
-    function collapseHeader(){
-TweenLite.to(header, 0.5, { css: {padding:"10px 0 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
-TweenLite.to(headerTop, 0.5, { css: {maxHeight:"0"}, ease: Power2.easeOut });
+    function collapseHeader() {
+        TweenLite.to(header, 0.5, {
+            css: {
+                padding: "10px 0 0",
+                backgroundColor: "rgba(0, 0, 0, 0.7)"
+            },
+            ease: Power2.easeOut
+        });
+        TweenLite.to(headerTop, 0.5, {
+            css: {
+                maxHeight: "0"
+            },
+            ease: Power2.easeOut
+        });
 
-TweenLite.to(headerLogo, 0.5, { scale:0, y:-250, ease: Power2.easeOut });
-TweenLite.to(pageTitle, 0.5, { scale:0, y:-250, ease: Power2.easeOut });
-TweenLite.to(pageDescription, 0.5, { scale:0, y:-250, ease: Power2.easeOut });
+        TweenLite.to(headerLogo, 0.5, {
+            scale: 0,
+            y: -250,
+            ease: Power2.easeOut
+        });
+        TweenLite.to(pageTitle, 0.5, {
+            scale: 0,
+            y: -250,
+            ease: Power2.easeOut
+        });
+        TweenLite.to(pageDescription, 0.5, {
+            scale: 0,
+            y: -250,
+            ease: Power2.easeOut
+        });
 
     }
-    function expandHeader(){
-TweenLite.to(header, 0.5, { css: {padding:"30px 0", backgroundColor:"black"}, ease: Power2.easeOut });
-TweenLite.to(headerTop, 0.5, { css: {maxHeight:"800px"}, ease: Power2.easeOut });
 
-TweenLite.to(headerLogo, 0.5, { scale:1, y:0, ease: Power2.easeOut });
-TweenLite.to(pageTitle, 0.5, { scale:1, y:0, ease: Power2.easeOut });
-TweenLite.to(pageDescription, 0.5, { scale:1, y:0, ease: Power2.easeOut });
+    function expandHeader() {
+        TweenLite.to(header, 0.5, {
+            css: {
+                padding: "30px 0",
+                backgroundColor: "black"
+            },
+            ease: Power2.easeOut
+        });
+        TweenLite.to(headerTop, 0.5, {
+            css: {
+                maxHeight: "800px"
+            },
+            ease: Power2.easeOut
+        });
+
+        TweenLite.to(headerLogo, 0.5, {
+            scale: 1,
+            y: 0,
+            ease: Power2.easeOut
+        });
+        TweenLite.to(pageTitle, 0.5, {
+            scale: 1,
+            y: 0,
+            ease: Power2.easeOut
+        });
+        TweenLite.to(pageDescription, 0.5, {
+            scale: 1,
+            y: 0,
+            ease: Power2.easeOut
+        });
 
     }
 
@@ -826,19 +957,19 @@ TweenLite.to(pageDescription, 0.5, { scale:1, y:0, ease: Power2.easeOut });
         //
         var maxAutoPlay = 5;
 
-if(iFrameTags[elemNum].contentWindow.Animation.mainTimeline.isActive()){            
-            iFrameTags[elemNum].contentWindow.Animation.mainTimeline.pause(0);
-}
 
 
-        if(elemNum >= maxAutoPlay){
-//            console.log("pausing "+elemNum+" : "+creativeName);
-//              iFrameTags[elemNum].contentWindow.Animation.mainTimeline.pause();
+        if (elemNum >= maxAutoPlay) {
+            setTimeout(function() {
+                {
+                    console.log(elemNum + " active. will pause.")
+                    iFrameTags[elemNum].contentWindow.Animation.mainTimeline.pause(0);
+                }
+            }, 300);
 
-        }
-        else {
 
- //           iFrameTags[elemNum].contentWindow.Animation.mainTimeline.play();
+        } else {
+
         }
 
     }
