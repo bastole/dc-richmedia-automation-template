@@ -76,9 +76,15 @@ var Animation =
     })();
 
 function bgExitHandler(e) {
-    if (typeof Animation !== typeof undefined) Animation.mainTimeline.pause(30);
-    if (typeof dyn == typeof undefined) Enabler.exit('Background Exit');
-    else Enabler.exitOverride("Dynamic Exit", dyn.clickURL.Url);
+//    if (typeof Animation !== typeof undefined) Animation.mainTimeline.pause(30);
+    
+    if (typeof dyn == typeof undefined) {
+        Enabler.exit('Background Exit');
+    }
+    else {
+        Enabler.exit('Background Exit');
+        Enabler.exitOverride("Background Exit", dyn.clickURL.Url);
+    }
 }
 
 // for Preview: TimeLine is ready.

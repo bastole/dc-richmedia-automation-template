@@ -36,11 +36,8 @@
     #header-logo,
     #page-title,
     #page-description {
-
         -webkit-transform: translateY(-10px) scale(0);
         transform: translateY(-10px) scale(0);
-
-
     }
     
     #header-top {
@@ -95,13 +92,14 @@
     
     nav ul:hover {
         border-radius: 0;
-        max-height: 1400px;
-        max-width: 240px;
+        max-height: 80vh;
+        max-width: 80vh;
+        overflow-y: scroll;
         border: 2px solid black;
         background-color: white;
         color: #333;
-        -webkit-transition: border-radius 0.2s linear, max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
-        transition: border-radius 0.2s linear, max-height 1.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
+        -webkit-transition: border-radius 0.2s linear, max-height 0.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
+        transition: border-radius 0.2s linear, max-height 0.4s linear 0.2s, max-width 0.2s linear, background-color 0.4s linear;
     }
     
     nav ul li {
@@ -454,49 +452,58 @@
         pageDescription = document.getElementById("page-description"),
         headerLogo = document.getElementById("header-logo"),
         headerTop = document.getElementById("header-top"),
-        header = document.getElementsByTagName("header")[0];
+        header = document.getElementsByTagName("header")[0],
+        body = document.body,
+        html = document.documentElement,
+        isHeaderCollapsed = false;
+
 
     //Collapsiing header
 
     $(window).scroll(function() {
 
-var body = document.body,
-    html = document.documentElement;
 
 var docHeight = Math.max( body.scrollHeight, body.offsetHeight, 
                        html.clientHeight, html.scrollHeight, html.offsetHeight ) - window.innerHeight;
 
     var barWidth = ($(window).scrollTop()/docHeight * 100)+"%";
 
-    TweenLite.to(headerBarProgress,0.3,{css:{width:barWidth, ease: Power2.easeOut}});
-  
-        if ($(window).scrollTop()) {
-TweenLite.to(header, 0.5, { css: {padding:"10px 0 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
-TweenLite.to(headerTop, 0.5, { css: {maxHeight:"0"}, ease: Power2.easeOut });
+    TweenLite.to(headerBarProgress,0.3,{css:{width:barWidth}, ease: Power2.easeOut});
 
-TweenLite.to(headerLogo, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
-TweenLite.to(pageTitle, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
-TweenLite.to(pageDescription, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
+        if ($(window).scrollTop() > 100) {
+            if(isHeaderCollapsed == false){
+
+            TweenLite.to(header, 0.5, { css: {padding:"10px 0 0", backgroundColor:"rgba(0, 0, 0, 0.7)"}, ease: Power2.easeOut });
+            TweenLite.to(headerTop, 0.5, { css: {maxHeight:"0"}, ease: Power2.easeOut });
+            
+            TweenLite.to(headerLogo, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
+            TweenLite.to(pageTitle, 0.3, { scale:0, y:-10, ease: Power2.easeOut });
+            TweenLite.to(pageDescription, 0.3, { scale:0, y:-10, ease: Power2.easeOut });}
+        isHeaderCollapsed = true;
 
         } else {
-TweenLite.to(header, 0.5, { css: {padding:"30px 0 0", backgroundColor:"black"}, ease: Power2.easeOut });
-TweenLite.to(headerTop, 0.5, { css: {maxHeight:"800px"}, ease: Power2.easeOut });
+            if(isHeaderCollapsed == true){
 
-TweenLite.to(headerLogo, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
-TweenLite.to(pageTitle, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
-TweenLite.to(pageDescription, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
+            TweenLite.to(header, 0.5, { css: {padding:"30px 0 0", backgroundColor:"black"}, ease: Power2.easeOut });
+            TweenLite.to(headerTop, 0.5, { css: {maxHeight:"800px"}, ease: Power2.easeOut });
+            
+            TweenLite.to(headerLogo, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
+            TweenLite.to(pageTitle, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });
+            TweenLite.to(pageDescription, 0.3, { scale:1, y:0, ease: Power2.easeOut, delay:0.2 });}
+        isHeaderCollapsed = false;
 
         }
     });
     
      $(document).ready(function() {
-        if ($(window).scrollTop()) {
+        if ($(window).scrollTop() > 100) {
 TweenLite.set(header, { css: {padding:"10px 0", backgroundColor:"rgba(0, 0, 0, 0.7)"} });
 TweenLite.set(headerTop, { css: {maxHeight:"0"} });
 
 TweenLite.set(headerLogo, { scale:0, y:-10 });
 TweenLite.set(pageTitle, { scale:0, y:-10 });
 TweenLite.set(pageDescription, { scale:0, y:-10 });
+        isHeaderCollapsed = true;
 
         } else {
 TweenLite.set(header, { css: {padding:"30px 0 0", backgroundColor:"black"} });
@@ -505,6 +512,7 @@ TweenLite.set(headerTop, { css: {maxHeight:"800px"} });
 TweenLite.set(headerLogo, { scale:1, y:0 });
 TweenLite.set(pageTitle, { scale:1, y:0 });
 TweenLite.set(pageDescription, { scale:1, y:0 });
+        isHeaderCollapsed = false;
 
         }
     });   
@@ -815,6 +823,23 @@ TweenLite.to(pageDescription, 0.5, { scale:1, y:0, ease: Power2.easeOut });
         document.getElementById("slider-" + folderList[elemNum].replace('/', '')).style.width = "225px";
         isSliderOn[elemNum] = true;
 
+        //
+        var maxAutoPlay = 5;
+
+if(iFrameTags[elemNum].contentWindow.Animation.mainTimeline.isActive()){            
+            iFrameTags[elemNum].contentWindow.Animation.mainTimeline.pause(0);
+}
+
+
+        if(elemNum >= maxAutoPlay){
+//            console.log("pausing "+elemNum+" : "+creativeName);
+//              iFrameTags[elemNum].contentWindow.Animation.mainTimeline.pause();
+
+        }
+        else {
+
+ //           iFrameTags[elemNum].contentWindow.Animation.mainTimeline.play();
+        }
 
     }
     </script>

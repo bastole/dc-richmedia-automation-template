@@ -143,7 +143,7 @@
             this.thumb.style.left = (-this.railW + x) + "px";
 //
             if (this.wasPlaying) {
-                this.tl.play();
+            //    this.tl.play();
                 this.toggle(false);
             }
         },
