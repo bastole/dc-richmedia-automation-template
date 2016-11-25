@@ -954,23 +954,15 @@
         document.getElementById("slider-" + folderList[elemNum].replace('/', '')).style.width = "225px";
         isSliderOn[elemNum] = true;
 
-        //
-        var maxAutoPlay = 5;
-
-
-
+        var maxAutoPlay = 3;
         if (elemNum >= maxAutoPlay) {
-            setTimeout(function() {
-                {
-                    console.log(elemNum + " active. will pause.")
-                    iFrameTags[elemNum].contentWindow.Animation.mainTimeline.pause(0);
-                }
-            }, 300);
-
-
-        } else {
-
+            console.log(elemNum + " active. will pause.")
+            iFrameTags[elemNum].contentWindow.Animation.mainTimeline.pause(0);
         }
+        else {
+            iFrameTags[elemNum].contentWindow.Animation.mainTimeline.play();
+        }
+
 
     }
     </script>

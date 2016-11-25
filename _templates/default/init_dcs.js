@@ -73,6 +73,13 @@ function startCreative() {
 
             TweenLite.to(loading, 0.2, { autoAlpha: 0, y: -60, scale: 0.9 });
             Animation.mainTimeline.restart();
+            // for Preview: TimeLine is ready.
+            var callOutside = window.parent.iFrameAnimationLoaded;
+            if (typeof window.parent.iFrameAnimationLoaded !== "undefined") { 
+                callOutside(document.title);
+            }
+
+            
         }
     });
 }
