@@ -205,7 +205,7 @@ module.exports = function(grunt) {
             code: {
                 src: ["public/**.{html,js,css}", "!public/index.html", "!public/html2canvas.js", "!public/gsap-timeline-slider.js"]
             },
-            image: {    
+            image: {
                 src: ["public/**.{jpg,png,gif,svg}"]
             },
             reset: {
@@ -245,26 +245,24 @@ module.exports = function(grunt) {
 
         imagemin: {
             all: {
-                files: []//imageMinFiles
+                files: [] //imageMinFiles
             }
         },
 
         copy: {
             setUp: {
-                files: copySetUpFiles.concat(
-                {
-                    expand: true,
-                    cwd: "_templates/",
-                    src: ["html2canvas.js","gsap-timeline-slider.js"],
-                    dest: DEST
-                },
-                {
-                    expand: true,
-                    cwd: "_templates/",
-                    src: "shared/**/*.*",
-                    dest: SRC
-                }
-                
+                files: copySetUpFiles.concat({
+                        expand: true,
+                        cwd: "_templates/",
+                        src: ["html2canvas.js", "gsap-timeline-slider.js"],
+                        dest: DEST
+                    }, {
+                        expand: true,
+                        cwd: "_templates/",
+                        src: "shared/**/*.*",
+                        dest: SRC
+                    }
+
                 )
             },
             build: {
@@ -272,15 +270,13 @@ module.exports = function(grunt) {
             },
 
             imagemin: {
-                files: imageMinFiles.concat(
-								{
+                files: imageMinFiles.concat({
                     expand: true,
-                    flatten:true,
+                    flatten: true,
                     cwd: SRC,
                     src: ["**/*.{jpg,png,gif,svg}"],
                     dest: DEST
-                }
-                )
+                })
             }
 
         },
@@ -355,10 +351,9 @@ module.exports = function(grunt) {
                 });
                 grunt.file.write(SRC.concat(FOLDER_LIST[i], "index.html"), bootStrapIndexHTML);
 
-            }   
+            }
             var bootStrapPreviewHTML = grunt.file.read("_templates/_preview.html.tpl");
-            bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML
-                , {
+            bootStrapPreviewHTML = grunt.template.process(bootStrapPreviewHTML, {
                 data: {
                     config: JSON.stringify(config),
                     jobnumber: config.jobnumber,
@@ -367,8 +362,7 @@ module.exports = function(grunt) {
                     width: widthList,
                     height: heightList
                 }
-            }
-            );
+            });
             grunt.file.write("public/index.html", bootStrapPreviewHTML);
         }
 
@@ -429,5 +423,7 @@ module.exports = function(grunt) {
     grunt.registerTask("reset", ["prompt", "clean:reset", "setUp"]);
     grunt.registerTask("restart", ["clean:reset", "setUp", "default"]);
     grunt.registerTask("zip", ["zip_directories"]);
+
+    grunt.registerTask('test', ['default']);
 
 };

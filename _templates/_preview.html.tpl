@@ -956,13 +956,11 @@
 
         var maxAutoPlay = 3;
         if (elemNum >= maxAutoPlay) {
-            console.log(elemNum + " active. will pause.")
             iFrameTags[elemNum].contentWindow.Animation.mainTimeline.pause(0);
         }
         else {
             iFrameTags[elemNum].contentWindow.Animation.mainTimeline.play();
         }
-
 
     }
     </script>
