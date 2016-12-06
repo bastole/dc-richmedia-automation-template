@@ -25,14 +25,22 @@ DRAT - [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Autom
 Setting up your development environment
 ---------------------------------------
 
+
 Once you have the above requirements installed, you can set up your development server.
-
-#### Generate your build environment
-
-If you're on a unix-like environment, you can run:
 
 ```
 $ npm install
+
+```
+
+
+#### Generate your build environment
+
+Run:
+
+```
+$ npm create
+
 ```
 
 DRAT will then start asking you questions and waiting for answers before continuing:
