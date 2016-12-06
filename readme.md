@@ -1,4 +1,6 @@
-DRAT - [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Automation Template [![Build Status](https://travis-ci.org/bastole/dc-richmedia-automation-template.svg?branch=master)](https://travis-ci.org/bastole/dc-richmedia-automation-template)
+[![Build Status](https://travis-ci.org/bastole/dc-richmedia-automation-template.svg?branch=master)](https://travis-ci.org/bastole/dc-richmedia-automation-template)
+
+DRAT - [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Automation Template
 =======================
 
 ![DRAT](etc/drat.png)
