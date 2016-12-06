@@ -7,15 +7,14 @@ DRAT - [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Autom
 
 
 * DRAT is a [grunt](http://gruntjs.com/) based build template for developing multiple [DoubleClick](https://www.google.com/doubleclick/studio/) rich banners simultaneously.
-* DRAT is for people who want to build cool things outside the limits of [HTML5 authoring tools.](http://www.google.com/webdesigner/)
-* DRAT currently supports in-page format and YouTube video - other formats will be added shortly.
+* DRAT is to build banners without using [Google Web Designer.](http://www.google.com/webdesigner/)
+* DRAT currently supports in-page format and YouTube - other formats will be added shortly.
 
 #### Features
 
 * Build and preview multiple banners simultaneously.
 * Strictly polite-loads every asset.
 * Optimizes every image on build and generates size report.
-* Supports embedding YouTube video and 'Close X' button.
 * Uses Google hosted [GSAP](http://greensock.com/gsap). This doesn't count towards the publisher's filesize.
 * Animation stops after 30 seconds to comply with the recommended spec.
 * Video and Animation stops on click to comply with the recommended spec.
@@ -41,37 +40,14 @@ $ npm install
 Run:
 
 ```
-$ npm create
+$ grunt create
 
 ```
 
-DRAT will then start asking you questions and waiting for answers before continuing:
+![gif](http://i.imgur.com/u3AqT2P.gif)
 
-```
-? What is the job number? (JOB0000)
 
-? Project description? (Simple inpage digital banners.)
-
-? Name of the creative? (Concept-A)
-
-? Banner sizes under this creative - Pick as many as you want. (Press <space> to
- select)
-
-❯◉ 300x250
- ◯ 728x90
- ◯ 300x600
- ◯ 160x600
- ◯ 120x600
- ◯ 980x150
- ◯ 970x250
- ◯ 980x250
-(Move up and down to reveal more choices)
-
-? Add another creative? : (y/N)
-
-```
-
-If you screwed up the questions and want to start again, run:
+To start the questions again, run:
 ```
 $ grunt reset
 ```
@@ -79,7 +55,7 @@ $ grunt reset
 
 #### Start building banners
 
-Run the following command to have the grunt watcher build your sass, js and images as you work:
+Run the grunt (default) to have the grunt watcher build your sass, js and images as you work:
 
 ```
 $ grunt
