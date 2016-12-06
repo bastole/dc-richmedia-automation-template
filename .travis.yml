@@ -4,4 +4,5 @@ node_js:
   - "5"
 before_script:
   - gem install sass  
+  - gem install compass
   - npm install grunt-cli -g
