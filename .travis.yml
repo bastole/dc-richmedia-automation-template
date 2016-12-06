@@ -3,4 +3,5 @@ node_js:
   - "6"
   - "5"
 before_script:
+  - gem install sass  
   - npm install grunt-cli -g
