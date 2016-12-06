@@ -27,9 +27,7 @@
         "gsap": "^1.18.4"
     },
     "scripts": {
-        "test": "grunt test",
-        "install": "grunt prompt",
-        "postinstall": "grunt setUp"
+        "test": "grunt test"
     },
     "keywords": [
         "DoubleClick",

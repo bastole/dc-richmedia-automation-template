@@ -420,10 +420,11 @@ module.exports = function(grunt) {
 
     });
     grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp", "okMessage"]);
-    grunt.registerTask("reset", ["prompt", "clean:reset", "setUp"]);
+    grunt.registerTask("create", ["prompt", "setUp"]);
+    grunt.registerTask("reset", ["prompt", "clean:reset", "setUp"]);    
     grunt.registerTask("restart", ["clean:reset", "setUp", "default"]);
     grunt.registerTask("zip", ["zip_directories"]);
 
-    grunt.registerTask('test', ['default']);
+    grunt.registerTask("test", ["setUp","default"]);
 
 };
