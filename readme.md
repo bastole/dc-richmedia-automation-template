@@ -23,11 +23,10 @@ DRAT - [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Autom
 
 [NodeJS](https://nodejs.org/), [Grunt](http://gruntjs.com/), [Sass](http://sass-lang.com/install)
 
-Setting up your development environment
----------------------------------------
+Setting up development environment
+----------------------------------
 
-
-Once you have the above requirements installed, you can set up your development server.
+#### Install
 
 ```
 $ npm install
@@ -35,7 +34,7 @@ $ npm install
 ```
 
 
-#### Generate your build environment
+#### Generate build environment
 
 Run:
 
@@ -55,7 +54,7 @@ $ grunt reset
 
 #### Start building banners
 
-Run the grunt (default) to have the grunt watcher build your sass, js and images as you work:
+Run the grunt (default) to have the grunt watcher build sass, js and images as you work:
 
 ```
 $ grunt
