@@ -425,6 +425,6 @@ module.exports = function(grunt) {
     grunt.registerTask("restart", ["clean:reset", "setUp", "default"]);
     grunt.registerTask("zip", ["zip_directories"]);
 
-    grunt.registerTask("test", ["setUp", "jshint", "clean:code", "clean:image", "concat", "sass", "copy:imagemin", "copy:build", "connect:server", "open"]);
+    grunt.registerTask("test", ["setUp", "jshint", "clean:code", "clean:image", "concat", "sass", "copy:imagemin", "copy:build", "connect:server"]);
 
 };
