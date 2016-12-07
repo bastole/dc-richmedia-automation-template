@@ -15,6 +15,17 @@ var
     FOLDER_LIST = [],
     SIZE_LIST = [];
 
+var
+    combineJSFiles = [],
+    sassFiles = [],
+    copySetUpFiles = [],
+    copyBuildFiles = [],
+    sizeReportFiles = [],
+    imageMinFiles = [],
+    screenshotFiles = [],
+    widthList = [],
+    heightList = [];
+
 for (var i = 0; i < config.list.length; i++) {
     for (var j = 0; j < config.list[i].dimension.length; j++) {
         FOLDER_LIST.push(config.jobnumber.concat("_", config.list[i].creative, "_", config.list[i].dimension[j], "/"));
@@ -23,20 +34,12 @@ for (var i = 0; i < config.list.length; i++) {
     }
 }
 
-var widthList = SIZE_LIST.map(function(a) {
+widthList = SIZE_LIST.map(function(a) {
     return a.match(/(\d+)/g)[0];
 });
-var heightList = SIZE_LIST.map(function(a) {
+heightList = SIZE_LIST.map(function(a) {
     return a.match(/(\d+)/g)[1];
 });
-
-var combineJSFiles = [],
-    sassFiles = [],
-    copySetUpFiles = [],
-    copyBuildFiles = [],
-    sizeReportFiles = [],
-    imageMinFiles = [],
-    screenshotFiles = [];
 
 for (var i = 0; i < FOLDER_LIST.length; i++) {
     combineJSFiles[i] = {
@@ -286,6 +289,23 @@ module.exports = function(grunt) {
 
             }
         },
+
+        wait: {
+            options: {
+                delay: 500
+            },
+            pause: {
+                options: {
+                    before: function(options) {
+                        console.log('pausing %dms', options.delay);
+                    },
+                    after: function() {
+                        console.log('pause end');
+                    }
+                }
+            }
+        },
+
         zip_directories: {
             zip: {
                 files: [{
@@ -415,7 +435,7 @@ module.exports = function(grunt) {
         console.log("|       ||   |  | ||   _   |  |   |  ");
         console.log("|______| |___|  |_||__| |__|  |___|  ");
         console.log("");
-        console.log("█████████████████████████████████████");
+        console.log("███████████████████████ ██████████████");
 
         grunt.log.oklns("Set up is now complete.");
         grunt.log.oklns("");
@@ -425,7 +445,7 @@ module.exports = function(grunt) {
     });
     grunt.registerTask("create", "Creates build/ and public/", ["buildBootstrapper", "copy:create", "okMessage", "open:workfolder"]);
     grunt.registerTask("delete", "Deletes build/ and public/", ["clean:delete"]);
-    grunt.registerTask("start", "Starts a new project(prompt, delete, create)", ["prompt", "clean:delete", "create"]);
+    grunt.registerTask("start", "Starts a new project", ["delete", "prompt"]);
     grunt.registerTask("restart", ["delete", "create", "default"]);
     grunt.registerTask("zip", "Zips banners to /zipped for easy upload", ["zip_directories", "open:zip"]);
     grunt.registerTask("test", ["create", "jshint", "clean:code", "clean:image", "concat", "sass", "imagemin:imagemin", "copy:build", "connect:server"]);

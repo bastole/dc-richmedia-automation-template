@@ -34,7 +34,7 @@ $ npm install
 _Run this task :
 
 ```
-$ grunt start
+$ grunt start && grunt create
 
 ```
 
