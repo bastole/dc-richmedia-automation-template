@@ -448,6 +448,6 @@ module.exports = function(grunt) {
     grunt.registerTask("start", "Starts a new project", ["delete", "prompt"]);
     grunt.registerTask("restart", ["delete", "create", "default"]);
     grunt.registerTask("zip", "Zips banners to /zipped for easy upload", ["zip_directories", "open:zip"]);
-    grunt.registerTask("test", ["create", "jshint", "clean:code", "clean:image", "concat", "sass", "imagemin:imagemin", "copy:build", "connect:server"]);
+    grunt.registerTask("test", ["start", "create", "jshint", "clean:code", "clean:image", "concat", "sass", "imagemin:imagemin", "copy:build", "connect:server"]);
 
 };
