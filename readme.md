@@ -51,7 +51,7 @@ $ grunt
 
 ```
 
-![Preview screen](http://i.imgur.com/SQd33dm.png)
+![Preview screen](http://i.imgur.com/jpQSCAMr.png)
 
 
 ### /build folder
