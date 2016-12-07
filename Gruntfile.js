@@ -243,8 +243,8 @@ module.exports = function(grunt) {
         },
 
         imagemin: {
-            all: {
-                files: [] //imageMinFiles
+            imagemin: {
+                files: imageMinFiles
             }
         },
 
@@ -310,7 +310,7 @@ module.exports = function(grunt) {
             },
             imageUpdated: {
                 files: ["build/**/*.{jpg,png,gif,svg}"],
-                tasks: ["clean:image", "copy:imagemin"]
+                tasks: ["clean:image", "imagemin:imagemin"]
             }
         },
         connect: {
@@ -323,7 +323,7 @@ module.exports = function(grunt) {
         },
         open: {
             workfolder: {
-                path: '.',
+                path: SRC,
             },
             zip: {
                 path: 'zipped/',
@@ -335,7 +335,7 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask("default", ["jshint", "clean:code", "clean:image", "concat", "sass", "copy:imagemin", "copy:build", "connect:server", "open:server", "watch"]);
+    grunt.registerTask("default", ["jshint", "clean:code", "clean:image", "concat", "sass", "imagemin:imagemin", "copy:build", "connect:server", "open:server", "watch"]);
 
     grunt.registerTask("buildBootstrapper", "builds the bootstrapper file", function() {
             for (var i = 0; i < FOLDER_LIST.length; i++) {
@@ -428,6 +428,6 @@ module.exports = function(grunt) {
     grunt.registerTask("start", "Starts a new project(prompt, delete, create)", ["prompt", "clean:delete", "create"]);
     grunt.registerTask("restart", ["delete", "create", "default"]);
     grunt.registerTask("zip", "Zips banners to /zipped for easy upload", ["zip_directories", "open:zip"]);
-    grunt.registerTask("test", ["create", "jshint", "clean:code", "clean:image", "concat", "sass", "copy:imagemin", "copy:build", "connect:server"]);
+    grunt.registerTask("test", ["create", "jshint", "clean:code", "clean:image", "concat", "sass", "imagemin:imagemin", "copy:build", "connect:server"]);
 
 };
