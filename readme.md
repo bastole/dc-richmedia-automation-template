@@ -6,18 +6,17 @@ DRAT - [DoubleClick Richmedia](https://www.google.com/doubleclick/studio/) Autom
 ![DRAT](etc/drat.png)
 
 
-* DRAT is a [grunt](http://gruntjs.com/) based build template for developing multiple [DoubleClick](https://www.google.com/doubleclick/studio/) rich banners simultaneously.
-* DRAT is to build banners without using [Google Web Designer.](http://www.google.com/webdesigner/)
-* DRAT currently supports in-page format and YouTube - other formats will be added shortly.
+* [Grunt](http://gruntjs.com/) based build template for developing multiple [DoubleClick](https://www.google.com/doubleclick/studio/) rich banners simultaneously.
 
 #### Features
 
-* Build and preview multiple banners simultaneously.
-* Strictly polite-loads every asset.
-* Optimizes every image on build and generates size report.
-* Uses Google hosted [GSAP](http://greensock.com/gsap). This doesn't count towards the publisher's filesize.
-* Animation stops after 30 seconds to comply with the recommended spec.
-* Video and Animation stops on click to comply with the recommended spec.
+* Build multiple banners simultaneously.
+* Polite-loads every asset.
+* Optimizes image on build.
+* Uses hosted GSAP that doesn't count towards the max filesize.
+* Peview banners with play, pause, rewind and timeline slider.
+* Generate back-up GIFs with a single click.
+* Detects Ad Blocker
 
 #### Requirements
 
@@ -33,7 +32,6 @@ $ npm install
 
 ```
 
-
 #### Generate build environment
 
 Run:
@@ -43,8 +41,7 @@ $ grunt create
 
 ```
 
-![gif](http://i.imgur.com/u3AqT2P.gif)
-
+![gif](http://i.imgur.com/x1tFsXr.gif)
 
 To start the questions again, run:
 ```
@@ -54,7 +51,7 @@ $ grunt reset
 
 #### Start building banners
 
-Run the grunt (default) to have the grunt watcher build sass, js and images as you work:
+Run grunt (default) to have the watcher build sass, js and images as you work:
 
 ```
 $ grunt
@@ -78,15 +75,13 @@ $ grunt zip - Creates /zipped folder and compressed banners
 
 You can see in the build folder that all banner sub-folders are created.
 
-* /build/share - Shared js and sass across all banners. Use this for universal properties such as border thickness/color and font.
+* /build/shared - Shared js and sass across all banners.
 
-* /build/bannerName/images - images used for the banner. images dumped here will be compressed and copied to public folder. Leave the back-up static image here(GIF/PNG/JPG).
+* /build/bannerName/images - image assets used for the banner. images will be processed and copied to /public.
 
-* /build/bannerName/_animate.js - Preload assets, set Dynamic Profile and animate with GSAP timeline.
+* /build/bannerName/_animate.js - Preload assets and animate.
 
-* /build/bannerName/video_yt.js - YouTube video script.
-
-* /build/bannerName/init_dcs.js - DoubleClick Enabler listener and polite-loads GSAP from Google CDN(This doesn't count towards max filesize). There's no need to modify this file.
+* /build/bannerName/init_dcs.js - DoubleClick Enabler listener and polite-loads GSAP.
 
 #### /public folder
 
@@ -97,8 +92,8 @@ dispatch-ready banners. All you have to do is drag each folder into [DoubleClick
 banners in .zip files. It's safer and much faster to upload compressed files to DoubleClick. 
 
 #### /etc folder
-This folder contains bits and pieces.
-back-up static image template in PSD. On e uploaded to DoubleClick, a GIF/JPG/PNG file including 'backup' in filename will automatically be assigned as a back-up image.
+.
+
 
 License
 ---------------------------------------
