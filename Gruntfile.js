@@ -40,7 +40,6 @@ var combineJSFiles = [],
 
 for (var i = 0; i < FOLDER_LIST.length; i++) {
     combineJSFiles[i] = {
-        //console.log(string.indexOf(substring) > -1);
 
         src: (function() {
             var jsList = [JS_PARTIAL.concat("pre-loader.js"), SRC.concat(FOLDER_LIST[i], "_animate.js")];
@@ -192,7 +191,7 @@ module.exports = function(grunt) {
 
 
         mkdir: {
-            setUp: {
+            create: {
                 options: {
                     create: FOLDER_LIST.map(function(a) {
                         return SRC.concat(a);
@@ -208,7 +207,7 @@ module.exports = function(grunt) {
             image: {
                 src: ["public/**.{jpg,png,gif,svg}"]
             },
-            reset: {
+            delete: {
                 src: ["public/", "build/"]
 
             }
@@ -250,7 +249,7 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            setUp: {
+            create: {
                 files: copySetUpFiles.concat({
                         expand: true,
                         cwd: "_templates/",
@@ -323,6 +322,12 @@ module.exports = function(grunt) {
             }
         },
         open: {
+            workfolder: {
+                path: '.',
+            },
+            zip: {
+                path: 'zipped/',
+            },
             server: {
                 path: 'http://localhost:9054/',
             }
@@ -330,9 +335,9 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask("default", ["jshint", "clean:code", "clean:image", "concat", "sass", "copy:imagemin", "copy:build", "connect:server", "open", "watch"]);
+    grunt.registerTask("default", ["jshint", "clean:code", "clean:image", "concat", "sass", "copy:imagemin", "copy:build", "connect:server", "open:server", "watch"]);
 
-    grunt.registerTask("buildBootstrapper", "builds the bootstrapper file correctly", function() {
+    grunt.registerTask("buildBootstrapper", "builds the bootstrapper file", function() {
             for (var i = 0; i < FOLDER_LIST.length; i++) {
                 var bootStrapSASS = grunt.file.read(TEMPLATE_DEFAULT.concat("_local.scss.tpl"));
                 bootStrapSASS = grunt.template.process(bootStrapSASS, {
@@ -412,19 +417,17 @@ module.exports = function(grunt) {
         console.log("");
         console.log("█████████████████████████████████████");
 
-        grunt.log.oklns("Build is now complete.");
-        grunt.log.oklns("Remember to disable your ad blocker.");
+        grunt.log.oklns("Set up is now complete.");
         grunt.log.oklns("");
         grunt.log.oklns("Run 'grunt' to start building.");
 
 
     });
-    grunt.registerTask("setUp", ["buildBootstrapper", "copy:setUp", "okMessage"]);
-    grunt.registerTask("create", ["prompt", "setUp"]);
-    grunt.registerTask("reset", ["prompt", "clean:reset", "setUp"]);
-    grunt.registerTask("restart", ["clean:reset", "setUp", "default"]);
-    grunt.registerTask("zip", ["zip_directories"]);
-
-    grunt.registerTask("test", ["setUp", "jshint", "clean:code", "clean:image", "concat", "sass", "copy:imagemin", "copy:build", "connect:server"]);
+    grunt.registerTask("create", "Creates build/ and public/", ["buildBootstrapper", "copy:create", "okMessage", "open:workfolder"]);
+    grunt.registerTask("delete", "Deletes build/ and public/", ["clean:delete"]);
+    grunt.registerTask("start", "Starts a new project(prompt, delete, create)", ["prompt", "clean:delete", "create"]);
+    grunt.registerTask("restart", ["delete", "create", "default"]);
+    grunt.registerTask("zip", "Zips banners to /zipped for easy upload", ["zip_directories", "open:zip"]);
+    grunt.registerTask("test", ["create", "jshint", "clean:code", "clean:image", "concat", "sass", "copy:imagemin", "copy:build", "connect:server"]);
 
 };
