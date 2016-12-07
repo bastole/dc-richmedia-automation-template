@@ -39,7 +39,7 @@ $ grunt start
 
 ```
 
-![gif](http://i.imgur.com/WNpIGFl.gif)
+![Setting up a new project](http://i.imgur.com/BIzINs7.gif)
 
 
 ### Start building banners
@@ -50,6 +50,9 @@ _Run default grunt to have the watcher build sass, js and images as you work:
 $ grunt
 
 ```
+
+![Preview screen](http://i.imgur.com/SQd33dm.png)
+
 
 ### /build folder
 
