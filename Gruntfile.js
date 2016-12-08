@@ -223,12 +223,6 @@ module.exports = function(grunt) {
             }
         },
 
-        uglify: {
-            all: {
-                files: combineJSFiles
-            }
-        },
-
         concat: {
             all: {
                 files: combineJSFiles

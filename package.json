@@ -11,7 +11,6 @@
     "grunt-contrib-imagemin": "^1.0.0",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-html-build": "^0.6.0",
     "grunt-mkdir": "^1.0.0",
